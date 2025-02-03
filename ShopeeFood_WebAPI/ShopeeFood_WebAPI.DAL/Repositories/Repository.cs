@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using log4net.Util;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ShopeeFood_WebAPI.DAL.IRepositories;
 using ShopeeFood_WebAPI.DAL.Models;
@@ -32,12 +33,10 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             catch (DbUpdateException dbEx)
             {
                 Logger.Error($"Database update failed while adding {typeof(T).Name} entity - {dbEx?.InnerException?.Message.ToString()}");
-                throw new RepositoryException($"An error occurred while adding the entity to the database, {typeof(T).Name}", dbEx);
             }
             catch (Exception ex)
             {
                 Logger.Error($"An unexpected error occurred while adding entity - {typeof(T).Name}");
-                throw new RepositoryException($"An unexpected error occurred while adding the entity - {typeof(T).Name}", ex);
             }
         }
 
@@ -46,7 +45,6 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             if (list == null || !list.Any())
             {
                 Logger.Error($"The list of entities cannot be null or empty");
-                throw new RepositoryException($"An error occurred while adding the entity to the database, {typeof(T).Name}");
             }
             try
             {
@@ -56,23 +54,21 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             catch (DbUpdateException dbEx)
             {
                 Logger.Error($"Database update failed while adding {typeof(T).Name} entity - {dbEx?.InnerException?.Message.ToString()}");
-                throw new RepositoryException($"An error occurred while adding the entity to the database, {typeof(T).Name}", dbEx);
             }
             catch (Exception ex)
             {
                 Logger.Error($"An unexpected error occurred while adding entity - {typeof(T).Name}");
-                throw new RepositoryException($"An unexpected error occurred while adding the entity - {typeof(T).Name}", ex);
             }
         }
 
-        public async Task DeleteAsync(object id)
+        public async Task<bool> DeleteAsync(object id)
         {
             var item = await _dbSet.FindAsync(id);
 
             if (item == null)
             {
                 Logger.Error($"Entity of type {typeof(T).Name} with the specified key not found.");
-                throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with the specified key not found.");
+                return false;
             }
 
             try
@@ -82,16 +78,17 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
 
                 // Save changes to the database
                 await _context.SaveChangesAsync();
+                return true;
             }
             catch (DbUpdateConcurrencyException dbConcurrencyEx)
             {
                 Logger.Error($"Database update failed while deleting  {typeof(T).Name} entity - ID: {id} - {dbConcurrencyEx?.InnerException?.Message.ToString()}");
-                throw new RepositoryException($"Concurrency error occurred while deleting the entity - {typeof(T).Name}  - {dbConcurrencyEx?.InnerException?.Message.ToString()}");
+                return false;
             }
             catch (DbUpdateException dbEx)
             {
                 Logger.Error("Database update failed while deleting entity.");
-                throw new RepositoryException($"An error occurred while trying to delete the entity - {typeof(T).Name}", dbEx);
+                return false;
             }
         }
 
@@ -101,7 +98,6 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             if (item == null)
             {
                 Logger.Error($"Entity of type {typeof(T).Name} with id {id} not found.");
-                throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with id {id} not found.");
             }
             return item != null;
         }
@@ -123,39 +119,39 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             if (item == null)
             {
                 Logger.Error($"Entity of type {typeof(T).Name} with id {id} not found.");
-                throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with id {id} not found.");
             }
             return item;
         }
 
-        public async Task UpdateAsync(T item)
+        public async Task<bool> UpdateAsync(T item)
         {
             var existingItem = await _dbSet.FindAsync(GetPrimaryKeyValue(item));
 
             if (existingItem == null)
             {
                 Logger.Error($"Entity of type {typeof(T).Name} with the specified key not found.");
-                throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with the specified key not found.");
+                return false;
             }
 
             try
             {
                 _context.Entry(existingItem).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
+                return true;
             }
             catch (DbUpdateConcurrencyException dbConcurrencyEx)
             {
                 Logger.Error($"Concurrency error occurred while updating the entity - {typeof(T).Name}  - {dbConcurrencyEx?.InnerException?.Message.ToString()}");
-                throw new RepositoryException($"Concurrency error occurred while updating the entity - {typeof(T).Name}  - {dbConcurrencyEx?.InnerException?.Message.ToString()}");
+                return false;
             }
             catch (DbUpdateException dbEx)
             {
                 Logger.Error($"An error occurred while trying to update the entity - {typeof(T).Name}", dbEx);
-                throw new RepositoryException($"An error occurred while trying to update the entity - {typeof(T).Name}", dbEx);
+                return false;
             }
         }
 
-        public Task UpdateRangeAsync(List<T> list)
+        public Task<bool> UpdateRangeAsync(List<T> list)
         {
             throw new NotImplementedException();
         }

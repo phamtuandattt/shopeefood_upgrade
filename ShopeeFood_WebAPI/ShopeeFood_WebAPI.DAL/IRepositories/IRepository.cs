@@ -12,9 +12,9 @@ namespace ShopeeFood_WebAPI.DAL.IRepositories
         Task<T> GetByIdAsync(object id);
         Task AddAsync(T item);
         Task AddRangeAsync(List<T> list);
-        Task UpdateAsync(T item);
-        Task UpdateRangeAsync(List<T> list);
-        Task DeleteAsync(object id);
+        Task<bool> UpdateAsync(T item);
+        Task<bool> UpdateRangeAsync(List<T> list);
+        Task<bool> DeleteAsync(object id);
         Task<bool> ExistsAsync(object id);
     }
 }

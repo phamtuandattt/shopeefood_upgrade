@@ -12,8 +12,8 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task<CityDto> GetById(int cityId);
         Task<List<CityDto>> GetAll();
         Task AddAsync(CityDto cityDto);
-        Task UpdateAsync(CityDto cityDto);
-        Task DeleteAsync(int cityId);
+        Task<bool> UpdateAsync(int id, CityDto cityDto);
+        Task<bool> DeleteAsync(int cityId);
         Task<bool> CityExisted(int cityId);
     }
 }

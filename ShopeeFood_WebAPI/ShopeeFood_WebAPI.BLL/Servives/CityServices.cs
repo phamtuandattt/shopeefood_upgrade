@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using log4net.Repository.Hierarchy;
 using ShopeeFood_WebAPI.BLL.Dtos;
 using ShopeeFood_WebAPI.BLL.IServices;
 using ShopeeFood_WebAPI.DAL.IRepositories;
 using ShopeeFood_WebAPI.DAL.Models;
+using ShopeeFood_WebAPI.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,14 +31,14 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             await _repository.AddAsync(item);
         }
 
-        public Task<bool> CityExisted(int cityId)
+        public async Task<bool> CityExisted(int cityId)
         {
-            throw new NotImplementedException();
+            return await _repository.ExistsAsync(cityId);
         }
 
-        public Task DeleteAsync(int cityId)
+        public async Task<bool> DeleteAsync(int cityId)
         {
-            throw new NotImplementedException();
+            return await _repository.DeleteAsync(cityId);
         }
 
         public async Task<List<CityDto>> GetAll()
@@ -44,14 +47,29 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             return _mapper.Map<List<CityDto>>(items);
         }
 
-        public Task<CityDto> GetById(int cityId)
+        public async Task<CityDto> GetById(int cityId)
         {
-            throw new NotImplementedException();
+            var item = await _repository.GetByIdAsync(cityId);
+            return _mapper.Map<CityDto>(item) ?? new CityDto();
         }
 
-        public Task UpdateAsync(CityDto cityDto)
+        public async Task<bool> UpdateAsync(int id, CityDto cityDto)
         {
-            throw new NotImplementedException();
+            var item = await _repository.GetByIdAsync(id);
+            if (item == null)
+            {
+                return false;
+            }
+            var item_n = _mapper.Map(cityDto, item);
+            try
+            {
+                await _repository.UpdateAsync(item);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
