@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopeeFood_WebAPI", "ShopeeFood_WebAPI\ShopeeFood_WebAPI.csproj", "{D7B6C399-8B36-4EB6-9FC8-96D25622B011}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopeeFood_WebAPI.DAL", "ShopeeFood_WebAPI.DAL\ShopeeFood_WebAPI.DAL.csproj", "{B662E2D7-8FFA-4C84-AE72-155A87B61EFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7B6C399-8B36-4EB6-9FC8-96D25622B011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B6C399-8B36-4EB6-9FC8-96D25622B011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B6C399-8B36-4EB6-9FC8-96D25622B011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B6C399-8B36-4EB6-9FC8-96D25622B011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B662E2D7-8FFA-4C84-AE72-155A87B61EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B662E2D7-8FFA-4C84-AE72-155A87B61EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B662E2D7-8FFA-4C84-AE72-155A87B61EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B662E2D7-8FFA-4C84-AE72-155A87B61EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {276709D8-4376-4482-93B1-6511C0888A58}
+	EndGlobalSection
+EndGlobal
