@@ -40,6 +40,7 @@ namespace ShopeeFood_WebAPI.Controllers
             });
         }
 
+        // Get business field in the city
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -56,7 +57,29 @@ namespace ShopeeFood_WebAPI.Controllers
             {
                 status = HttpStatusCode.OK.ToString(),
                 message = ApiResponseMessage.SUCCESS,
-                data = JsonConvert.SerializeObject(await _services.GetById(id))
+                data = JsonConvert.SerializeObject(await _services.GetAllBusiness(id))
+            });
+        }
+
+        // Get shop field in the city
+        [HttpPost("shops")]
+        public async Task<IActionResult> GetShopInTheCity([FromBody] CityFieldShopRequestDto modelRequest)
+        {
+            var items = await _services.GetShopInTheCity(modelRequest.CityID, modelRequest.FieldID, modelRequest.PageNumber, modelRequest.PageSize);
+            if (!items.Any())
+            {
+                return NotFound(new ApiResponse
+                {
+                    status = HttpStatusCode.NotFound.ToString(),
+                    message = ApiResponseMessage.NOT_FOUND,
+                    data = ""
+                });
+            }
+            return Ok(new ApiResponse
+            {
+                status = HttpStatusCode.OK.ToString(),
+                message = ApiResponseMessage.SUCCESS,
+                data = JsonConvert.SerializeObject(items)
             });
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using ShopeeFood_WebAPI.DAL.ModelResonposeDtos.CityResponseDtos;
 
 namespace ShopeeFood_WebAPI.DAL.Models;
 
@@ -14,6 +15,14 @@ public partial class ShopeefoodDbContext : DbContext
         : base(options)
     {
     }
+
+    //------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------
+    public DbSet<CityBusinessFieldResponseDto> CityBusinessResponseDtos {  get; set; }
+    public DbSet<ShopInCityResponseDto> ShopInCityResponseDtos { get; set; }
+
+    //------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------
 
     public virtual DbSet<BusinessField> BusinessFields { get; set; }
 
