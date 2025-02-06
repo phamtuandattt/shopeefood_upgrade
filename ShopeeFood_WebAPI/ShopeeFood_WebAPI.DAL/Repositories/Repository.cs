@@ -119,6 +119,7 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             if (item == null)
             {
                 Logger.Error($"Entity of type {typeof(T).Name} with id {id} not found.");
+                return null;
             }
             return item;
         }

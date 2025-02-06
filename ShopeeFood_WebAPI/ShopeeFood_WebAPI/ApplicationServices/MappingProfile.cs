@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ShopeeFood_WebAPI.BLL.Dtos;
 using ShopeeFood_WebAPI.BLL.Dtos.CityDtos;
+using ShopeeFood_WebAPI.BLL.Dtos.ShopDtos;
 using ShopeeFood_WebAPI.DAL.ModelResonposeDtos.CityResponseDtos;
+using ShopeeFood_WebAPI.DAL.ModelResonposeDtos.ShopResponseDtos;
 using ShopeeFood_WebAPI.RequestModels.CityRequestDtos;
 
 namespace ShopeeFood_WebAPI.ApplicationServices
@@ -21,6 +23,11 @@ namespace ShopeeFood_WebAPI.ApplicationServices
             CreateMap<UpdateCityRequestDto, CityDto>().ReverseMap();
             CreateMap<CityBusinessFieldResponseDto, CityBusinessDto>().ReverseMap();
             CreateMap<ShopInTheCityDto, ShopInCityResponseDto>().ReverseMap();
+
+            CreateMap<Shop, ShopInfoDto>().ReverseMap();
+            CreateMap<MenuShop, ShopInfoResponseDto>()
+                .ForMember(dest => dest.MenuDetailShops, opt => opt.MapFrom(src => src.MenuDetailShops));
+            CreateMap<MenuDetailShop, CategoryItem>();
         }
     }
 }
