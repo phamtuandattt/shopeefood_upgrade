@@ -1,0 +1,20 @@
+-- Get cities
+https://localhost:7156/api/cities
+
+-- Get field in the city
+https://localhost:7156/api/cities/1
+
+-- Get shop business field in the city
+{
+  "cityID": 1,
+  "fieldID": 1,
+  "pageNumber": 1,
+  "pageSize": 6
+}
+https://localhost:7156/api/cities/shops
+
+-- Get shop info
+https://localhost:7156/api/shops/1
+
+-- Get shop category and shop menu
+https://localhost:7156/api/shops/menu/1
