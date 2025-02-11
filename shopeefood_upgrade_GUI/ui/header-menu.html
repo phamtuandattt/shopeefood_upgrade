@@ -10,10 +10,12 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../css/header-menu.css">
+    <link rel="stylesheet" href="../css/banner.css">
 </head>
 
 <body>
     <div class="wrapper">
+        <!------------------------ HEADER ------------------------>
         <header class="main-header">
             <div class="container-header">
                 <div class="container">
@@ -52,13 +54,65 @@
                 </div>
             </div>
         </header>
-        <div class="banner"></div>
+        <!---------------------- END HEADER ---------------------->
+
+        <!---------------------- BANNER ---------------------->
+        <div class="banner">
+            <div class="banner-container">
+                <div class="now-search">
+                    <div>
+                        <h1 class="title">Đặt Đồ ăn, giao hàng từ 20'...</h1>
+                        <div class="local">có 87917 địa điểm ở TP. HCM từ 00:00 - 23:59</div>
+                    </div>
+
+                    <div class="form-search">
+                        <div class="input-group">
+                            <input type="text" id="txtSearchHome" placeholder="Tìm địa điểm, món ăn, địa chỉ..." value="">
+                            <a href="/ho-chi-minh/danh-sach-dia-diem-giao-tan-noi?q=">
+                                <button type="button" class="btn btn-search">
+                                    <span class="icon icon-search"></span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="category-list-filter">
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-giao-tan-noi"><span class="category-item ">All</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi"><span class="category-item ">Đồ ăn</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-drink-giao-tan-noi"><span class="category-item ">Đồ uống</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-vegetarian-giao-tan-noi"><span class="category-item ">Đồ chay</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-cake-pastry-giao-tan-noi"><span class="category-item ">Bánh kem</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-desserts-giao-tan-noi"><span class="category-item ">Tráng miệng</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-pizza-pasta-burger-giao-tan-noi"><span class="category-item ">Pizza/Burger</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-hotpot-giao-tan-noi"><span class="category-item ">Món lẩu</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-sushi-giao-tan-noi"><span class="category-item ">Sushi</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-soup-based-giao-tan-noi"><span class="category-item ">Mì phở</span></a>
+                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-rice-giao-tan-noi"><span class="category-item ">Cơm hộp</span></a>
+                    </div>
+
+                    <div>
+                        <div class="font18 mb-2 mt-3" style="margin-left: 5px;">Sử dụng App ShopeeFood để có nhiều giảm giá <br>và trải nghiệm tốt hơn</div>
+                        <a target="_blank" rel="noopener noreferrer" 
+                            href="https://play.google.com/store/apps/details?id=com.deliverynow"
+                            title="Google play"><span class="icon icon-gg-play-big"></span>
+                        </a>
+                        <a target="_blank" rel="noopener noreferrer"
+                            href="https://itunes.apple.com/us/app/deliverynow/id1137866760" title="App Store">
+                            <span class="icon icon-app-store-big"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---------------------- END BANNER ---------------------->
+
         <div class="container"></div>
     </div>
     <div class="footer"></div>
 
 
-    <!-- MODEL SEARCH -->
+
+    <!-- MODEL SEARCH OF MAIN-HEADER-->
     <div id="searchModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
