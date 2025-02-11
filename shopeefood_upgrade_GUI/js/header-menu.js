@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var modal = document.getElementById("searchModal");
     var btn = document.getElementById("openModal");
     var closeBtn = document.querySelector(".close");
-    var searchInput = document.querySelector(".search-input");
 
     // Open modal
     btn.onclick = function () {
