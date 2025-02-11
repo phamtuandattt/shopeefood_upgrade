@@ -126,7 +126,13 @@
     border-radius: 6px;
     border: 1px solid;
     display: inline-block;
-    transition: all .3s ease;
+
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.category-list-filter .category-item:hover {
+    background-color: hsl(0, 0%, 100%);
+    color: black;
 }
 
 .icon-app-store-big {
