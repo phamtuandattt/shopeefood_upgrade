@@ -154,3 +154,35 @@
     background-repeat: no-repeat;
     display: inline-block; /* Ensure it shows */
 }
+
+ /* ---------------------------- BANNER - RIGHT ---------------------------- */
+.banner-right {
+
+}
+
+.banner-right-container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.banner-right .main-banner-right-home {
+    float: right;
+    width: 670px;
+    margin-top: 48px;
+    position: relative;
+    z-index: auto;
+    margin-bottom: 15px;
+    /* min-height: calc(100vh - 25px); */
+    height: 1500px;
+
+    background-color: #bdbebe2b;
+    overflow-y: auto;
+}
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+}

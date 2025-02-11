@@ -23,6 +23,24 @@ document.addEventListener("DOMContentLoaded", function () {
             loaderDiv.style.display = "block";
         }
     });
+
+
+    /* ----- SCROLL DIV FOLLOW DIV -----*/
+    window.onscroll = function () { scrolling() };
+
+    function scrolling() {
+        var fixedDiv = document.getElementById("banner-left");
+        var scrollableDiv = document.getElementById("banner-right").offsetHeight;
+    
+        if (document.documentElement.scrollTop >= scrollableDiv - 770) {
+            fixedDiv.style.position = "absolute";
+            fixedDiv.style.top = scrollableDiv - 700 + "px";
+        }
+        else {
+            fixedDiv.style.position = "fixed";
+            fixedDiv.style.top = "70px";
+        }
+    }
 });
 
 
