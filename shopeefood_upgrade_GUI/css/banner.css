@@ -580,3 +580,35 @@ a {
     left: -15px;
     z-index: 1;
 }
+
+/* ---------- CONTAINER - BOTTOM ---------- */
+.now-container-coporation {
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .1);
+    -moz-box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .1);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .1);
+    padding: 20px 150px 50px;
+    border-radius: 4px;
+    margin-top: 60px;
+    position: relative;
+}
+
+.now-container-coporation .title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.now-container-coporation.img-right {
+    padding: 50px 350px 50px 150px;
+}
+
+.now-container-coporation .bg-corporation {
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    z-index: 2;
+    line-height: 0;
+    text-align: center;
+    width: 350px;
+}

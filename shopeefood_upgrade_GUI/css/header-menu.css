@@ -4,6 +4,10 @@ body {
     padding: 0;
 }
 
+.container {
+    width: 1200px;
+}
+
 .container-header {
     position: fixed;
     top: 0;
