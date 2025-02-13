@@ -179,12 +179,11 @@ a {
     margin-top: 140px;
     position: relative;
     z-index: auto;
-    margin-bottom: 15px;
-    /* min-height: calc(100vh - 25px); */
-    height: 1500px;
-
-    background-color: #bdbebe2b;
     overflow-y: auto;
+    /* margin-bottom: 15px; */
+    /* min-height: calc(100vh - 25px); */
+    /* height: 1500px; */
+    /* background-color: #bdbebe2b; */
 }
 
 .clearfix:after {
@@ -419,13 +418,17 @@ a {
     padding-right: 5px;
     color: #cf2127;
     width: 15px;
-    height: 15px;
+    height: 10px;
     background-image: url("../img/tags.png"); /* Ensure path is correct */
     background-position: center; /* Adjust position */
     background-size: contain; /* Ensure it fits */
     background-repeat: no-repeat;
     display: inline-block; /* Ensure it shows */
 }
+
+/* .icon-tag:before {
+    content: "\f02b";
+} */
 
 .opentime-status {
     position: absolute;
@@ -447,4 +450,133 @@ a {
     display: block;
     position: relative;
     z-index: 2;
+}
+
+
+/* ---------- LIST BANNER RIGHT BY DISTRICT ---------- */
+.list-res-banner-right .header-tab {
+    font-size: 16px;
+    padding-top: 2px;
+    padding-bottom: 8px;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.list-res-banner-right .header-tab .item-tab {
+    cursor: pointer;
+    line-height: 22px;
+    margin-right: 25px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.list-res-banner-right .header-tab .item-tab.active {
+    color: #0288d1;
+}
+
+.list-res-banner-right .header-tab select {
+    font-size: 14px;
+    padding: 8px 0 6px 5px;
+    border-radius: 4px;
+    border-color: #d7d7d7;
+    max-width: 200px;
+}
+
+.list-res-district .list-restaurant-district .item-restaurant-district {
+    width: 100%;
+    padding: 5px;
+}
+
+.list-res-district .item-content {
+    position: relative;
+    display: block;
+}
+
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.no-gutters>[class*=col-auto] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-res-district .item-content .img-restaurant {
+    width: 150px;
+    height: 100px;
+    position: relative;
+}
+
+.list-res-district .item-content .img-restaurant img {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+
+.list-restaurant-district .info-restaurant {
+    height: inherit;
+    border: 0;
+    padding-left: 15px;
+}
+
+.list-restaurant-district .info-restaurant .name-res {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: -3px;
+    font-weight: 700;
+    color: #252525;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 1px;
+}
+
+.list-restaurant-district .info-restaurant .name-res .icon-quality-merchant {
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.icon-quality-merchant {
+    background-image: url("../img/shield.png");
+    background-size: cover;
+    background-position: center; /* Adjust position */
+    background-repeat: no-repeat;
+    display: inline-block; /* Ensure it shows */
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+}
+
+.list-restaurant-district .info-restaurant .address-res {
+    font-size: 12px;
+    color: #959595;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-restaurant-district .info-restaurant .icon-tag {
+    padding-right: 5px;
+    color: #cf2127;
+    width: 15px;
+    height: 13px;
+    background-image: url("../img/tags.png"); /* Ensure path is correct */
+    background-position: center; /* Adjust position */
+    background-size: contain; /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block; /* Ensure it shows */
+}
+
+.list-restaurant-district .opentime-status {
+    position: absolute;
+    top: -2px;
+    left: -15px;
+    z-index: 1;
 }
