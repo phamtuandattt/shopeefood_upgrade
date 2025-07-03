@@ -367,9 +367,16 @@ a {
     border-radius: 5px;
 }
 
-.list-restaurant .item-restaurant .tag-preferred i {
-    /* padding-left: 2px;
-    padding-right: 5px; */
+.item-restaurant {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border-radius: 10px;
+}
+
+.item-restaurant:hover {
+    box-shadow: 5px 10px 8px #888;
+    transform: translateY(-4px);
+    /* optional: adds slight lift */
+    cursor: pointer;
 }
 
 .icon-like {
