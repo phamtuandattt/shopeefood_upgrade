@@ -14,7 +14,7 @@ a {
     background-image: url("https://shopeefood.vn/app/assets/img/main-banner.jpg?45bff8c9ec408a5ba51f9fdef662324e");
     background-size: cover;
     overflow: hidden;
-}   
+}
 
 .banner-container {
     width: 1200px;
@@ -38,7 +38,8 @@ a {
     transform: translateY(-50%);
     margin-top: -50px;
 }
- /* -------------- DESCRIPTION -------------- */
+
+/* -------------- DESCRIPTION -------------- */
 .now-search .title {
     font-size: 24px;
     font-weight: 700;
@@ -50,7 +51,7 @@ a {
     text-transform: capitalize;
 }
 
- /* -------------- SEARCH FORM -------------- */
+/* -------------- SEARCH FORM -------------- */
 .now-search .form-search {
     padding: 27px 0 0px;
     position: relative;
@@ -109,14 +110,18 @@ a {
 .icon-search {
     width: 30px;
     height: 30px;
-    background-image: url("../img/search.png"); /* Ensure path is correct */
-    background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-image: url("../img/search.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
 }
 
- /* -------------- LIST FILTER -------------- */
+/* -------------- LIST FILTER -------------- */
 .category-list-filter>a {
     display: inline-block;
     margin-right: 15px;
@@ -144,27 +149,31 @@ a {
 .icon-app-store-big {
     width: 219px;
     height: 68px;
-    background-image: url("../img/AppStore-vn.png"); /* Ensure path is correct */
+    background-image: url("../img/AppStore-vn.png");
+    /* Ensure path is correct */
     /*background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
 }
 
 .icon-gg-play-big {
     width: 219px;
     height: 68px;
-    background-image: url("../img/PlayStore-vn.png"); /* Ensure path is correct */
+    background-image: url("../img/PlayStore-vn.png");
+    /* Ensure path is correct */
     /*background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
 }
 
- /* ---------------------------- BANNER - RIGHT ---------------------------- */
-.banner-right {
-
-}
+/* ---------------------------- BANNER - RIGHT ---------------------------- */
+.banner-right {}
 
 .banner-right-container {
     width: 1200px;
@@ -211,6 +220,7 @@ a {
 .txt-blue {
     color: #0288d1 !important;
 }
+
 .txt-bold {
     font-weight: 700 !important;
 }
@@ -218,22 +228,30 @@ a {
 .icon-arrow-right {
     width: 15px;
     height: 10px;
-    background-image: url("../img/arrow-right.png"); /* Ensure path is correct */
-    background-position: center; /* Adjust position */
-    background-size: cover; /* Ensure it fits */
+    background-image: url("../img/arrow-right.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: cover;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
     margin-left: 10px;
 }
 
 .icon-next {
     width: 20px;
     height: 20px;
-    background-image: url("../img/next.png"); /* Ensure path is correct */
-    background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-image: url("../img/next.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: block; /* Ensure it shows */
+    display: block;
+    /* Ensure it shows */
     margin-left: 10px;
 }
 
@@ -328,6 +346,7 @@ a {
     position: relative;
     display: block;
 }
+
 .list-restaurant .img-restaurant {
     position: relative;
     border-radius: 6px 6px 0 0;
@@ -356,9 +375,12 @@ a {
 .icon-like {
     width: 15px;
     height: 15px;
-    background-image: url("../img/love.png"); /* Ensure path is correct */
-    background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-image: url("../img/love.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
     /* display: inline-block; Ensure it shows */
     padding: 0 15px;
@@ -419,11 +441,15 @@ a {
     color: #cf2127;
     width: 15px;
     height: 10px;
-    background-image: url("../img/tags.png"); /* Ensure path is correct */
-    background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-image: url("../img/tags.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
 }
 
 /* .icon-tag:before {
@@ -546,9 +572,11 @@ a {
 .icon-quality-merchant {
     background-image: url("../img/shield.png");
     background-size: cover;
-    background-position: center; /* Adjust position */
+    background-position: center;
+    /* Adjust position */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
     width: 17px;
     height: 17px;
     margin-right: 5px;
@@ -567,11 +595,15 @@ a {
     color: #cf2127;
     width: 15px;
     height: 13px;
-    background-image: url("../img/tags.png"); /* Ensure path is correct */
-    background-position: center; /* Adjust position */
-    background-size: contain; /* Ensure it fits */
+    background-image: url("../img/tags.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
     background-repeat: no-repeat;
-    display: inline-block; /* Ensure it shows */
+    display: inline-block;
+    /* Ensure it shows */
 }
 
 .list-restaurant-district .opentime-status {
@@ -611,4 +643,119 @@ a {
     line-height: 0;
     text-align: center;
     width: 350px;
+}
+
+
+/*  -------- LOADING BOX LIST-RESTAURANT --------- */
+.now-loading-restaurant {
+    background-color: #fff;
+    /* display: none; */
+    overflow: hidden;
+}
+
+.main-banner-right-home .list-restaurant .now-loading-restaurant .box-loading {
+    width: 33.33333%;
+    height: 209px;
+}
+
+.list-restaurant .now-loading-restaurant .box-loading {
+    padding: 8px;
+    float: left;
+    height: 235px;
+    background-color: #fff;
+}
+
+.main-banner-right-home .list-restaurant .now-loading-restaurant .box-thumbnail {
+    height: 116px;
+    width: 190px;
+    position: relative;
+}
+
+.list-restaurant .now-loading-restaurant .box-thumbnail {
+    float: left;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.list-restaurant .now-loading-restaurant .box-thumbnail,
+.list-restaurant .now-loading-restaurant [class*=box-line] {
+    animation: b;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background: linear-gradient(90deg, #eee 8%, #ddd 18%, #eee 33%);
+    background-size: 800px auto;
+}
+
+.main-banner-right-home .list-restaurant .now-loading-restaurant [class*=box-line] {
+    height: 8px;
+    margin-bottom: 10px;
+}
+
+.list-restaurant .now-loading-restaurant [class*=box-line] {
+    width: 100%;
+    background: #d7d7d7;
+    display: block;
+    float: left;
+}
+
+.list-restaurant .now-loading-restaurant .box-line-df {
+    width: 80%;
+}
+
+.list-restaurant .now-loading-restaurant .box-line-lg {
+    width: 70%;
+}
+
+@keyframes b {
+    0% {
+        background-position: -350px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+
+/*  -------- LOADING BOX LIST-RESTAURANT --------- */
+.list-res-district .box-loading {
+    width: 100%;
+    position: relative;
+    height: 90px;
+    padding-left: 170px;
+    margin-bottom: 15px;
+}
+
+.list-res-district .now-loading-restaurant .box-thumbnail {
+    width: 142px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    height: 90px;
+}
+
+.list-res-district .box-thumbnail,
+.list-res-district [class*=box-line] {
+    animation: b;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background: linear-gradient(90deg, #eee 8%, #ddd 18%, #eee 33%);
+    background-size: 800px auto;
+}
+
+.list-res-district .now-loading-restaurant [class*=box-line] {
+    height: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    top: 15px;
+}
+
+.list-res-district .box-line-df {
+    width: 80%;
+}
+
+.list-res-district .box-line-lg {
+    width: 70%;
 }
