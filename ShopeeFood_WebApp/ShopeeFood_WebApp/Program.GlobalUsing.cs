@@ -1,4 +1,5 @@
 ﻿global using Microsoft.AspNetCore.Mvc;
+global using ShopeeFood.Infrastructure;
 //global using AutoMapper;
 //global using Newtonsoft.Json;
 //global using System.Net;

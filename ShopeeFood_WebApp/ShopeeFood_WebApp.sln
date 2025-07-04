@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopeeFood_WebApp", "ShopeeFood_WebApp\ShopeeFood_WebApp.csproj", "{94CAC24E-9D7A-440E-9330-505B5C59FA42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopeeFood.Infrastructure", "ShopeeFood.Infrastructure\ShopeeFood.Infrastructure.csproj", "{F95D77D0-0767-4294-9B45-451B6173173D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{94CAC24E-9D7A-440E-9330-505B5C59FA42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94CAC24E-9D7A-440E-9330-505B5C59FA42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94CAC24E-9D7A-440E-9330-505B5C59FA42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95D77D0-0767-4294-9B45-451B6173173D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95D77D0-0767-4294-9B45-451B6173173D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95D77D0-0767-4294-9B45-451B6173173D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95D77D0-0767-4294-9B45-451B6173173D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

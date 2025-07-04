@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ShopeeFood.Infrastructure.Logging;
 using ShopeeFood_WebApp.Models;
 using System.Diagnostics;
 
@@ -15,6 +16,7 @@ namespace ShopeeFood_WebApp.Controllers
 
         public IActionResult Index()
         {
+            Logger.Info("OK");
             return View();
         }
 
