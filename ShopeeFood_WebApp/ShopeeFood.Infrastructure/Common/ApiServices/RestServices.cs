@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.VisualBasic;
+using ShopeeFood.Infrastructure.Common.Validate;
 using ShopeeFood.Infrastructure.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace ShopeeFood.Infrastructure.Common.ApiServices
@@ -48,19 +44,12 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
                 InitHttpClient(httpClient);
 
                 string uri = data == null ? apiUrl : GetUriWithparameters(apiUrl, data);
-                var uriLogging = SanitizeSensitiveUriValue(uri);
+                //var uriLogging = SanitizeSensitiveUriValue(uri);
 
-                Logger.Debug($"Request API Get: {uriLogging}");
+                Logger.Debug($"Request API Get: {uri}");
                 var response = await httpClient.GetAsync(uri);
                 await BuildHttpResult(response, result);
 
-                //WriteApiLog(new LogObject
-                //{
-                //    ApiUrl = apiUrl,
-                //    DefaultRequestHeaders = httpClient.DefaultRequestHeaders,
-                //    PayLoad = data,
-                //    Response = response
-                //});
             }
             catch (Exception ex)
             {
@@ -77,8 +66,9 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             SetAuthorization(httpClient);
         }
 
-        private async Task BuildHttpResult(HttpResponseMessage response,
-        AppActionResult<string, string> result)
+
+
+        private async Task BuildHttpResult(HttpResponseMessage response, AppActionResult<string, string> result)
         {
             var responseString = await response.Content.ReadAsStringAsync();
 
@@ -256,6 +246,60 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             }
             return result;
         }
+
+        #region Set Header and Authourization type
+
+        public void SetHeaders(IDictionary<string, string> contentHeaders)
+        {
+            Check.NotNull(contentHeaders, nameof(contentHeaders));
+            _contentHeaders = contentHeaders;
+        }
+
+        public void SetBasicAuthorization(string userName, string password)
+        {
+            Check.NotNull(userName, nameof(userName));
+            Check.NotNull(password, nameof(password));
+
+            _schemeAuthorizationType = SchemeAuthorizationType.Basic;
+            _authorizationProperties = new Dictionary<string, string>
+            {
+                { PROPERTY_USERNAME, userName },
+                { PROPERTY_PASSWORD, password }
+            };
+        }
+
+        public void SetBearerAuthorization(string token)
+        {
+            Check.NotNull(token, nameof(token));
+            _schemeAuthorizationType = SchemeAuthorizationType.Bearer;
+            _authorizationProperties = new Dictionary<string, string>
+            {
+                { PROPERTY_TOKEN, token }
+            };
+        }
+
+        public void SetAuthorization2_0(string token)
+        {
+            Check.NotNull(token, nameof(token));
+            _authorizationProperties = new Dictionary<string, string>
+            {
+                { PROPERTY_TOKEN, token }
+            };
+        }
+
+
+        public void SetSSWSAuthorization(string token)
+        {
+            Check.NotNull(token, nameof(token));
+
+            _schemeAuthorizationType = SchemeAuthorizationType.SSWS;
+            _authorizationProperties = new Dictionary<string, string>
+            {
+                { PROPERTY_TOKEN, token }
+            };
+        }
+
+        #endregion
     }
 
     public enum SchemeAuthorizationType
