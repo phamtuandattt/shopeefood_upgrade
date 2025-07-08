@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShopeeFood.BLL.DTOS.BusinessDTOs;
 using ShopeeFood.BLL.DTOS.CityDTOs;
@@ -17,24 +18,27 @@ namespace ShopeeFood.BLL.ApplicationServices
     {
         private RestServices RestServices { get; set; }
         private IHttpContextAccessor _httpContextAccessor { get; set; }
+        private readonly IConfiguration _configuration;
+        private string ApiDomain;
 
-        public BusinessServices(IHttpContextAccessor httpContextAccessor)
+        public BusinessServices(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
         {
             _httpContextAccessor = httpContextAccessor;
+            _configuration = configuration;
             RestServices = _httpContextAccessor.HttpContext.RequestServices.GetService<RestServices>();
+            ApiDomain = _configuration["ApiDomain"];
         }
 
         public async Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext, int cityId)
         {
             Logger.Info("BEGIN - Get business of the city");
-
             var response = new AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>();
-
+            var apiUrl = _configuration["GetCities"];
             try
             {
                 if (cityId != 0)
                 {
-                    var result = await RestServices.GetAsync<IEnumerable<CityDto>, ApiErrorResponse>(null, "http://192.168.48.1:9999/api/cities");
+                    var result = await RestServices.GetAsync<IEnumerable<CityDto>, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
                     if (result.IsSuccess)
                     {
                         Logger.Info($"Get list of the business: ");

@@ -8,14 +8,13 @@ using System.Diagnostics;
 
 namespace ShopeeFood_WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private IHttpContextAccessor _httpContextAccessor;
         private readonly IBusinessServices _businessServices;   
 
-        public HomeController(IHttpContextAccessor httpContextAccessor, IBusinessServices businessServices)
+        public HomeController(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, IBusinessServices businessServices)
+            : base(configuration, httpContextAccessor)
         {
-            _httpContextAccessor = httpContextAccessor;
             _businessServices = businessServices;
         }
 
