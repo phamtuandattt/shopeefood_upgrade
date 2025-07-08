@@ -1,23 +1,40 @@
 using Microsoft.AspNetCore.Mvc;
+using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
 using ShopeeFood.Infrastructure.Logging;
 using ShopeeFood_WebApp.Models;
+using ShopeeFood_WebApp.Models.Businesses;
+using ShopeeFood_WebApp.Models.Cities;
 using System.Diagnostics;
 
 namespace ShopeeFood_WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IBusinessServices _businessServices;   
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IHttpContextAccessor httpContextAccessor, IBusinessServices businessServices)
         {
-            _logger = logger;
+            _httpContextAccessor = httpContextAccessor;
+            _businessServices = businessServices;
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            Logger.Info("OK");
-            return View();
+            var data = await _businessServices.GetAllByCity(_httpContextAccessor.HttpContext, 1);
+
+            var viewModel = new List<CityViewModel>();
+
+            foreach(var city in data.Data)
+            {
+                viewModel.Add(new CityViewModel()
+                {
+                    CityId = city.CityId,
+                    CityName = city.CityName,
+                });
+            }
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

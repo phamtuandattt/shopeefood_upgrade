@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShopeeFood.BLL\ShopeeFood.BLL.csproj" />
     <ProjectReference Include="..\ShopeeFood.Infrastructure\ShopeeFood.Infrastructure.csproj" />
   </ItemGroup>
 

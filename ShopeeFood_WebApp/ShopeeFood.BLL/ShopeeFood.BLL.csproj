@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShopeeFood.DAL\ShopeeFood.DAL.csproj" />
+    <ProjectReference Include="..\ShopeeFood.Infrastructure\ShopeeFood.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

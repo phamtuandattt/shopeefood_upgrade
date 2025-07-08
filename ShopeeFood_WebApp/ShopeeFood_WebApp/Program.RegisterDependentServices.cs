@@ -2,6 +2,9 @@
 using log4net;
 using ShopeeFood.Infrastructure.Logging;
 using System.Reflection;
+using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
+using ShopeeFood.BLL.ApplicationServices;
+using ShopeeFood.Infrastructure.Common.ApiServices;
 
 namespace ShopeeFood_WebApp
 {
@@ -13,6 +16,16 @@ namespace ShopeeFood_WebApp
             var configLog4netPath = builder.Configuration["log4net"] ?? "";
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo(configLog4netPath));
+
+
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
+            
+            
+            builder.Services.AddScoped<RestServices>();
+            
+            
+            builder.Services.AddTransient<IBusinessServices, BusinessServices>();
+
 
 
             // Add services to the container.

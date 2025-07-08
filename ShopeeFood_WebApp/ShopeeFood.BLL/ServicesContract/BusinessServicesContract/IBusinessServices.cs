@@ -1,4 +1,7 @@
-﻿using ShopeeFood.BLL.DTOS.BusinessDTOs;
+﻿using Microsoft.AspNetCore.Http;
+using ShopeeFood.BLL.DTOS.BusinessDTOs;
+using ShopeeFood.BLL.DTOS.CityDTOs;
+using ShopeeFood.Infrastructure.Common.ApiServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,6 @@ namespace ShopeeFood.BLL.ServicesContract.BusinessServicesContract
 {
     public interface IBusinessServices
     {
-        IEnumerable<BusinessDto> GetAllByCity(int cityId);
+        Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext, int cityId);
     }
 }

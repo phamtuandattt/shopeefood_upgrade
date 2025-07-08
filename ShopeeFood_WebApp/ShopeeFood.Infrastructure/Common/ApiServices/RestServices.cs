@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using ShopeeFood.Infrastructure.Common.Validate;
 using ShopeeFood.Infrastructure.Logging;
 using System.Net;
@@ -29,7 +30,6 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
         {
             _contentHeaders = new Dictionary<string, string>();
             _authorizationProperties = new Dictionary<string, string>();
-            //SetSecurity();
 
             _HttpContextAccessor = HttpContextAccessor;
         }
@@ -39,7 +39,10 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             var result = new AppActionResult<string, string>();
             try
             {
-                var aHandler = new HttpClientHandler { ClientCertificateOptions = ClientCertificateOption.Automatic };
+                var aHandler = new HttpClientHandler(); // { ClientCertificateOptions = ClientCertificateOption.Automatic };
+                aHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+                // Pass the handler to httpclient(from you are calling api)
                 var httpClient = new HttpClient(aHandler);
                 InitHttpClient(httpClient);
 
@@ -300,6 +303,69 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
         }
 
         #endregion
+
+        public async Task<AppActionResult<TResult, TError>> GetAsync<TResult, TError>(
+            IDictionary<string, object> data, string apiUrl)
+            where TResult : class
+            where TError : class
+        {
+            return await DoAction<IDictionary<string, object>, TResult, TError>(GetAsync, data, apiUrl, "[GET]");
+        }
+
+        private async Task<AppActionResult<TResultData, TError>> DoAction<TInput, TResultData, TError>(
+                 Func<TInput, string, Task<AppActionResult<string, string>>> doActionFunc, TInput data, string apiUrl, string httpMethod)
+                 where TResultData : class
+                 where TError : class
+        {
+            var finalResult = new AppActionResult<TResultData, TError>();
+            var response = await doActionFunc(data, apiUrl);
+            var apiResponse = JsonConvert.DeserializeObject<ApiResponse>(response.Data);
+
+            if (response.IsSuccess)
+            {
+                try
+                {
+                    var dataResult = JsonConvert.DeserializeObject<TResultData>(apiResponse.Data);
+                    if (dataResult != null)
+                    {
+                        finalResult.SetResult(dataResult);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    string errorMsg = $"Exception during deserialization to {typeof(TResultData)}: {ex.Message}";
+                    Logger.Error(errorMsg, ex);
+
+                    if (typeof(TError).Name == typeof(string).Name)
+                    {
+                        finalResult.SetError(errorMsg as TError);
+                    }
+                }
+
+            }
+            else
+            {
+                //WriteActionLog(LogRequest, LogResponse, apiUrl, httpMethod);
+                if (typeof(TError).Name == typeof(String).Name)
+                {
+                    finalResult.SetError(response.Error as TError);
+                }
+                else
+                {
+                    var errorResult = JsonConvert.DeserializeObject<TError>(response.Error);
+                    if (errorResult != null)
+                    {
+                        finalResult.SetError(errorResult);
+                    }
+                    else
+                    {
+                        Logger.Error($"ERROR while deserializing object to type: {typeof(TError)}");
+                    }
+                }
+            }
+            return finalResult;
+        }
     }
 
     public enum SchemeAuthorizationType
