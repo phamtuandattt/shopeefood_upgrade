@@ -1,0 +1,160 @@
+.main-footer {
+    clear: both;
+}
+
+.main-footer .container-inner {
+    padding-top: 32px;
+    padding-bottom: 25px;
+    font-size: 14px;
+    overflow: hidden;
+    clear: both;
+}
+
+.main-footer .block-footer {
+    width: 241px;
+    float: left;
+    color: #959595;
+}
+
+.main-footer .title-block {
+    font-weight: 700;
+    color: #252525;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.main-footer .menu-footer {
+    line-height: 25px;
+    margin-top: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.main-footer .menu-item {
+    cursor: pointer;
+    color: #959595;
+}
+
+.main-footer .apps {
+    width: 122px;
+    height: 40px;
+    display: grid;
+    margin-bottom: 25px;
+}
+
+.main-footer .apps__app-store-vi {
+    background-image: url("../img/AppStore-vn.png");
+    background-size: cover;
+}
+
+.main-footer .apps__play-store-vi {
+    background-image: url("../img/PlayStore-vn.png");
+    background-size: cover;
+}
+
+.main-footer .apps__huawei-gallery-vi {
+    background-image: url("../img/Huawei-gallery-vn.png");
+    background-size: cover;
+}
+
+.main-footer .logo-footer {
+    margin-top: 14px;
+    margin-bottom: 17px;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.main-footer .logo-footer img {
+    max-width: 100px;
+}
+
+.font12 {
+    font-size: .75rem !important;
+}
+
+.main-footer .social-ico {
+    margin-top: 20px;
+    padding-left: 0;
+}
+
+.main-footer .social-ico li {
+    display: inline-block;
+    padding: 0 8px;
+}
+
+.main-footer .social-ico .ico {
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    line-height: 30px;
+    display: inline-block;
+    /* background-color: #959595; */
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all .2slinear;
+    -webkit-transition: all .2slinear;
+}
+
+.main-footer .social-ico .ico:hover {
+    background-color: #959595;
+}
+
+.fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.fa-facebook-f {
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/facebook.png"); /* Ensure path is correct */
+    background-position: center; /* Adjust position */
+    background-size: contain; /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block; /* Ensure it shows */
+}
+
+.fa-instagram {
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/instagram.png"); /* Ensure path is correct */
+    background-position: center; /* Adjust position */
+    background-size: contain; /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block; /* Ensure it shows */
+}
+
+.main-footer .block-last {
+    text-align: right;
+    float: right;
+    font-size: 16px;
+}
+
+.main-footer .block-last .title-block {
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.main-footer .block-last p {
+    font-size: 14px;
+    margin-bottom: 3px;
+    margin-top: 0;
+}
+
+.main-footer .registered {
+    width: 177px;
+    margin-top: 1px;
+    display: inline-block;
+}
+
+.main-footer .registered img {
+    width: 100%;
+}

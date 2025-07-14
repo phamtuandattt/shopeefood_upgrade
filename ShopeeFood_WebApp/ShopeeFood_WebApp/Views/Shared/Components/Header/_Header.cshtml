@@ -1,0 +1,162 @@
+﻿@using ShopeeFood_WebApp.Models.Cities;
+
+@model CityViewModel
+
+<header class="main-header">
+    <div class="container-header">
+        <div class="container">
+            <div class="header-container">
+                <header class="navbar">
+                    <div class="logo">
+                        <img src="https://shopeefood.vn/app/assets/img/shopeefoodvn.png?4aa1a38e8da801f4029b80734905f3f7"
+                             alt="ShopeeFood">
+                    </div>
+                    <div class="location">
+                        <select>
+                            @if (Model != null && Model.Cities.Any())
+                            {
+                                foreach (var item in Model.Cities.ToList())
+                                {
+                                    <option id="@item.CityId">@item.CityName</option>
+
+                                }
+                            }
+                            else
+                            {
+                                <option>Bắc Ninh</option>
+                                <option>Hà Nội</option>
+                                <option>Hồ Chí Minh</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="nav-links">
+                        @if (Model != null && Model.CityBusinesses.Any())
+                        {
+                            foreach (var item in Model.CityBusinesses.ToList())
+                            {
+                                <a class="nav-link-item" href="#" id="@item.CitiId">@item.FieldName</a>
+                            }
+                        }
+                        else
+                        {
+                            <a class="nav-link-item active" href="#">Đồ ăn</a>
+                            <a class="nav-link-item" href="#">Thực phẩm</a>
+                            <a class="nav-link-item" href="#">Siêu thị</a>
+                            <a class="nav-link-item" href="#">Rượu bia</a>
+                            <a class="nav-link-item" href="#">Hoa quả</a>
+                            <a class="nav-link-item" href="#">Thuốc</a>
+                        }
+                    </div>
+                    <div class="search">
+                        <button onclick="showSearchModal()" id="openModal">🔍</button>
+                    </div>
+                    <div class="login">
+                        <button>Đăng nhập</button>
+                    </div>
+                    <div class="language">
+                        <img src="../img/vietnam.png" alt="Vietnam Flag">
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- MODEL SEARCH OF MAIN-HEADER-->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-image">
+            <img src="https://shopeefood.vn/app/assets/img/bg-search.png?40df121cbb04a250ef2bd237a1e621b1"
+                 alt="Search Background">
+        </div>
+        <input type="text" class="search-input" placeholder="Tìm địa điểm, món ăn, địa chỉ...">
+        <div class="searching" id="searching">
+            <div class="restaurant-item">
+                <img alt="Dish image" class="restaurant-image" height="50"
+                     src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
+                     width="50" />
+                <div class="restaurant-details">
+                    <p class="restaurant-name">
+                        Cơm Tấm Phúc Lộc Thọ - Nguyễn Thị Thập
+                    </p>
+                    <p class="restaurant-address">
+                        223 Nguyễn Thị Thập, P. Tân Phú, Quận 7, TP. HCM
+                    </p>
+                </div>
+                <div class="restaurant-status">
+                    Mở cửa
+                    <i class="fas fa-circle">
+                    </i>
+                </div>
+            </div>
+            <div class="restaurant-item">
+                <img alt="Dish image" class="restaurant-image" height="50"
+                     src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
+                     width="50" />
+                <div class="restaurant-details">
+                    <p class="restaurant-name">
+                        Cơm Tấm Phúc Lộc Thọ - Tô Ký
+                    </p>
+                    <p class="restaurant-address">
+                        12/6 Tô Ký, P. Tân Chánh Hiệp, Quận 12, TP. HCM
+                    </p>
+                </div>
+                <div class="restaurant-status">
+                    Mở cửa
+                    <i class="fas fa-circle">
+                    </i>
+                </div>
+            </div>
+            <div class="restaurant-item">
+                <img alt="Dish image" class="restaurant-image" height="50"
+                     src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
+                     width="50" />
+                <div class="restaurant-details">
+                    <p class="restaurant-name">
+                        Cơm Tấm Phúc Lộc Thọ - Lê Đức Thọ
+                    </p>
+                    <p class="restaurant-address">
+                        38 Lê Đức Thọ, P. 7, Gò Vấp, TP. HCM
+                    </p>
+                </div>
+                <div class="restaurant-status">
+                    Mở cửa
+                    <i class="fas fa-circle">
+                    </i>
+                </div>
+            </div>
+            <div class="restaurant-item">
+                <img alt="Dish image" class="restaurant-image" height="50"
+                     src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
+                     width="50" />
+                <div class="restaurant-details">
+                    <p class="restaurant-name">
+                        Cơm Tấm Phúc Lộc Thọ - 155 Lê Văn Quới
+                    </p>
+                    <p class="restaurant-address">
+                        155 Lê Văn Quới, P. Bình Trị Đông, Bình Tân, TP. HCM
+                    </p>
+                </div>
+                <div class="restaurant-status">
+                    Mở cửa
+                    <i class="fas fa-circle">
+                    </i>
+                </div>
+            </div>
+            <div class="search-more">
+                <i class="fas fa-search">
+                </i>
+                <span>
+                    Tìm thêm kết quả cho
+                    <strong>
+                        cơm
+                    </strong>
+                </span>
+            </div>
+        </div>
+        <div id="loader" class="loader"></div>
+
+    </div>
+</div>

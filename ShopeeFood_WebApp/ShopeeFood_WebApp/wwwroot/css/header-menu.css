@@ -1,0 +1,329 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1200px;
+}
+
+.container-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: #fff;
+    height: 70px;
+}
+
+.container-header .container {
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+}
+
+.container-header .header-content {
+    position: relative;
+    margin: 0;
+    min-height: 42px;
+    height: 100%;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 0px;
+    background-color: white;
+    /* border-bottom: 2px solid red; */
+}
+
+/* ----- LOGO -----*/
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+.logo img {
+    height: 30px;
+    margin-right: 50px;
+}
+
+/* ----- LOCATION -----*/
+.location {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    position: relative;
+    padding: 0;
+}
+
+.location select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+.location select:active,
+.location select:focus {
+    border: none;
+}
+
+/* ----- NAV-LINKS -----*/
+.nav-links {
+    display: flex;
+    gap: 15px;
+    flex-grow: 1;
+    padding-left: 35px;
+    padding-top: 10px;
+    white-space: nowrap;
+}
+
+.nav-links .nav-link-item {
+    text-decoration: none;
+    color: black;
+    font-weight: 100;
+
+    color: #252525;
+    cursor: pointer;
+    padding: 10px 7px 21px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-bottom: 4px solid transparent;
+    font-size: 14px;
+}
+
+.nav-links .nav-link-item.active {
+    color: #ee4d2d;
+    font-weight: 700;
+    border-bottom-color: #ee4d2d;
+}
+
+/* ----- SEARCH -----*/
+.search {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* ----- LOGIN -----*/
+.login {
+    flex: 0 0 auto;
+    position: relative;
+}
+
+.login button {
+    padding: 5px 10px;
+    border: 1px solid red;
+    background: none;
+    color: red;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ----- LANGUAGE -----*/
+.language {
+    position: absolute;
+    right: -150px;
+}
+
+.language img {
+    height: 20px;
+}
+
+
+/* ----- NODEL SEARCH -----*/
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Modal Background */
+.modal {
+    position: fixed;
+    z-index: 1000; /* Ensure modal appears on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(3, 3, 4, 0.85); /* Transparent background */
+    display: none; /* Hide initially */
+    justify-content: center;
+    align-items: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-in-out;
+}
+
+/* Show searchModal with fade-in */
+.modal.show {
+    display: flex; /* Ensure modal appears centered */
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background: none;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    margin-top: 50px;
+    border: none;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Image Styling */
+.modal-image img {
+    width: 100%;
+    /* max-width: 500px; */
+}
+
+/* Search Input */
+.search-input {
+    width: 80%;
+    margin-top: 10px;
+    padding: 10px 10px 5px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    text-align: center;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.searching {
+    width: 100%;
+    max-width: 800px;
+    margin: 2px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    display: none;
+    color: initial;
+}
+
+.restaurant-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.restaurant-item:last-child {
+    border-bottom: none;
+}
+
+.restaurant-item:hover {
+    background-color: #ebebeb;
+    cursor: pointer;
+}
+
+.restaurant-image {
+    width: 50px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.restaurant-details {
+    flex-grow: 1;
+}
+
+.restaurant-name {
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0;
+}
+
+.restaurant-address {
+    margin: 0;
+    font-size: 12px;
+    color: #aaa6a6;
+}
+
+.restaurant-status {
+    color: green;
+    font-size: 12px;
+}
+
+.search-more {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.search-more i {
+    color: red;
+    margin-right: 10px;
+}
+
+.search-more span strong {
+    color: red;
+}
+
+/* ----- LOADER SEARCHING -----*/
+.loader {
+    width: 25px;
+    aspect-ratio: 1;
+    /* display: grid; */
+}
+
+.loader::before,
+.loader::after {
+    content: "";
+    grid-area: 1/1;
+    --c: no-repeat radial-gradient(farthest-side, #81818145 92%, #0000);
+    background:
+        var(--c) 50% 0,
+        var(--c) 50% 100%,
+        var(--c) 100% 50%,
+        var(--c) 0 50%;
+    background-size: 12px 12px;
+    animation: l12 1s infinite;
+}
+
+.loader::before {
+    margin: 4px;
+    filter: hue-rotate(45deg);
+    background-size: 8px 8px;
+    animation-timing-function: linear
+}
+
+@keyframes l12 {
+    100% {
+        transform: rotate(.5turn)
+    }
+}

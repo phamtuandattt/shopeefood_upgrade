@@ -1,0 +1,768 @@
+a {
+    color: #0288d1;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.banner {
+    height: 100vh;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    background-image: url("https://shopeefood.vn/app/assets/img/main-banner.jpg?45bff8c9ec408a5ba51f9fdef662324e");
+    background-size: cover;
+    overflow: hidden;
+}
+
+.banner-container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.banner .banner-container {
+    position: relative;
+    height: 100%;
+}
+
+.now-search {
+    color: #fff;
+    width: 470px;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    margin-top: -50px;
+}
+
+/* -------------- DESCRIPTION -------------- */
+.now-search .title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.now-search .local {
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+/* -------------- SEARCH FORM -------------- */
+.now-search .form-search {
+    padding: 27px 0 0px;
+    position: relative;
+}
+
+.input-group {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    width: 100%;
+}
+
+.now-search .form-search .input-group input {
+    width: 100%;
+    padding-right: 75px;
+    padding-left: 10px;
+    height: 50px;
+    border: 0;
+    border-radius: 6px 10px 10px 6px !important;
+}
+
+.now-search .form-search .input-group input:focus {
+    outline: none;
+}
+
+.now-search .form-search .input-group>a {
+    color: #0288d1;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.now-search .form-search .btn-search {
+    width: 70px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 6px 6px 0;
+    padding-top: 11px;
+    background-color: dodgerblue;
+}
+
+.icon {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.icon-search {
+    width: 30px;
+    height: 30px;
+    background-image: url("../img/search.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+}
+
+/* -------------- LIST FILTER -------------- */
+.category-list-filter>a {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.category-list-filter .category-item {
+    font-size: 16px;
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 7px 21px;
+    border-radius: 6px;
+    border: 1px solid;
+    display: inline-block;
+
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.category-list-filter .category-item:hover {
+    background-color: hsl(0, 0%, 100%);
+    color: black;
+}
+
+.icon-app-store-big {
+    width: 219px;
+    height: 68px;
+    background-image: url("../img/AppStore-vn.png");
+    /* Ensure path is correct */
+    /*background-position: center; /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+}
+
+.icon-gg-play-big {
+    width: 219px;
+    height: 68px;
+    background-image: url("../img/PlayStore-vn.png");
+    /* Ensure path is correct */
+    /*background-position: center; /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+}
+
+/* ---------------------------- BANNER - RIGHT ---------------------------- */
+.banner-right {}
+
+.banner-right-container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.banner-right .main-banner-right-home {
+    float: right;
+    width: 670px;
+    margin-top: 140px;
+    position: relative;
+    z-index: auto;
+    overflow-y: auto;
+    /* margin-bottom: 15px; */
+    /* min-height: calc(100vh - 25px); */
+    /* height: 1500px; */
+    /* background-color: #bdbebe2b; */
+}
+
+.clearfix:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+/* ------ GET LOCATION ------*/
+.main-banner-right-home .user-get-local {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 14px 17px 14px 40px;
+    border-radius: 4px;
+}
+
+.main-banner-right-home .user-get-local .pointer {
+    cursor: pointer;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.txt-blue {
+    color: #0288d1 !important;
+}
+
+.txt-bold {
+    font-weight: 700 !important;
+}
+
+.icon-arrow-right {
+    width: 15px;
+    height: 10px;
+    background-image: url("../img/arrow-right.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: cover;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+    margin-left: 10px;
+}
+
+.icon-next {
+    width: 20px;
+    height: 20px;
+    background-image: url("../img/next.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: block;
+    /* Ensure it shows */
+    margin-left: 10px;
+}
+
+/* ------ LIST RES BANNER RIGHT ------*/
+.main-banner-right-home .list-res-banner-right {
+    padding: 13px 40px 10px;
+    border: 1px solid #d7d7d7;
+    background-color: #fff;
+}
+
+.list-res-banner-right {
+    border-radius: 6px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.main-banner-right-home .list-res-banner-right .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-banner-right-home .list-res-banner-right .title-wrapper .title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.main-banner-right-home .list-res-banner-right .title-wrapper .view-all-deal {
+    font-size: 14px;
+    font-weight: 400;
+    color: #0288d1;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+}
+
+.main-banner-right-home .list-res-banner-right .title-wrapper .view-all-deal .icon-list-deal {
+    top: -1px;
+    margin-right: 4px;
+}
+
+.icon-list-deal {
+    position: relative;
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+}
+
+.icon-list-deal .square:first-child {
+    top: 0;
+    left: 0;
+}
+
+.icon-list-deal .square:nth-child(2) {
+    top: 0;
+    right: 0;
+}
+
+.icon-list-deal .square:nth-child(3) {
+    left: 0;
+    bottom: 0;
+}
+
+.icon-list-deal .square:nth-child(4) {
+    right: 0;
+    bottom: 0;
+}
+
+.icon-list-deal .square {
+    width: 3px;
+    height: 3px;
+    background-color: #0288d1;
+    position: absolute;
+}
+
+.list-res-banner-right .list-restaurant {
+    display: inline-block;
+    margin: 0 -10px;
+}
+
+.list-res-banner-right .list-restaurant .item-restaurant {
+    padding: 8px;
+    width: 33.33333%;
+    float: left;
+}
+
+.list-res-banner-right .item-content {
+    cursor: pointer;
+    border-radius: 6px;
+    background-color: #fff;
+    position: relative;
+    display: block;
+}
+
+.list-restaurant .img-restaurant {
+    position: relative;
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+    height: 116px;
+    background: #eaeaea;
+}
+
+.list-restaurant .item-restaurant .tag-preferred {
+    text-transform: none;
+    position: absolute;
+    background: #f13233;
+    color: #fff;
+    bottom: 5px;
+    left: 7px;
+    z-index: 1;
+    padding: 3px 15px 3px 5px;
+    border-radius: 5px;
+}
+
+.item-restaurant {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border-radius: 10px;
+}
+
+.item-restaurant:hover {
+    box-shadow: 5px 10px 8px #888;
+    transform: translateY(-4px);
+    /* optional: adds slight lift */
+    cursor: pointer;
+}
+
+.icon-like {
+    width: 15px;
+    height: 15px;
+    background-image: url("../img/love.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    /* display: inline-block; Ensure it shows */
+    padding: 0 15px;
+}
+
+.list-restaurant .img-restaurant img {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.list-restaurant .info-restaurant {
+    border: 1px solid #d7d7d7;
+    border-radius: 0 0 6px 6px;
+    height: 84px;
+}
+
+.list-restaurant .info-basic-res {
+    padding: 5px 8px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.list-restaurant .info-restaurant .name-res {
+    font-size: 14px;
+    font-weight: 700;
+    color: #252525;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 1px;
+    padding-top: 5px;
+}
+
+.list-restaurant .info-restaurant .address-res {
+    font-size: 12px;
+    color: #959595;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-restaurant .content-promotion {
+    font-size: 13px;
+    color: #187caa;
+    font-weight: 700;
+    padding: 8px 8px 5px;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-restaurant .content-promotion .icon-tag {
+    padding-right: 5px;
+    color: #cf2127;
+    width: 15px;
+    height: 10px;
+    background-image: url("../img/tags.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+}
+
+/* .icon-tag:before {
+    content: "\f02b";
+} */
+
+.opentime-status {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    z-index: 1;
+}
+
+.opentime-status .online {
+    background-color: #6cc942;
+    color: #329900;
+}
+
+.opentime-status .stt {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ---------- LIST BANNER RIGHT BY DISTRICT ---------- */
+.list-res-banner-right .header-tab {
+    font-size: 16px;
+    padding-top: 2px;
+    padding-bottom: 8px;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.list-res-banner-right .header-tab .item-tab {
+    cursor: pointer;
+    line-height: 22px;
+    margin-right: 25px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.list-res-banner-right .header-tab .item-tab.active {
+    color: #0288d1;
+}
+
+.list-res-banner-right .header-tab select {
+    font-size: 14px;
+    padding: 8px 0 6px 5px;
+    border-radius: 4px;
+    border-color: #d7d7d7;
+    max-width: 200px;
+}
+
+.list-res-district .list-restaurant-district .item-restaurant-district {
+    width: 100%;
+    padding: 5px;
+}
+
+.list-res-district .item-content {
+    position: relative;
+    display: block;
+}
+
+.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.no-gutters>[class*=col-auto] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-res-district .item-content .img-restaurant {
+    width: 150px;
+    height: 100px;
+    position: relative;
+}
+
+.list-res-district .item-content .img-restaurant img {
+    width: auto;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+
+.list-restaurant-district .info-restaurant {
+    height: inherit;
+    border: 0;
+    padding-left: 15px;
+}
+
+.list-restaurant-district .info-restaurant .name-res {
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: -3px;
+    font-weight: 700;
+    color: #252525;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 1px;
+}
+
+.list-restaurant-district .info-restaurant .name-res .icon-quality-merchant {
+    vertical-align: middle;
+    margin-top: -5px;
+}
+
+.icon-quality-merchant {
+    background-image: url("../img/shield.png");
+    background-size: cover;
+    background-position: center;
+    /* Adjust position */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+}
+
+.list-restaurant-district .info-restaurant .address-res {
+    font-size: 12px;
+    color: #959595;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-restaurant-district .info-restaurant .icon-tag {
+    padding-right: 5px;
+    color: #cf2127;
+    width: 15px;
+    height: 13px;
+    background-image: url("../img/tags.png");
+    /* Ensure path is correct */
+    background-position: center;
+    /* Adjust position */
+    background-size: contain;
+    /* Ensure it fits */
+    background-repeat: no-repeat;
+    display: inline-block;
+    /* Ensure it shows */
+}
+
+.list-restaurant-district .opentime-status {
+    position: absolute;
+    top: -2px;
+    left: -15px;
+    z-index: 1;
+}
+
+/* ---------- CONTAINER - BOTTOM ---------- */
+.now-container-coporation {
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .1);
+    -moz-box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .1);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(50, 50, 50, .1);
+    padding: 20px 150px 50px;
+    border-radius: 4px;
+    margin-top: 60px;
+    position: relative;
+}
+
+.now-container-coporation .title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.now-container-coporation.img-right {
+    padding: 50px 350px 50px 150px;
+}
+
+.now-container-coporation .bg-corporation {
+    position: absolute;
+    bottom: -1px;
+    right: 0;
+    z-index: 2;
+    line-height: 0;
+    text-align: center;
+    width: 350px;
+}
+
+
+/*  -------- LOADING BOX LIST-RESTAURANT --------- */
+.now-loading-restaurant {
+    background-color: #fff;
+    /* display: none; */
+    overflow: hidden;
+}
+
+.main-banner-right-home .list-restaurant .now-loading-restaurant .box-loading {
+    width: 33.33333%;
+    height: 209px;
+}
+
+.list-restaurant .now-loading-restaurant .box-loading {
+    padding: 8px;
+    float: left;
+    height: 235px;
+    background-color: #fff;
+}
+
+.main-banner-right-home .list-restaurant .now-loading-restaurant .box-thumbnail {
+    height: 116px;
+    width: 190px;
+    position: relative;
+}
+
+.list-restaurant .now-loading-restaurant .box-thumbnail {
+    float: left;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.list-restaurant .now-loading-restaurant .box-thumbnail,
+.list-restaurant .now-loading-restaurant [class*=box-line] {
+    animation: b;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background: linear-gradient(90deg, #eee 8%, #ddd 18%, #eee 33%);
+    background-size: 800px auto;
+}
+
+.main-banner-right-home .list-restaurant .now-loading-restaurant [class*=box-line] {
+    height: 8px;
+    margin-bottom: 10px;
+}
+
+.list-restaurant .now-loading-restaurant [class*=box-line] {
+    width: 100%;
+    background: #d7d7d7;
+    display: block;
+    float: left;
+}
+
+.list-restaurant .now-loading-restaurant .box-line-df {
+    width: 80%;
+}
+
+.list-restaurant .now-loading-restaurant .box-line-lg {
+    width: 70%;
+}
+
+@keyframes b {
+    0% {
+        background-position: -350px 0;
+    }
+
+    100% {
+        background-position: 400px 0;
+    }
+}
+
+
+/*  -------- LOADING BOX LIST-RESTAURANT --------- */
+.list-res-district .box-loading {
+    width: 100%;
+    position: relative;
+    height: 90px;
+    padding-left: 170px;
+    margin-bottom: 15px;
+}
+
+.list-res-district .now-loading-restaurant .box-thumbnail {
+    width: 142px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    height: 90px;
+}
+
+.list-res-district .box-thumbnail,
+.list-res-district [class*=box-line] {
+    animation: b;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    background: linear-gradient(90deg, #eee 8%, #ddd 18%, #eee 33%);
+    background-size: 800px auto;
+}
+
+.list-res-district .now-loading-restaurant [class*=box-line] {
+    height: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    top: 15px;
+}
+
+.list-res-district .box-line-df {
+    width: 80%;
+}
+
+.list-res-district .box-line-lg {
+    width: 70%;
+}

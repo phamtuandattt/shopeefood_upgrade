@@ -12,6 +12,7 @@ namespace ShopeeFood.BLL.ServicesContract.BusinessServicesContract
 {
     public interface IBusinessServices
     {
-        Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext, int cityId);
+        Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext);
+        Task<AppActionResult<IEnumerable<BusinessDto>, ApiErrorResponse>> GetBusinessByCity(HttpContext httpContext, int cityId);
     }
 }

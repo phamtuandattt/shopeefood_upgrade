@@ -20,20 +20,7 @@ namespace ShopeeFood_WebApp.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var data = await _businessServices.GetAllByCity(_httpContextAccessor.HttpContext, 1);
-
-            var viewModel = new List<CityViewModel>();
-
-            foreach(var city in data.Data)
-            {
-                viewModel.Add(new CityViewModel()
-                {
-                    CityId = city.CityId,
-                    CityName = city.CityName,
-                });
-            }
-
-            return View(viewModel);
+            return View();
         }
 
         public IActionResult Privacy()

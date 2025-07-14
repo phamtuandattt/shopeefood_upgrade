@@ -346,7 +346,6 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             }
             else
             {
-                //WriteActionLog(LogRequest, LogResponse, apiUrl, httpMethod);
                 if (typeof(TError).Name == typeof(String).Name)
                 {
                     finalResult.SetError(response.Error as TError);

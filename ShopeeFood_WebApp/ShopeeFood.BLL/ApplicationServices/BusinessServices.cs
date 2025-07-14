@@ -29,16 +29,49 @@ namespace ShopeeFood.BLL.ApplicationServices
             ApiDomain = _configuration["ApiDomain"];
         }
 
-        public async Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext, int cityId)
+        public async Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext)
         {
             Logger.Info("BEGIN - Get business of the city");
             var response = new AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>();
             var apiUrl = _configuration["GetCities"];
             try
             {
+                var result = await RestServices.GetAsync<IEnumerable<CityDto>, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
+                if (result.IsSuccess)
+                {
+                    Logger.Info($"Get cities: ");
+                    response.SetResult(result.Data);
+                }
+                else
+                {
+                    response.SetError(result.Error);
+                    Logger.Info($"FAIL to get citis: . ErrorCode: {result.Error?.ErrorCode}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Info($"FAIL to get cities: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - GetCities.");
+            }
+
+            return response;
+        }
+
+        public async Task<AppActionResult<IEnumerable<BusinessDto>, ApiErrorResponse>> GetBusinessByCity(HttpContext httpContext, int cityId)
+        {
+            Logger.Info("BEGIN - Get business of the city");
+            var response = new AppActionResult<IEnumerable<BusinessDto>, ApiErrorResponse>();
+            var apiUrl = string.Format(_configuration["GetBusinessOfCity"], cityId);
+            try
+            {
                 if (cityId != 0)
                 {
-                    var result = await RestServices.GetAsync<IEnumerable<CityDto>, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
+                    var result = await RestServices.GetAsync<IEnumerable<BusinessDto>, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
                     if (result.IsSuccess)
                     {
                         Logger.Info($"Get list of the business: ");
