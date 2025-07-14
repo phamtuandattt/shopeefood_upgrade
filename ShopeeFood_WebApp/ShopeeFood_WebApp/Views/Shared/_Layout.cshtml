@@ -20,7 +20,7 @@
 </head>
 <body>
     
-    <!-- Render Header -->
+    <!-- Render Header using ViewComponet -->
     @await Component.InvokeAsync("Header", 1);
 
     <!---------------------- BANNER - LEFT ---------------------->
@@ -1134,18 +1134,11 @@
     <!---------------------- END BANNER - RIGHT ---------------------->
 
     <div class="container">
-        <main role="main" class="pb-3">
             @RenderBody()
-        </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - ShopeeFood_WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-
-
+    <!-- Render footer using ViewComponent -->
+    @await Component.InvokeAsync("Footer")
 
     <script src="../js/header-menu.js"></script>
     <script src="../js/banner.js"></script>
