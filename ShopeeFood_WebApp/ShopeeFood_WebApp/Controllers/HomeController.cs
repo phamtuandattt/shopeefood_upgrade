@@ -23,6 +23,26 @@ namespace ShopeeFood_WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult GetMenuData(int id)
+        {
+            // Simulate some data (You can query database here)
+            var allData = new Dictionary<int, List<object>> {
+            { 1, new List<object> {
+                new { name = "Res A", description = "Nice food" },
+                new { name = "Res B", description = "Spicy food" }
+            }},
+            { 2, new List<object> {
+                new { name = "Res C", description = "Hot food" }
+            }},
+            // add more mock or real data per ID
+        };
+
+            var result = allData.ContainsKey(id) ? allData[id] : new List<object>();
+            return Json(result);
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
