@@ -7,7 +7,7 @@ namespace ShopeeFood_WebApp.Controllers.Components
     [ViewComponent]
     public class FooterViewComponent : ViewComponent
     {
-        const string FooterFile = "_Footer";
+        const string FooterFile = "../../_Footer";
 
         private IHttpContextAccessor httpContextAccessor;
 

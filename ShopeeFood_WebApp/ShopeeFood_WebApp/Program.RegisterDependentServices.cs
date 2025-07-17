@@ -5,6 +5,7 @@ using System.Reflection;
 using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
 using ShopeeFood.BLL.ApplicationServices;
 using ShopeeFood.Infrastructure.Common.ApiServices;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace ShopeeFood_WebApp
 {
@@ -27,6 +28,10 @@ namespace ShopeeFood_WebApp
             builder.Services.AddTransient<IBusinessServices, BusinessServices>();
 
 
+            builder.Services.Configure<RazorViewEngineOptions>(o =>
+            {
+                o.ViewLocationExpanders.Add(new ViewLocationExpander());
+            });
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

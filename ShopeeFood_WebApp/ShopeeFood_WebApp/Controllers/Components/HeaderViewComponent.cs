@@ -7,7 +7,7 @@ namespace ShopeeFood_WebApp.Controllers.Components
     [ViewComponent]
     public class HeaderViewComponent : ViewComponent
     {
-        const string HeaderFile = "_Header"; 
+        const string HeaderFile = "../../_Header"; 
 
         private readonly IBusinessServices businessServices;
         private IHttpContextAccessor httpContextAccessor;
@@ -47,3 +47,5 @@ namespace ShopeeFood_WebApp.Controllers.Components
         }
     }
 }
+
+

@@ -1,0 +1,21 @@
+﻿@model List<string>
+@{
+
+    string _prefixStyle = "/Content/ThemeV1/css/";
+    string _prefixScript = "/Content/ThemeV1/js/";
+
+    // <link rel="stylesheet" href="~/css/header-menu.css">
+
+    foreach (string m in Model)
+    {
+        //dont optimize because of using Html.Raw
+        if (m.EndsWith(".css"))
+        {
+            <link href="@_prefixStyle@m" type="text/css" rel="stylesheet" />
+        }
+        else if (m.EndsWith(".js"))
+        {
+            <script src="@_prefixScript@m"></script>
+        }
+    }
+}

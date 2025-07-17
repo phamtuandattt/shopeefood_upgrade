@@ -16,8 +16,4 @@
     <ProjectReference Include="..\ShopeeFood.Infrastructure\ShopeeFood.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Navigation\" />
-  </ItemGroup>
-
 </Project>
