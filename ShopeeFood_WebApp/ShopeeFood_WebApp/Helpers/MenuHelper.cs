@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace ShopeeFood_WebApp.Helpers
 {
@@ -14,6 +15,17 @@ namespace ShopeeFood_WebApp.Helpers
 
             return isActive ? "active" : string.Empty;
         }
+
+        //@inject Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper HtmlHelper
+        //@{
+        //            var viewContext = ViewContext;
+        //        }
+
+        //<div class="nav-links" id="menu">
+        //    <a class="nav-link-item @MenuHelper.IsActive(viewContext, "Home", "Index")" href="/">Home</a>
+        //    <a class="nav-link-item @MenuHelper.IsActive(viewContext, "Category", "Shops")" href="/category/shops">Categories</a>
+        //    <a class="nav-link-item @MenuHelper.IsActive(viewContext, "Contact")" href="/contact">Contact</a>
+        //</div>
 
         public static string IsActive(int currentId, int expectedId)
         {

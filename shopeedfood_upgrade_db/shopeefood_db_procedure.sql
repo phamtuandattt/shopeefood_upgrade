@@ -19,7 +19,8 @@ BEGIN
 	WITH PaginatedShops AS 
     (
 		SELECT CityBusinessFieldsShop.CityID AS CityID, CityBusinessFieldsShop.FieldID AS FieldID,
-				CityBusinessFieldsShop.ShopID AS ShopID, Shops.ShopName AS ShopName, 
+				CityBusinessFieldsShop.ShopID AS ShopID, Shops.ShopName AS ShopName,
+				Shops.ShopImage AS ShopImage, Shops.ShopAddress AS ShopAddress, Shops.ShopUptime AS ShopUptime,
 				COUNT(*) OVER() AS TotalRecords,  -- Get total count for pagination
 				ROW_NUMBER() OVER (ORDER BY ShopName ASC) AS RowNum  -- Pagination ordering
 		FROM CityBusinessFieldsShop, Shops
@@ -28,8 +29,10 @@ BEGIN
 			AND CityBusinessFieldsShop.FieldID = @FIELDID
     )
 	
-	SELECT CityID, FieldID, ShopID, ShopName, TotalRecords
+	SELECT CityID, FieldID, ShopID, ShopName, ShopImage, ShopAddress, ShopUptime, TotalRecords
     FROM PaginatedShops
     WHERE RowNum BETWEEN (@PageNumber - 1) * @PageSize + 1 AND @PageNumber * @PageSize;
 END
 EXEC GET_SHOP_BUSINESS_IN_THE_CITY 1, 1, 1, 6
+
+

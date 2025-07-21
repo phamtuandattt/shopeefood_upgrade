@@ -5,6 +5,7 @@
     var activeId = (int?)ViewBag.ActiveCategoryId ?? 1;
 }
 
+<!-- MENU -->
 <header class="main-header">
     <div class="container-header">
         <div class="container">
@@ -39,15 +40,6 @@
                                 <a class="nav-link-item @MenuHelper.IsActive(activeId, item.FieldId)" href="#" data-id="@item.FieldId">@item.FieldName</a>
                             }
                         }
-                        else
-                        {
-                            <a class="nav-link-item active" href="#">Đồ ăn</a>
-                            <a class="nav-link-item" href="#">Thực phẩm</a>
-                            <a class="nav-link-item" href="#">Siêu thị</a>
-                            <a class="nav-link-item" href="#">Rượu bia</a>
-                            <a class="nav-link-item" href="#">Hoa quả</a>
-                            <a class="nav-link-item" href="#">Thuốc</a>
-                        }
                     </div>
                     <div class="search">
                         <button onclick="showSearchModal()" id="openModal">🔍</button>
@@ -63,7 +55,6 @@
         </div>
     </div>
 </header>
-
 
 <!-- MODEL SEARCH OF MAIN-HEADER-->
 <div id="searchModal" class="modal">
@@ -162,3 +153,6 @@
 
     </div>
 </div>
+
+<!-------------------------------- BANNER ---------------------------------->
+<!-------------------------------------------------------------------------->

@@ -13,7 +13,10 @@ namespace ShopeeFood_WebAPI.DAL.ModelResonposeDtos.CityResponseDtos
         public int CityID { get; set; }
         public int FieldID { get; set; }
         public int ShopID { get; set; }
-        public string ShopName { get; set; } = string.Empty;
+        public string? ShopName { get; set; }
+        public string? ShopImage { get; set; }
+        public string? ShopAddress { get; set; }
+        public string? ShopUptime { get; set; } 
         public int TotalRecords { get; set; }
     }
 }
