@@ -82,15 +82,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     seeAllBtn.addEventListener("click", function (e) {
         e.preventDefault();
-
-        // Find currently active nav item
         const activeItem = document.querySelector('#menu .nav-link-item.active');
 
         if (activeItem) {
             const dataId = activeItem.getAttribute('data-id');
 
-            // Redirect with query string ?id=...
-            window.location.href = `/category/shops?id=${dataId}`;
+            const queryParams = $.param({
+                cityId: 1,
+                fieldId: dataId,
+                pageSize: 6,
+                pageNumber: 1
+            });
+
+            // Redirect
+            window.location.href = '/shops/category?' + queryParams;
         }
     });
 });

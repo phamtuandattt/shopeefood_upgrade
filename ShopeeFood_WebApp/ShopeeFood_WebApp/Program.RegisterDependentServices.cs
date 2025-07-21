@@ -6,6 +6,7 @@ using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
 using ShopeeFood.BLL.ApplicationServices;
 using ShopeeFood.Infrastructure.Common.ApiServices;
 using Microsoft.AspNetCore.Mvc.Razor;
+using ShopeeFood.BLL.ServicesContract.ShopServicesContract;
 
 namespace ShopeeFood_WebApp
 {
@@ -26,6 +27,7 @@ namespace ShopeeFood_WebApp
             
             
             builder.Services.AddTransient<IBusinessServices, BusinessServices>();
+            builder.Services.AddTransient<IShopServices, ShopServices>();
 
 
             builder.Services.Configure<RazorViewEngineOptions>(o =>

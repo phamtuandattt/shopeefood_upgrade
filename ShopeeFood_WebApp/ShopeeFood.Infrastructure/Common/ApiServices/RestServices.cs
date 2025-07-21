@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ShopeeFood.Infrastructure.Common.Validate;
 using ShopeeFood.Infrastructure.Logging;
 using System.Net;
@@ -62,6 +63,37 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             return result;
         }
 
+        public async Task<AppActionResult<string, string>> PostAsync(JObject json, string apiUrl)
+        {
+            var result = new AppActionResult<string, string>();
+            try
+            {
+                var data = json != null ? json.ToString(Formatting.None, null) : string.Empty;
+
+                var urlLogging = SanitizeSensitiveUriValue(apiUrl);
+                Logger.Debug($"Request API Post: {urlLogging}");
+
+                var content = new StringContent(data);
+                content.Headers.ContentType = new MediaTypeHeaderValue(("application/json"));
+
+                //var aHandler = new HttpClientHandler { ClientCertificateOptions = ClientCertificateOption.Automatic };
+                var aHandler = new HttpClientHandler(); // { ClientCertificateOptions = ClientCertificateOption.Automatic };
+                aHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+                var httpClient = new HttpClient(aHandler);
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                InitHttpClient(httpClient);
+
+                await ExecuteHttpAction<StringContent>(apiUrl, content, httpClient.PostAsync, result);
+            }
+            catch (Exception ex)
+            {
+                result.SetError(ex.Message);
+                Logger.Error("ERROR Post API: ", ex);
+            }
+            return result;
+        }
+
 
         private void InitHttpClient(HttpClient httpClient)
         {
@@ -70,6 +102,13 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
         }
 
 
+        private async Task ExecuteHttpAction<TContent>(string uri, TContent content,
+        Func<string, TContent, Task<HttpResponseMessage>> httpAction,
+        AppActionResult<string, string> result)
+        {
+            HttpResponseMessage response = await httpAction(uri, content);
+            await BuildHttpResult(response, result);
+        }
 
         private async Task BuildHttpResult(HttpResponseMessage response, AppActionResult<string, string> result)
         {
@@ -250,6 +289,8 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             return result;
         }
 
+
+
         #region Set Header and Authourization type
 
         public void SetHeaders(IDictionary<string, string> contentHeaders)
@@ -312,6 +353,13 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             return await DoAction<IDictionary<string, object>, TResult, TError>(GetAsync, data, apiUrl, "[GET]");
         }
 
+        public async Task<AppActionResult<TResult, TError>> PostAsync<TResult, TError>(JObject json, string apiUrl)
+           where TResult : class
+           where TError : class
+        {
+            return await DoAction<JObject, TResult, TError>(PostAsync, json, apiUrl, "[POST]");
+        }
+
         private async Task<AppActionResult<TResultData, TError>> DoAction<TInput, TResultData, TError>(
                  Func<TInput, string, Task<AppActionResult<string, string>>> doActionFunc, TInput data, string apiUrl, string httpMethod)
                  where TResultData : class
@@ -365,6 +413,7 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             }
             return finalResult;
         }
+
     }
 
     public enum SchemeAuthorizationType
