@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ShopeeFood Clone</title>
+    <title>@ViewBag.PageTitle - ShopeeFood Clone</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ShopeeFood_WebApp.styles.css" asp-append-version="true" />
@@ -209,13 +209,13 @@
                 <div class="list-res-banner-right">
                     <div class="title-wrapper">
                         <h2 class="title">Ưu đãi</h2>
-                        <a class="view-all-deal" href="/ho-chi-minh/food/deals">
+                        <a class="view-all-deal" id="seeAllBtn" href="/category/shops">
                             <span class="icon-list-deal">
                                 <span class="square"></span>
                                 <span class="square"></span>
                                 <span class="square"></span>
                                 <span class="square"></span>
-                            </span>Xem tất cả
+                            </span>
                         </a>
                     </div>
 

@@ -77,3 +77,20 @@ window.addEventListener('DOMContentLoaded', function () {
     }, 2000);
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const seeAllBtn = document.getElementById("seeAllBtn");
+
+    seeAllBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        // Find currently active nav item
+        const activeItem = document.querySelector('#menu .nav-link-item.active');
+
+        if (activeItem) {
+            const dataId = activeItem.getAttribute('data-id');
+
+            // Redirect with query string ?id=...
+            window.location.href = `/category/shops?id=${dataId}`;
+        }
+    });
+});
