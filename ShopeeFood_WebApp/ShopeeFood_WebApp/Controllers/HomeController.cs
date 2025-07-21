@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ShopeeFood.BLL.RequestDTOs.ShopRequestDTOs;
 using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
 using ShopeeFood.Infrastructure.Logging;
 using ShopeeFood_WebApp.Models;
@@ -20,10 +21,12 @@ namespace ShopeeFood_WebApp.Controllers
 
         public async Task<ActionResult> Index()
         {
+            ViewBag.PageTitle = "Home";
             return View();
         }
 
         [HttpGet]
+        [Route("/Home/GetMenuData")]
         public IActionResult GetMenuData(int id)
         {
             // Simulate some data (You can query database here)
@@ -35,8 +38,10 @@ namespace ShopeeFood_WebApp.Controllers
             { 2, new List<object> {
                 new { name = "Res C", description = "Hot food" }
             }},
-            // add more mock or real data per ID
+                // add more mock or real data per ID
         };
+
+            ViewBag.ActiveCategoryId = id;
 
             var result = allData.ContainsKey(id) ? allData[id] : new List<object>();
             return Json(result);
