@@ -8,7 +8,7 @@ namespace ShopeeFood.BLL.DTOS.BusinessDTOs
 {
     public class BusinessDto
     {
-        public int CityID { get; set; }
+        public int FieldId { get; set; }
         public string? FieldName { get; set; }
     }
 }

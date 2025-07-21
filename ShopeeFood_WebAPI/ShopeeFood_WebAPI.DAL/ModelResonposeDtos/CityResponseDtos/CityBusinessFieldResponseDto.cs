@@ -10,7 +10,7 @@ namespace ShopeeFood_WebAPI.DAL.ModelResonposeDtos.CityResponseDtos
     public class CityBusinessFieldResponseDto
     {
         [Key]
-        public int CityID { get; set; }
+        public int FieldId { get; set; }
         public string? FieldName { get; set; }
     }
 }

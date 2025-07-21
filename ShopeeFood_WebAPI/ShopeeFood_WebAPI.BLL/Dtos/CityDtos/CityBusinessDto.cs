@@ -8,7 +8,7 @@ namespace ShopeeFood_WebAPI.BLL.Dtos.CityDtos
 {
     public class CityBusinessDto
     {
-        public int CitiID { get; set; }
+        public int FieldID { get; set; }
         public string? FieldName { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace ShopeeFood_WebApp.Controllers.Components
             {
                 viewModel.CityBusinesses.Add(new CityBusinessModel()
                 {
-                    CitiId = item.CityID,
+                    FieldId = item.FieldId,
                     FieldName = item.FieldName,
                 });
             }

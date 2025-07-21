@@ -6,7 +6,7 @@ namespace ShopeeFood_WebApp.Controllers
     {
         [Route("Category")]
         [Route("/category/shops")]
-        public IActionResult Shops(int id = 3)
+        public IActionResult Shops(int id)
         {
             ViewBag.ActiveCategoryId = id;
             ViewBag.PageTitle = "Category";

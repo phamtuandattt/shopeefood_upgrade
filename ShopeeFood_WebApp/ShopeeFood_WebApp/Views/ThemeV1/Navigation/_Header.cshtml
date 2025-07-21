@@ -33,11 +33,11 @@
                         </select>
                     </div>
                     <div class="nav-links" id="menu">
-@*                         @if (Model != null && Model.CityBusinesses.Any())
+                        @if (Model != null && Model.CityBusinesses.Any())
                         {
                             foreach (var item in Model.CityBusinesses.ToList())
                             {
-                                <a class="nav-link-item" href="#" data-id="@item.CitiId">@item.FieldName</a>
+                                <a class="nav-link-item @MenuHelper.IsActive(activeId, item.FieldId)" href="#" data-id="@item.FieldId">@item.FieldName</a>
                             }
                         }
                         else
@@ -48,17 +48,14 @@
                             <a class="nav-link-item" href="#">Rượu bia</a>
                             <a class="nav-link-item" href="#">Hoa quả</a>
                             <a class="nav-link-item" href="#">Thuốc</a>
-                        } *@
-
-                        @* <a class="nav-link-item @MenuHelper.IsActive(ViewContext, "Home", "Index")" href="#" data-id="1">Nhà hàng</a> *@
-
-                        <a class="nav-link-item @MenuHelper.IsActive(activeId, 1)" href="#" data-id="1">Nhà hàng</a>
+                        }
+@*                         <a class="nav-link-item @MenuHelper.IsActive(activeId, 1)" href="#" data-id="1">Nhà hàng</a>
                         <a class="nav-link-item @MenuHelper.IsActive(activeId, 2)" href="#" data-id="2">Quán ăn</a>
                         <a class="nav-link-item @MenuHelper.IsActive(activeId, 3)" href="#" data-id="3">Cà phê</a>
                         <a class="nav-link-item @MenuHelper.IsActive(activeId, 4)" href="#" data-id="4">Trà sữa</a>
                         <a class="nav-link-item @MenuHelper.IsActive(activeId, 5)" href="#" data-id="5">Bánh ngọt</a>
                         <a class="nav-link-item @MenuHelper.IsActive(activeId, 6)" href="#" data-id="6">Đồ chay</a>
-                        <a class="nav-link-item @MenuHelper.IsActive(activeId, 7)" href="#" data-id="7">Thực phẩm</a>
+                        <a class="nav-link-item @MenuHelper.IsActive(activeId, 7)" href="#" data-id="7">Thực phẩm</a> *@
                     </div>
                     <div class="search">
                         <button onclick="showSearchModal()" id="openModal">🔍</button>
