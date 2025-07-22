@@ -33,7 +33,8 @@ namespace ShopeeFood_WebAPI.DAL.Repositories.CityRepository
         public async Task<List<ShopInCityResponseDto>> GetShopInCities(int cityID, int fieldID, int pageNumber, int pageSize)
         {
             var sqlQuery = string.Format(StoreProcedure.GET_SHOP_BUSINESS_IN_THE_CITY, cityID, fieldID, pageNumber, pageSize);
-            var result = await _context.ShopInCityResponseDtos.FromSqlRaw(sqlQuery).ToListAsync();
+            //var result = await _context.ShopInCityResponseDtos.FromSqlRaw(sqlQuery).ToListAsync();
+            var result = await _context.Database.SqlQueryRaw<ShopInCityResponseDto>(sqlQuery).ToListAsync();
             return result;
         }
     }

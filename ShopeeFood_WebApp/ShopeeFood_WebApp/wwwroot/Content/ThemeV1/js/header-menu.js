@@ -54,7 +54,6 @@
 // Handle get shop of city by business field
 document.addEventListener("DOMContentLoaded", function () {
     const menu = document.getElementById("menu");
-    const resultsDiv = document.getElementById("results");
     const links = menu.querySelectorAll(".nav-link-item");
 
     // loading box
@@ -69,14 +68,18 @@ document.addEventListener("DOMContentLoaded", function () {
             links.forEach(item => item.classList.remove("active"));
             this.classList.add("active");
 
-            const id = this.dataset.id;
+            const apiUrl = '/home/shops';
 
-            const apiUrl = '/Home/GetMenuData?';
+            const data = new Object();
+            data.cityId = 1; // Get select city
+            data.fieldId = this.dataset.id;;
+            data.pageSize = 6;
+            data.pageNumber = 1;
 
             $.ajax({
                 url: apiUrl,
-                type: "GET",
-                data: id,
+                type: "POST",
+                data: data,
                 beforeSend: function (bs) {
                     //$('#page-loader').show();
                     // Show loading box, hide previous results
@@ -86,12 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 complete: function () {
                     // Hide loading box after fetch
                     loadingBox.forEach(item => item.style.display = 'none');
+                    itemResList.forEach(item => item.style.display = 'block');
                 },
                 success: function (response) {
-                    if (response != null && response.success) {
+                    if (response != null) {
 
                         // apend content format html
                         // create function get data and return data attack HTML
+                        const restaurants = response.dataReturn; // assuming data is a list of objects
+                        renderRestaurants(restaurants);
                         
 
                     } else {
@@ -107,4 +113,39 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+function renderRestaurants(restaurants) {
+    const container = $('#list-restaurant-container');
+    container.empty(); // clear previous content
+    console.log(restaurants);
+    restaurants.forEach(item => {
+        const html = `
+        <div class="item-restaurant" id="${item.shopID}">
+            <a target="_blank" class="item-content" href="#">
+                <div class="img-restaurant">
+                    <div class="tag-preferred">
+                        <i class="icon-like" aria-hidden="true"></i>Yêu thích
+                    </div>
+                    <img src="${item.shopImage}" class="">
+                </div>
+                <div class="info-restaurant">
+                    <div class="info-basic-res">
+                        <h4 class="name-res" title="${item.shopName}">
+                            ${item.shopName}
+                        </h4>
+                        <div class="address-res" title="${item.shopAddress}">
+                            ${item.shopAddress}
+                        </div>
+                    </div>
+                    <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
+                    <div class="opentime-status">
+                        <span class="stt online" title="${item.shopUptime}"
+                              style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        `;
+        container.append(html);
+    });
+}
 

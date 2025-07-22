@@ -7,6 +7,7 @@ using ShopeeFood.BLL.ApplicationServices;
 using ShopeeFood.Infrastructure.Common.ApiServices;
 using Microsoft.AspNetCore.Mvc.Razor;
 using ShopeeFood.BLL.ServicesContract.ShopServicesContract;
+using ShopeeFood_WebApp.Services;
 
 namespace ShopeeFood_WebApp
 {
@@ -24,6 +25,7 @@ namespace ShopeeFood_WebApp
             
             
             builder.Services.AddScoped<RestServices>();
+            builder.Services.AddScoped<ModuleContentSerivces>();
             
             
             builder.Services.AddTransient<IBusinessServices, BusinessServices>();
