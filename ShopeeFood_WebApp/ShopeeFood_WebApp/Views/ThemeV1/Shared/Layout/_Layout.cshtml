@@ -22,7 +22,10 @@
 
 </head>
 <body>
-    
+    <div class="loader-redirect-overlay">
+        <div class="loader-redirect"></div>
+    </div>
+
     <!-- Render Header using ViewComponet -->
     @await Component.InvokeAsync("Header", new { cityId = 1 });
     <!-------------------------------------->
@@ -197,11 +200,6 @@
 
     <div class="container">
         @RenderBody()
-    </div>
-
-    <!-- Area to display results -->
-    <div id="results">
-        <!-- Render fetched data here -->
     </div>
 
     <!-- Render footer using ViewComponent -->

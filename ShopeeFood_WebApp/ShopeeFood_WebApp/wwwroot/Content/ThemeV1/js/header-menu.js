@@ -82,11 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: data,
                 beforeSend: function (bs) {
                     //$('#page-loader').show();
+                    // Show loader
+                    document.querySelector('.loader-redirect-overlay').style.display = 'flex';
                     // Show loading box, hide previous results
                     loadingBox.forEach(item => item.style.display = 'block');
                     itemResList.forEach(item => item.style.display = 'none');
                 },
                 complete: function () {
+                    // Hide loader
+                    document.querySelector('.loader-redirect-overlay').style.display = 'none';
                     // Hide loading box after fetch
                     loadingBox.forEach(item => item.style.display = 'none');
                     itemResList.forEach(item => item.style.display = 'block');

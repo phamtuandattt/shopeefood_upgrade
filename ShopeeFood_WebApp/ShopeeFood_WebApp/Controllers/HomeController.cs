@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ShopeeFood.BLL.RequestDTOs.ShopRequestDTOs;
 using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
@@ -16,8 +17,8 @@ namespace ShopeeFood_WebApp.Controllers
         private readonly IBusinessServices _businessServices;
         private readonly IShopServices _shopServices;
 
-        public HomeController(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, IBusinessServices businessServices, IShopServices shopServices)
-            : base(configuration, httpContextAccessor)
+        public HomeController(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, IMapper mapper, IBusinessServices businessServices, IShopServices shopServices)
+            : base(configuration, httpContextAccessor,mapper)
         {
             _businessServices = businessServices;
             _shopServices = shopServices;
@@ -62,26 +63,9 @@ namespace ShopeeFood_WebApp.Controllers
                 var shops = await _shopServices.GetShopOfCityByBusinessField(shopRequestDto);
                 if (shops.IsSuccess)
                 {
-                    var lst = new List<ShopViewModel>();
-                    foreach (var shop in shops.Data.ToList())
-                    {
-                        var viewModel = new ShopViewModel()
-                        {
-                            CityID = shop.CityID,
-                            FieldID = shop.FieldID,
-                            ShopID = shop.ShopID,
-                            ShopName = shop.ShopName,
-                            ShopImage = shop.ShopImage,
-                            ShopAddress = shop.ShopAddress,
-                            ShopUptime = shop.ShopUptime
-                        };
-                        lst.Add(viewModel);
-                    }
-
-                    objReturn.DataReturn = lst;
-                    //ViewBag.ActiveCategoryId = shopRequestDto.FieldID;
-                    //ViewBag.PageTitle = "Shops";
-
+                    objReturn.DataReturn = Mapper.Map<List<ShopViewModel>>(shops.Data);
+                    ViewBag.ActiveCategoryId = shopRequestDto.FieldID;
+                    ViewBag.PageTitle = "Shops";
                 }
             }
 

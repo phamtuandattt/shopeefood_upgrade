@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using ShopeeFood.BLL.RequestDTOs.ShopRequestDTOs;
 using ShopeeFood.BLL.ServicesContract.ShopServicesContract;
 using ShopeeFood_WebApp.Models.Shops;
@@ -9,7 +10,8 @@ namespace ShopeeFood_WebApp.Controllers
     {
         private readonly IShopServices _shopServices;
 
-        public ShopController(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IShopServices shopServices) : base(configuration, httpContextAccessor)
+        public ShopController(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMapper mapper, IShopServices shopServices) 
+            : base(configuration, httpContextAccessor, mapper)
         {
             _shopServices = shopServices;
         }
@@ -31,23 +33,12 @@ namespace ShopeeFood_WebApp.Controllers
                 var shops = await _shopServices.GetShopOfCityByBusinessField(shopRequestDto);
                 if (shops.IsSuccess)
                 {
-                    var lstS = new List<ShopViewModel>();
-                    foreach (var shop in shops.Data.ToList())
-                    {
-                        var viewModel = new ShopViewModel()
-                        {
-                            CityID = shop.CityID,
-                            FieldID = shop.FieldID,
-                            ShopID = shop.ShopID,
-                            ShopName = shop.ShopName,
-                        };
-                        lstS.Add(viewModel);
-                    }
-
                     ViewBag.ActiveCategoryId = shopRequestDto.FieldID;
                     ViewBag.PageTitle = "Shops";
 
-                    return View(lstS);
+                    var viewModel = Mapper.Map<List<ShopViewModel>>(shops.Data);
+
+                    return View(viewModel);
                 }
             }
             return NoContent();

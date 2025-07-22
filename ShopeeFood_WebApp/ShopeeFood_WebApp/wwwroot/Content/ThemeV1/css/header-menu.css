@@ -327,3 +327,47 @@ button {
         transform: rotate(.5turn)
     }
 }
+
+/* ----- LOADER REDIECT -----*/
+.loader-redirect-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(7px);
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+}
+
+.loader-redirect {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    animation: l14 4s infinite;
+}
+
+    .loader-redirect::before,
+    .loader-redirect::after {
+        content: "";
+        grid-area: 1/1;
+        border: 8px solid;
+        border-radius: 50%;
+        border-color: red red #0000 #0000;
+        mix-blend-mode: darken;
+        animation: l14 1s infinite linear;
+    }
+
+    .loader-redirect::after {
+        border-color: #0000 #0000 blue blue;
+        animation-direction: reverse;
+    }
+
+@keyframes l14 {
+    100% {
+        transform: rotate(1turn);
+    }
+}

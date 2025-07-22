@@ -8,6 +8,8 @@ using ShopeeFood.Infrastructure.Common.ApiServices;
 using Microsoft.AspNetCore.Mvc.Razor;
 using ShopeeFood.BLL.ServicesContract.ShopServicesContract;
 using ShopeeFood_WebApp.Services;
+using ShopeeFood_WebApp.Areas;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ShopeeFood_WebApp
 {
@@ -21,8 +23,10 @@ namespace ShopeeFood_WebApp
             XmlConfigurator.Configure(logRepository, new FileInfo(configLog4netPath));
 
 
-            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); 
-            
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            builder.Services.AddControllers();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             
             builder.Services.AddScoped<RestServices>();
             builder.Services.AddScoped<ModuleContentSerivces>();
