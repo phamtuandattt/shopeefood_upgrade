@@ -443,21 +443,21 @@ a {
     white-space: nowrap;
 }
 
-.list-restaurant .content-promotion .icon-tag {
-    padding-right: 5px;
-    color: #cf2127;
-    width: 15px;
-    height: 10px;
-    background-image: url("../img/tags.png");
-    /* Ensure path is correct */
-    background-position: center;
-    /* Adjust position */
-    background-size: contain;
-    /* Ensure it fits */
-    background-repeat: no-repeat;
-    display: inline-block;
-    /* Ensure it shows */
-}
+    .list-restaurant .content-promotion .icon-tag {
+        padding-right: 5px;
+        color: #cf2127;
+        width: 15px;
+        height: 10px;
+        background-image: url("../img/tags.png");
+        /* Ensure path is correct */
+        background-position: center;
+        /* Adjust position */
+        background-size: contain;
+        /* Ensure it fits */
+        background-repeat: no-repeat;
+        display: inline-block;
+        /* Ensure it shows */
+    }
 
 /* .icon-tag:before {
     content: "\f02b";
