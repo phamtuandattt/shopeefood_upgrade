@@ -1,0 +1,217 @@
+﻿
+* {
+    box-sizing: border-box;
+}
+
+/*body {
+    margin: 0;
+    background: #f5f7fa;
+    font-family: 'Roboto', sans-serif;
+    color: #444444;
+}*/
+
+.container-login {
+    max-width: 600px;
+    margin: 80px auto;
+    background: #fff;
+    padding: 30px 25px 40px 25px;
+    border-radius: 2px;
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 20px;
+    color: #444444;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.btn-login-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 38px;
+    margin-bottom: 10px;
+    user-select: none;
+}
+
+.btn-phone {
+    background-color: #3f8e00;
+}
+
+.btn-google {
+    background-color: #ff5a5f;
+}
+
+.btn-login-form i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.or-text {
+    font-size: 13px;
+    color: #666666;
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+
+form {
+    width: 100%;
+}
+
+.input-group-login-form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #b3b3b3;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    height: 38px;
+    padding-left: 10px;
+    color: #666666;
+    font-size: 14px;
+}
+
+    .input-group-login-form:last-child {
+        border-bottom: 1px solid red;
+        border-radius: 0 0 4px 4px;
+    }
+
+    .input-group-login-form i {
+        color: #999999;
+        font-size: 16px;
+        margin-right: 8px;
+    }
+
+.input-group-login-form>input[type="text"],
+.input-group-login-form>input[type="password"] {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #444444;
+    width: 100%;
+    height: 36px;
+    background: transparent;
+}
+
+.checkbox-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0 20px 0;
+    font-size: 13px;
+    color: #444444;
+}
+
+    .checkbox-row label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+        margin-right: 6px;
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+    }
+
+.forgot-link {
+    color: #0a6ebd;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+    .forgot-link:hover {
+        text-decoration: underline;
+    }
+
+.btn-login {
+    background-color: #0a6ebd;
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    height: 38px;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+    .btn-login:active {
+        background-color: #0959a3;
+    }
+
+.footer-text {
+    font-size: 13px;
+    color: #666666;
+    text-align: center;
+    margin-top: 30px;
+    line-height: 1.4;
+}
+
+    .footer-text a {
+        color: #0a6ebd;
+        text-decoration: underline;
+    }
+
+@media (max-width: 440px) {
+    .container-login {
+        margin: 20px 15px;
+        padding: 25px 20px 35px 20px;
+    }
+}
+
+.icon-phone {
+    /*width: 22px;
+    height: 22px;
+    background-image: url("../img/smartphone.png");*/
+    /* Ensure path is correct */
+    /*background-position: center;*/
+    /* Adjust position */
+    /*background-size: contain;*/
+    /* Ensure it fits */
+    /*background-repeat: no-repeat;
+    display: inline-block;*/
+    /* Ensure it shows */
+    /*filter: brightness(0) invert(1);*/
+
+    background-color: white;
+    --webkit-mask-image: url("../img/smartphone.png");
+    mask-image: url("../img/smartphone.png");
+    --webkit-mask-size: cover;
+    mask-size: cover;
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 0 0 5px white;
+}
+
+.icon-g {
+    /*width: 22px;
+    height: 22px;
+    background-image: url("../img/google.png");*/
+    /* Ensure path is correct */
+    /*background-position: center;*/
+    /* Adjust position */
+    /*background-size: contain;*/
+    /* Ensure it fits */
+    /*background-repeat: no-repeat;
+    display: inline-block;*/
+    /* Ensure it shows */
+    /*filter: brightness(0) invert(1);*/
+
+    background-color: white;
+    --webkit-mask-image: url("../img/google.png");
+    mask-image: url("../img/google.png");
+    --webkit-mask-size: cover;
+    mask-size: cover;
+    width: 22px;
+    height: 22px;
+    box-shadow: 0 0 0 5px white; /* "bolds" it visually */
+}

@@ -2,6 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!---------------------- BANNER - LEFT ---------------------->
+@{
+    await Html.RenderPartialAsync("_ContentBannerLeft");
+}
+<!---------------------- END BANNER - LEFT ---------------------->
+<!---------------------- BANNER - RIGHT ---------------------->
+@{
+    await Html.RenderPartialAsync("_ContentBannerRight");
+}
+<!---------------------- END BANNER - RIGHT ---------------------->
+
             <div class="now-container-coporation">
                 <h4 class="title"><span>Đơn hàng của bạn sẽ được bảo quản như thế nào?</span></h4>
                 <span>

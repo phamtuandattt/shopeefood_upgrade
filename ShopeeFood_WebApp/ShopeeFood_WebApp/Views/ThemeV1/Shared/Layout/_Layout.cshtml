@@ -16,6 +16,7 @@
             "header-menu.css",
             "banner.css",
             "footer.css",
+            "login.css"
          };
          await Html.RenderPartialAsync("_Css_Js_Render", cssList);
      }
@@ -30,21 +31,11 @@
     @await Component.InvokeAsync("Header", new { cityId = 1 });
     <!-------------------------------------->
 
-    <!---------------------- BANNER - LEFT ---------------------->
-    @{
-        await Html.RenderPartialAsync("_ContentBannerLeft");
-    }
-    <!---------------------- END BANNER - LEFT ---------------------->
-
-    <!---------------------- BANNER - RIGHT ---------------------->
-    @{
-        await Html.RenderPartialAsync("_ContentBannerRight");
-    }
-    <!---------------------- END BANNER - RIGHT ---------------------->
-
+    <!-- -------- Render content ------ ---->
     <div class="container">
         @RenderBody()
     </div>
+    <!-- ----------------------------- ----->
 
     <!-- Render footer using ViewComponent -->
     @await Component.InvokeAsync("Footer")
@@ -55,7 +46,8 @@
         var jsListEnd = new List<string> {
             "header-menu.js",
             "banner.js",
-        };  
+            "login.js"
+    };  
         await Html.RenderPartialAsync("_Css_Js_Render", jsListEnd);
     }
     <!-- END RENDER -->
