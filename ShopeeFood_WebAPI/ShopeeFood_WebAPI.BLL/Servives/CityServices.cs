@@ -64,6 +64,22 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             return _mapper.Map<CityDto>(item) ?? new CityDto();
         }
 
+        public async Task<ShopCityBusinessResponseDto> GetShopCityBusiness(int cityID, int fieldID, int pageNumber, int pageSize)
+        {
+            var businesses = await _cityRepo.GetCityBusinessFields(cityID);
+            var shops = await _cityRepo.GetShopInCities(cityID, fieldID, pageNumber, pageSize);
+            if (businesses.Count > 0 && shops.Count > 0)
+            {
+                var response = new ShopCityBusinessResponseDto()
+                {
+                    CityBusinesses = _mapper.Map<List<CityBusinessDto>>(businesses.ToList()),
+                    ShopInTheCities = _mapper.Map<List<ShopInTheCityDto>>(shops.ToList())
+                };
+                return response;
+            }
+            return new ShopCityBusinessResponseDto();
+        }
+
         public async Task<List<ShopInTheCityDto>> GetShopInTheCity(int cityID, int fieldID, int pageNumber, int pageSize)
         {
             var items = await _cityRepo.GetShopInCities(cityID, fieldID, pageNumber, pageSize);

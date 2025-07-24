@@ -83,6 +83,28 @@ namespace ShopeeFood_WebAPI.Controllers
             });
         }
 
+        // Get shop and busines in the city
+        [HttpPost("business-shops")]
+        public async Task<IActionResult> GetShopCityBusinesses([FromBody] CityFieldShopRequestDto modelRequest)
+        {
+            var items = await _services.GetShopCityBusiness(modelRequest.CityID, modelRequest.FieldID, modelRequest.PageNumber, modelRequest.PageSize);
+            if (items == null)
+            {
+                return NotFound(new ApiResponse
+                {
+                    status = HttpStatusCode.NotFound.ToString(),
+                    message = ApiResponseMessage.NOT_FOUND,
+                    data = ""
+                });
+            }
+            return Ok(new ApiResponse
+            {
+                status = HttpStatusCode.OK.ToString(),
+                message = ApiResponseMessage.SUCCESS,
+                data = JsonConvert.SerializeObject(items)
+            });
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AddCityRequestDto cityRequestDto)
         {

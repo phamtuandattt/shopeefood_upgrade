@@ -18,5 +18,6 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task<bool> CityExisted(int cityId);
         Task<List<CityBusinessDto>> GetAllBusiness(int cityID);
         Task<List<ShopInTheCityDto>> GetShopInTheCity(int cityID, int fieldID, int pageNumber, int pageSize);
+        Task<ShopCityBusinessResponseDto> GetShopCityBusiness(int cityID, int fieldID, int pageNumber, int pageSize);
     }
 }
