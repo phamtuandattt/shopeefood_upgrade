@@ -8,4 +8,10 @@
 
         public object DataReturn { get; set; }
     }
+
+    public class ShopCityBussinessJsonResponse
+    {
+        public object Businesses { get; set; }
+        public object Shops { get; set; }
+    }
 }

@@ -8,6 +8,7 @@ using ShopeeFood_WebApp.Models;
 using ShopeeFood_WebApp.Models.Businesses;
 using ShopeeFood_WebApp.Models.Cities;
 using ShopeeFood_WebApp.Models.Shops;
+using System.ComponentModel.Design.Serialization;
 using System.Diagnostics;
 
 namespace ShopeeFood_WebApp.Controllers
@@ -18,7 +19,7 @@ namespace ShopeeFood_WebApp.Controllers
         private readonly IShopServices _shopServices;
 
         public HomeController(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, IMapper mapper, IBusinessServices businessServices, IShopServices shopServices)
-            : base(configuration, httpContextAccessor,mapper)
+            : base(configuration, httpContextAccessor, mapper)
         {
             _businessServices = businessServices;
             _shopServices = shopServices;
@@ -66,6 +67,34 @@ namespace ShopeeFood_WebApp.Controllers
                     objReturn.DataReturn = Mapper.Map<List<ShopViewModel>>(shops.Data);
                     ViewBag.ActiveCategoryId = shopRequestDto.FieldID;
                     ViewBag.PageTitle = "Shops";
+                }
+            }
+
+            return Json(objReturn);
+        }
+
+        [HttpPost]
+        [Route("/cites/business-field")]
+        public async Task<ActionResult> GetBusinessField(int regionId)
+        {
+            var objReturn = new ShopCityBussinessJsonResponse();
+
+            if (regionId != 0)
+            {
+                var requestDto = new ShopRequestDto()
+                {
+                    CityID = regionId,
+                    FieldID = 1,
+                    PageNumber = 1,
+                    PageSize = 6
+                };
+
+                var data = await _businessServices.GetShopCityBusinesses(_httpContextAccessor.HttpContext, requestDto);
+                if (data.IsSuccess)
+                {
+                    var response = Mapper.Map<ShopCityBussinessJsonResponse>(data.Data);
+                    objReturn.Businesses = response.Businesses;
+                    objReturn.Shops = response.Shops;
                 }
             }
 

@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShopeeFood.BLL.DTOS.BusinessDTOs;
 using ShopeeFood.BLL.DTOS.CityDTOs;
+using ShopeeFood.BLL.RequestDTOs.ShopRequestDTOs;
 using ShopeeFood.BLL.ServicesContract.BusinessServicesContract;
 using ShopeeFood.Infrastructure.Common.ApiServices;
 using ShopeeFood.Infrastructure.Logging;
@@ -14,14 +15,14 @@ using System.Threading.Tasks;
 
 namespace ShopeeFood.BLL.ApplicationServices
 {
-    public class BusinessServices : IBusinessServices
+    public class BusinessServices : BaseApiServices, IBusinessServices
     {
         private RestServices RestServices { get; set; }
         private IHttpContextAccessor _httpContextAccessor { get; set; }
         private readonly IConfiguration _configuration;
         private string ApiDomain;
 
-        public BusinessServices(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
+        public BusinessServices(IHttpContextAccessor httpContextAccessor, IConfiguration configuration) : base (httpContextAccessor, configuration) 
         {
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
@@ -92,6 +93,43 @@ namespace ShopeeFood.BLL.ApplicationServices
             finally
             {
                 Logger.Debug($"END - GetAccountAsync.");
+            }
+
+            return response;
+        }
+
+        public async Task<AppActionResult<ShopCityBusinessResponseDto, ApiErrorResponse>> GetShopCityBusinesses(HttpContext httpContext, ShopRequestDto requetsDto)
+        {
+            Logger.Info("BEGIN - Get business and shop in the city");
+            var response = new AppActionResult<ShopCityBusinessResponseDto, ApiErrorResponse>();
+            var apiUrl = string.Format(_configuration["GetShopCityBusinesses"]);
+            try
+            {
+                if (requetsDto != null)
+                {
+                    var postData = SerializeParams(requetsDto);
+                    var url = $"{ApiDomain}{apiUrl}";
+                    var result = await RestServices.PostAsync<ShopCityBusinessResponseDto, ApiErrorResponse>(postData, url);
+                    if (result.IsSuccess)
+                    {
+                        Logger.Info($"Get business and shop in the city: ");
+                        response.SetResult(result.Data);
+                    }
+                    else
+                    {
+                        response.SetError(result.Error);
+                        Logger.Info($"FAIL to Get business and shop in the city: . ErrorCode: {result.Error?.ErrorCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Info($"FAIL to Get business and shop in the city: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - Get business and shop in the city.");
             }
 
             return response;

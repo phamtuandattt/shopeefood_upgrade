@@ -21,7 +21,7 @@ namespace ShopeeFood_WebApp.Controllers.Components
         public async Task<IViewComponentResult> InvokeAsync(int cityId)
         {
             var cities = await businessServices.GetAllByCity(httpContextAccessor.HttpContext);
-            var business = await businessServices.GetBusinessByCity(httpContextAccessor.HttpContext, 1);
+            var business = await businessServices.GetBusinessByCity(httpContextAccessor.HttpContext, cityId);
 
             var viewModel = new CityViewModel();
 

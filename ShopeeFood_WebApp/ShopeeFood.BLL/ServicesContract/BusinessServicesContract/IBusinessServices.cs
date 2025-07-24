@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ShopeeFood.BLL.DTOS.BusinessDTOs;
 using ShopeeFood.BLL.DTOS.CityDTOs;
+using ShopeeFood.BLL.RequestDTOs.ShopRequestDTOs;
 using ShopeeFood.Infrastructure.Common.ApiServices;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,7 @@ namespace ShopeeFood.BLL.ServicesContract.BusinessServicesContract
     {
         Task<AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>> GetAllByCity(HttpContext httpContext);
         Task<AppActionResult<IEnumerable<BusinessDto>, ApiErrorResponse>> GetBusinessByCity(HttpContext httpContext, int cityId);
+
+        Task<AppActionResult<ShopCityBusinessResponseDto, ApiErrorResponse>> GetShopCityBusinesses(HttpContext httpContext, ShopRequestDto shopRequestDto);
     }
 }

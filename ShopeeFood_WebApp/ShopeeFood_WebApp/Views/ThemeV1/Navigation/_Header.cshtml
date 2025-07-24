@@ -15,12 +15,12 @@
                         <img src="https://shopeefood.vn/app/assets/img/shopeefoodvn.png?4aa1a38e8da801f4029b80734905f3f7" alt="ShopeeFood">
                     </div>
                     <div class="location">
-                        <select>
+                        <select id="citySelect">
                             @if (Model != null && Model.Cities.Any())
                             {
                                 foreach (var item in Model.Cities.ToList())
                                 {
-                                    <option id="@item.CityId">@item.CityName</option>
+                                    <option data-id="@item.CityId" data-district="@item.CityName">@item.CityName</option>
 
                                 }
                             }

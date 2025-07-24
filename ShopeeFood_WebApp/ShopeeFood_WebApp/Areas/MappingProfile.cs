@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using ShopeeFood.BLL.DTOS.BusinessDTOs;
 using ShopeeFood.BLL.DTOS.CityDTOs;
 using ShopeeFood.BLL.DTOS.ShopDTOs;
+using ShopeeFood_WebApp.Models;
 using ShopeeFood_WebApp.Models.Shops;
+using System.Runtime.CompilerServices;
 
 namespace ShopeeFood_WebApp.Areas
 {
@@ -15,6 +18,8 @@ namespace ShopeeFood_WebApp.Areas
         protected void CreateMap()
         {
             CreateMap<ShopResponseDtos, ShopViewModel>().ReverseMap();
+
+            CreateMap<ShopCityBussinessJsonResponse, ShopCityBusinessResponseDto>().ReverseMap();
         }
     }
 }

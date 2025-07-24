@@ -52,70 +52,194 @@
 
 
 // Handle get shop of city by business field
+//document.addEventListener("DOMContentLoaded", function () {
+//    const menu = document.getElementById("menu");
+//    const links = menu.querySelectorAll(".nav-link-item");
+
+//    // loading box
+//    const loadingBox = document.querySelectorAll('.main-banner-right-home .list-restaurant .now-loading-restaurant');
+//    const itemResList = document.querySelectorAll('.main-banner-right-home .list-restaurant .item-restaurant');
+
+//    links.forEach(link => {
+//        link.addEventListener("click", async function (e) {
+//            const clickedLink = e.target.closest(".nav-link-item");
+
+//            // If not a .nav-link-item, ignore
+//            if (!clickedLink) return;
+
+//            e.preventDefault();
+
+//            // Remove "active" from all
+//            links.forEach(item => item.classList.remove("active"));
+//            this.classList.add("active");
+
+//            const apiUrl = '/home/shops';
+
+//            const data = new Object();
+//            data.cityId = 1; // Get select city
+//            data.fieldId = this.dataset.id;;
+//            data.pageSize = 6;
+//            data.pageNumber = 1;
+
+//            $.ajax({
+//                url: apiUrl,
+//                type: "POST",
+//                data: data,
+//                beforeSend: function (bs) {
+//                    //$('#page-loader').show();
+//                    // Show loader
+//                    document.querySelector('.loader-redirect-overlay').style.display = 'flex';
+//                    // Show loading box, hide previous results
+//                    loadingBox.forEach(item => item.style.display = 'block');
+//                    itemResList.forEach(item => item.style.display = 'none');
+//                },
+//                complete: function () {
+//                    // Hide loader
+//                    document.querySelector('.loader-redirect-overlay').style.display = 'none';
+//                    // Hide loading box after fetch
+//                    loadingBox.forEach(item => item.style.display = 'none');
+//                    itemResList.forEach(item => item.style.display = 'block');
+//                },
+//                success: function (response) {
+//                    if (response != null) {
+
+//                        // apend content format html
+//                        // create function get data and return data attack HTML
+//                        const restaurants = response.dataReturn; // assuming data is a list of objects
+//                        renderRestaurants(restaurants);
+
+
+//                    } else {
+
+//                    }
+//                },
+//                error: function (response) {
+
+//                }
+//            })
+
+//        });
+//    });
+//});
+
 document.addEventListener("DOMContentLoaded", function () {
     const menu = document.getElementById("menu");
-    const links = menu.querySelectorAll(".nav-link-item");
 
     // loading box
     const loadingBox = document.querySelectorAll('.main-banner-right-home .list-restaurant .now-loading-restaurant');
     const itemResList = document.querySelectorAll('.main-banner-right-home .list-restaurant .item-restaurant');
 
-    links.forEach(link => {
-        link.addEventListener("click", async function (e) {
-            e.preventDefault();
+    // ✅ EVENT DELEGATION HERE
+    menu.addEventListener("click", function (e) {
+        const clickedLink = e.target.closest(".nav-link-item");
+        if (!clickedLink) return;
+        e.preventDefault();
 
-            // Remove "active" from all
-            links.forEach(item => item.classList.remove("active"));
-            this.classList.add("active");
+        // Remove "active" from all and add to current
+        menu.querySelectorAll(".nav-link-item").forEach(item => item.classList.remove("active"));
+        clickedLink.classList.add("active");
 
-            const apiUrl = '/home/shops';
+        const apiUrl = '/home/shops';
+        const citySelection = document.getElementById("citySelect");
+        const cityId = citySelection.options[citySelection.selectedIndex].dataset.id;
 
-            const data = new Object();
-            data.cityId = 1; // Get select city
-            data.fieldId = this.dataset.id;;
-            data.pageSize = 6;
-            data.pageNumber = 1;
+        const data = {
+            cityId: cityId, // if dynamic, update this!
+            fieldId: clickedLink.dataset.id,
+            pageSize: 6,
+            pageNumber: 1
+        };
 
-            $.ajax({
-                url: apiUrl,
-                type: "POST",
-                data: data,
-                beforeSend: function (bs) {
-                    //$('#page-loader').show();
-                    // Show loader
-                    document.querySelector('.loader-redirect-overlay').style.display = 'flex';
-                    // Show loading box, hide previous results
-                    loadingBox.forEach(item => item.style.display = 'block');
-                    itemResList.forEach(item => item.style.display = 'none');
-                },
-                complete: function () {
-                    // Hide loader
-                    document.querySelector('.loader-redirect-overlay').style.display = 'none';
-                    // Hide loading box after fetch
-                    loadingBox.forEach(item => item.style.display = 'none');
-                    itemResList.forEach(item => item.style.display = 'block');
-                },
-                success: function (response) {
-                    if (response != null) {
-
-                        // apend content format html
-                        // create function get data and return data attack HTML
-                        const restaurants = response.dataReturn; // assuming data is a list of objects
-                        renderRestaurants(restaurants);
-                        
-
-                    } else {
-
-                    }
-                },
-                error: function (response) {
-
+        $.ajax({
+            url: apiUrl,
+            type: "POST",
+            data: data,
+            beforeSend: function () {
+                document.querySelector('.loader-redirect-overlay').style.display = 'flex';
+                loadingBox.forEach(item => item.style.display = 'block');
+                itemResList.forEach(item => item.style.display = 'none');
+            },
+            complete: function () {
+                document.querySelector('.loader-redirect-overlay').style.display = 'none';
+                loadingBox.forEach(item => item.style.display = 'none');
+                itemResList.forEach(item => item.style.display = 'block');
+            },
+            success: function (response) {
+                if (response != null) {
+                    const restaurants = response.dataReturn;
+                    renderRestaurants(restaurants);
                 }
-            })
-
+            }
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    /* ------- HANDLE <select> CHANGE EVENT ----------*/
+    const selectElement = document.getElementById("citySelect");
+    const loadingBox = document.querySelectorAll('.main-banner-right-home .list-restaurant .now-loading-restaurant');
+    const itemResList = document.querySelectorAll('.main-banner-right-home .list-restaurant .item-restaurant');
+    selectElement.addEventListener("change", function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const regionId = selectedOption.dataset.id;
+        const regionName = selectedOption.dataset.region;
+        console.log(regionId);
+        const url = '/cites/business-field';
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: { regionId: regionId },
+            beforeSend: function (bs) {
+                // Show loader
+                document.querySelector('.loader-redirect-overlay').style.display = 'flex';
+                // Show loading box, hide previous results
+                loadingBox.forEach(item => item.style.display = 'block');
+                itemResList.forEach(item => item.style.display = 'none');
+                console.log(regionId);
+            },
+            complete: function () {
+                // Hide loader
+                document.querySelector('.loader-redirect-overlay').style.display = 'none';
+                // Hide loading box after fetch
+                loadingBox.forEach(item => item.style.display = 'none');
+                itemResList.forEach(item => item.style.display = 'block');
+            },
+            success: function (response) {
+                if (response != null) {
+
+                    // apend content format html
+                    // create function get data and return data attack HTML
+                    const businesses = response.businesses;
+                    renderItemMenu(businesses);
+
+                    const restaurants = response.shops; // assuming data is a list of objects
+                    renderRestaurants(restaurants);
+
+
+                } else {
+
+                }
+            },
+            error: function (response) {
+
+            }
+        })
+    });
+});
+
+function renderItemMenu(businesses) {
+    const container = $("#menu")
+    container.empty(); // clear previous content
+
+    businesses.forEach(item => {
+        const isActive = (item.fieldId === 1) ? "active" : "";
+        const html = `
+            <a class="nav-link-item ${isActive}" href="#" data-id="${item.fieldId}">${item.fieldName}</a>
+        `;
+        container.append(html);
+    });
+}
 
 function renderRestaurants(restaurants) {
     const container = $('#list-restaurant-container');
