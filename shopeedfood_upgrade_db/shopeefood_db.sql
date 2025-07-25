@@ -117,13 +117,17 @@ CREATE TABLE Customers (
     FullName NVARCHAR(100),
     PhoneNumber NVARCHAR(20),
     Email NVARCHAR(100),
+	PasswordHash NVARCHAR(MAX),
 	Avata NVARCHAR(200),
-    CreatedAt DATETIME DEFAULT GETDATE()
+    CreatedAt DATETIME DEFAULT GETDATE(),
+	RefreshToken NVARCHAR(MAX),
+	RefreshTokenExpiryTime DATETIME,
 );
 
 CREATE TABLE CustomerExternalLogins (
     ExternalLoginID INT PRIMARY KEY IDENTITY,
     CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
+	PasswordHass NVARCHAR(MAX),
     Provider NVARCHAR(50),           -- 'Google', 'Facebook', etc.
     ProviderUserId NVARCHAR(100),    -- The ID from the provider
     ProviderEmail NVARCHAR(100),     -- Optional: email from provider

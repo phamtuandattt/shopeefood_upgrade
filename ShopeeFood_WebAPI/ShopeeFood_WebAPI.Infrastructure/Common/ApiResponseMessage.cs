@@ -13,5 +13,9 @@ namespace ShopeeFood_WebAPI.Infrastructure.Common
         public const string NOT_FOUND = "Not found !";
         public const string SUCCESS = "Success !";
         public const string BAD_REQUEST = "The list of objects cannot be null or empty !";
+        public const string INVALID_CREDENTAILS = "Invalid credentials";
+        public const string IS_EXISTED = "Object already exists";
+        public const string REGISTERED_SUCCESS = "User registered successfully";
+        public const string INVALID_REFRESH = "Invalid refresh token";
     }
 }

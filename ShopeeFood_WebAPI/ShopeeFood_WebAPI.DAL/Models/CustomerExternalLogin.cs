@@ -9,6 +9,8 @@ public partial class CustomerExternalLogin
 
     public int? CustomerId { get; set; }
 
+    public string? PasswordHass { get; set; }
+
     public string? Provider { get; set; }
 
     public string? ProviderUserId { get; set; }

@@ -17,6 +17,12 @@ public partial class Customer
 
     public DateTime? CreatedAt { get; set; }
 
+    public string? RefreshToken { get; set; }
+
+    public DateTime? RefreshTokenExpiryTime { get; set; }
+
+    public string? PasswordHash { get; set; }
+
     public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
 
     public virtual ICollection<CustomerExternalLogin> CustomerExternalLogins { get; set; } = new List<CustomerExternalLogin>();

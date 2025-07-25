@@ -48,9 +48,9 @@ public partial class ShopeefoodDbContext : DbContext
 
     public virtual DbSet<Ward> Wards { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("server=DESKTOP-KD2BPDJ;database=shopeefood_db;Integrated Security = True;uid=sa;pwd=Aa123456@;TrustServerCertificate=True;MultipleActiveResultSets=true");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("server=DESKTOP-KD2BPDJ;database=shopeefood_db;Integrated Security = True;uid=sa;pwd=Aa123456@;TrustServerCertificate=True;MultipleActiveResultSets=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -127,6 +127,7 @@ public partial class ShopeefoodDbContext : DbContext
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
+            entity.Property(e => e.RefreshTokenExpiryTime).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<CustomerAddress>(entity =>
@@ -151,7 +152,7 @@ public partial class ShopeefoodDbContext : DbContext
 
         modelBuilder.Entity<CustomerExternalLogin>(entity =>
         {
-            entity.HasKey(e => e.ExternalLoginId).HasName("PK__Customer__A8FDB38E6BA92059");
+            entity.HasKey(e => e.ExternalLoginId).HasName("PK__Customer__A8FDB38E5796280E");
 
             entity.Property(e => e.ExternalLoginId).HasColumnName("ExternalLoginID");
             entity.Property(e => e.AvatarUrl).HasMaxLength(300);
@@ -165,7 +166,7 @@ public partial class ShopeefoodDbContext : DbContext
 
             entity.HasOne(d => d.Customer).WithMany(p => p.CustomerExternalLogins)
                 .HasForeignKey(d => d.CustomerId)
-                .HasConstraintName("FK__CustomerE__Custo__08B54D69");
+                .HasConstraintName("FK__CustomerE__Custo__114A936A");
         });
 
         modelBuilder.Entity<District>(entity =>

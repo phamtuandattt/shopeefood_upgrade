@@ -1,17 +1,22 @@
 ﻿using log4net;
 using log4net.Config;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ShopeeFood_WebAPI.ApplicationServices;
+using ShopeeFood_WebAPI.BLL.Dtos;
 using ShopeeFood_WebAPI.BLL.IServices;
 using ShopeeFood_WebAPI.BLL.Servives;
 using ShopeeFood_WebAPI.DAL.IRepositories;
 using ShopeeFood_WebAPI.DAL.IRepositories.ICityRepository;
+using ShopeeFood_WebAPI.DAL.IRepositories.ICustomerRepository;
 using ShopeeFood_WebAPI.DAL.IRepositories.IShopRepository;
 using ShopeeFood_WebAPI.DAL.Models;
 using ShopeeFood_WebAPI.DAL.Repositories;
 using ShopeeFood_WebAPI.DAL.Repositories.CityRepository;
+using ShopeeFood_WebAPI.DAL.Repositories.CustomerRepository;
 using ShopeeFood_WebAPI.DAL.Repositories.ShopRepository;
 using System.Reflection;
+using System.Text;
 
 public static class RegisterDependentServices
 {
@@ -27,18 +32,46 @@ public static class RegisterDependentServices
             options.UseSqlServer(builder.Configuration.GetConnectionString("ShopeeFoodDbContext"));
             options.EnableSensitiveDataLogging();
         });
+
+        // Bind JWT settings
+        builder.Services.Configure<JwtSettings>(
+            builder.Configuration.GetSection("Jwt"));
+
+        // Load it as an instance too (optional)
+        var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
+
+        builder.Services.AddAuthentication("Bearer")
+        .AddJwtBearer("Bearer", options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+
+                ValidIssuer = jwtSettings.Issuer,
+                ValidAudience = jwtSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+            };
+        });
+
+        builder.Services.AddAuthorization();
         builder.Services.AddControllers();
         builder.Services.AddAutoMapper(typeof(MappingProfile));
+        builder.Services.AddScoped<TokenService>();
 
         // Repository
         builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         builder.Services.AddScoped<ICityRepository, CityRepository>();
         builder.Services.AddScoped<IShopRepository, ShopRepository>();
+        builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 
         // Services
         builder.Services.AddScoped<ICityServies, CityServices>();
         builder.Services.AddScoped<IShopServices, ShopServices>();
+        builder.Services.AddScoped<ICustomerServices, CustomerServices>();
 
 
         builder.Services.AddEndpointsApiExplorer();
