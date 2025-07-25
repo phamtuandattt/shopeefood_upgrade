@@ -1,17 +1,5 @@
 ﻿CREATE DATABASE shopeefood_db
 
-CREATE TABLE Cities (
-    CityID INT PRIMARY KEY IDENTITY(1, 1),
-    CityName NVARCHAR(255) NOT NULL
-);
-
-CREATE TABLE Districts (
-    DistrictID INT PRIMARY KEY IDENTITY(1, 1),
-    DistrictName NVARCHAR(255) NOT NULL,
-    CityID INT,
-    FOREIGN KEY (CityID) REFERENCES Cities(CityID)
-);
-
 CREATE TABLE BusinessFields (
     FieldID INT PRIMARY KEY IDENTITY(1, 1),
     FieldName NVARCHAR(255) NOT NULL
@@ -106,3 +94,65 @@ CREATE TABLE Employees (
 --    CreatedAt DATETIME DEFAULT GETDATE(), -- Record creation timestamp
 --    UpdatedAt DATETIME DEFAULT GETDATE() -- Record update timestamp
 --);
+CREATE TABLE Cities (
+    CityID INT PRIMARY KEY IDENTITY(1, 1),
+    CityName NVARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Districts (
+    DistrictID INT PRIMARY KEY IDENTITY(1, 1),
+    DistrictName NVARCHAR(255) NOT NULL,
+    CityID INT,
+    FOREIGN KEY (CityID) REFERENCES Cities(CityID)
+);
+
+CREATE TABLE Wards (
+    WardID INT PRIMARY KEY IDENTITY,
+    DistrictID INT FOREIGN KEY REFERENCES Districts(DistrictID),
+    WardName NVARCHAR(100)
+);
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY IDENTITY,
+    FullName NVARCHAR(100),
+    PhoneNumber NVARCHAR(20),
+    Email NVARCHAR(100),
+	Avata NVARCHAR(200),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE CustomerExternalLogins (
+    ExternalLoginID INT PRIMARY KEY IDENTITY,
+    CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
+    Provider NVARCHAR(50),           -- 'Google', 'Facebook', etc.
+    ProviderUserId NVARCHAR(100),    -- The ID from the provider
+    ProviderEmail NVARCHAR(100),     -- Optional: email from provider
+    AvatarUrl NVARCHAR(300),         -- Optional
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE CustomerAddresses (
+    AddressID INT PRIMARY KEY IDENTITY,
+    CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
+    AddressType NVARCHAR(50), -- e.g. Home, Work, Other
+    Street NVARCHAR(200),
+    WardID INT,
+    IsDefault BIT DEFAULT 0,
+    Latitude FLOAT NULL, -- optional
+    Longitude FLOAT NULL,
+    Note NVARCHAR(200),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+--SELECT 
+--    c.FullName,
+--    a.Street,
+--    w.WardName,
+--    d.DistrictName,
+--    ci.CityName
+--FROM Addresses a
+--JOIN Customers c ON c.CustomerID = a.CustomerID
+--JOIN Wards w ON w.WardID = a.WardID
+--JOIN Districts d ON d.DistrictID = w.DistrictID
+--JOIN Cities ci ON ci.CityID = d.CityID
+--WHERE a.CustomerID = 123;
