@@ -191,6 +191,9 @@ namespace ShopeeFood_WebAPI.Controllers
             if (model is null || string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.RefreshToken))
                 return BadRequest("Invalid client request");
 
+            //var principal = _tokenService.GetPrincipalFromExpiredToken(model.AccessToken);
+            //var email = principal?.Identity?.Name;
+
             var user = await _customerServices.GetCustomerByEmail(model.Email);
 
             if (user == null || user.RefreshToken != model.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
