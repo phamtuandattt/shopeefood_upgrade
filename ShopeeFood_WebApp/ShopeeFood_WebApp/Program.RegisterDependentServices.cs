@@ -10,6 +10,8 @@ using ShopeeFood.BLL.ServicesContract.ShopServicesContract;
 using ShopeeFood_WebApp.Services;
 using ShopeeFood_WebApp.Areas;
 using Microsoft.Extensions.DependencyInjection;
+using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
+using ShopeeFood.BLL.ApplicationServices.CustomerServices;
 
 namespace ShopeeFood_WebApp
 {
@@ -31,9 +33,9 @@ namespace ShopeeFood_WebApp
             builder.Services.AddScoped<RestServices>();
             builder.Services.AddScoped<ModuleContentSerivces>();
             
-            
             builder.Services.AddTransient<IBusinessServices, BusinessServices>();
             builder.Services.AddTransient<IShopServices, ShopServices>();
+            builder.Services.AddTransient<ICustomerServices, CustomerServices>();
 
 
             builder.Services.Configure<RazorViewEngineOptions>(o =>

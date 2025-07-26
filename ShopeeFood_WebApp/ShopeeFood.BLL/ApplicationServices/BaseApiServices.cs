@@ -15,8 +15,8 @@ namespace ShopeeFood.BLL.ApplicationServices
     public class BaseApiServices
     {
         protected RestServices RestServices { get; set; }
-        private IHttpContextAccessor _httpContextAccessor { get; set; }
-        private readonly IConfiguration _configuration;
+        protected IHttpContextAccessor _httpContextAccessor { get; set; }
+        protected readonly IConfiguration _configuration;
 
 
         protected string ApiDomain

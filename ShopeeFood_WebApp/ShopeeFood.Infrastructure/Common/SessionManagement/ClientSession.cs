@@ -30,15 +30,15 @@ namespace ShopeeFood.Infrastructure.Common.SessionManagement
 
 
         #region Session is string
-        public string ExampleSessionString
+        public string jwtToken
         {
             get
             {
-                return _current.Session.GetString("ExampleSessionString") as string;
+                return _current.Session.GetString("jwtToken") as string;
             }
             set
             {
-                _current.Session.SetString("ExampleSessionString", value);
+                _current.Session.SetString("jwtToken", value);
             }
         }
 
