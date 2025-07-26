@@ -83,7 +83,7 @@ namespace ShopeeFood_WebAPI.Controllers
                 return Unauthorized(new ApiResponse
                 {
                     status = HttpStatusCode.Unauthorized + "",
-                    message = ApiResponseMessage.NOT_FOUND,
+                    message = ApiResponseMessage.INVALID_TOKEN,
                     data = ""
                 });
             }
@@ -206,7 +206,7 @@ namespace ShopeeFood_WebAPI.Controllers
                 });
             }
 
-            var newAccessToken = _tokenService.GenerateToken(user); // your JWT creation logic
+            var newAccessToken = _tokenService.GenerateToken(user);
             var newRefreshToken = _tokenService.GenerateRefreshToken();
 
             user.RefreshToken = newRefreshToken;
