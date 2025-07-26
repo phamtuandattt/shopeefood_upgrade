@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopeeFood_WebAPI.DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,5 +33,50 @@ namespace ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos
 
         public DateTime? RefreshTokenExpiryTime { get; set; }
 
+        public List<CustomerAddress>? Addresses { get; set; }
+
+        public List<CustomerExternalLogin>? ExternalLogins { get; set; }
+    }
+
+    public class CustomerAddressDto
+    {
+        public int AddressId { get; set; }
+
+        public int? CustomerId { get; set; }
+
+        public string? AddressType { get; set; }
+
+        public string? Street { get; set; }
+
+        public int? WardId { get; set; }
+
+        public bool? IsDefault { get; set; }
+
+        public double? Latitude { get; set; }
+
+        public double? Longitude { get; set; }
+
+        public string? Note { get; set; }
+
+        public DateTime? CreatedAt { get; set; }
+    }
+
+    public class CustomerExternalLogin
+    {
+        public int ExternalLoginId { get; set; }
+
+        public int? CustomerId { get; set; }
+
+        public string? PasswordHass { get; set; }
+
+        public string? Provider { get; set; }
+
+        public string? ProviderUserId { get; set; }
+
+        public string? ProviderEmail { get; set; }
+
+        public string? AvatarUrl { get; set; }
+
+        public DateTime? CreatedAt { get; set; }
     }
 }

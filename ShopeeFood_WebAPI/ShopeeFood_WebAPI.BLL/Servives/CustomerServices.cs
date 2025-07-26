@@ -4,6 +4,7 @@ using ShopeeFood_WebAPI.BLL.Dtos;
 using ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos;
 using ShopeeFood_WebAPI.BLL.IServices;
 using ShopeeFood_WebAPI.DAL.IRepositories;
+using ShopeeFood_WebAPI.DAL.IRepositories.ICustomerRepository;
 using ShopeeFood_WebAPI.DAL.Models;
 using ShopeeFood_WebAPI.Infrastructure;
 using System;
@@ -19,11 +20,13 @@ namespace ShopeeFood_WebAPI.BLL.Servives
     public class CustomerServices : ICustomerServices
     {
         private readonly IRepository<Customer> _repository;
+        private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
 
-        public CustomerServices(IRepository<Customer> repository, IMapper mapper)
+        public CustomerServices(IRepository<Customer> repository, ICustomerRepository customerRepository, IMapper mapper)
         {
             _repository = repository;
+            _customerRepository = customerRepository;
             _mapper = mapper;
         }
 
@@ -71,6 +74,20 @@ namespace ShopeeFood_WebAPI.BLL.Servives
                 Logger.Error(ex.Message);
             }
             return new CustomerDto();
+        }
+
+        public async Task<CustomerDto?> GetCustomerWithDetailsByEmailAsync(string email)
+        {
+            // Can be use either ICustomerRepository or IRepositoy<Customer> 
+
+            //var responseFromRepository = await _customerRepository.GetCustomerProfile(email);
+            var responseFromCusRepo = await _repository.GetWithIncludesAsync<Customer>(
+                c => c.Email == email,
+                c => c.CustomerAddresses,
+                c => c.CustomerExternalLogins
+            );
+
+            return _mapper.Map<CustomerDto>(responseFromCusRepo);
         }
 
         public async Task<bool> UpdateCustomer(int cusId, CustomerDto customer)

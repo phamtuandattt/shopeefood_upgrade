@@ -9,6 +9,6 @@ namespace ShopeeFood_WebAPI.DAL.IRepositories.ICustomerRepository
 {
     public interface ICustomerRepository
     {
-        Task<Customer> GetCustomer(int userId);
+        Task<Customer> GetCustomerProfile(string email);
     }
 }

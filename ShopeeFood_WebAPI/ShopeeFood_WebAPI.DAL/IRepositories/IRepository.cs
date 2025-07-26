@@ -22,5 +22,6 @@ namespace ShopeeFood_WebAPI.DAL.IRepositories
         Task<List<T>> FindAsync(Expression<Func<T, bool>> predicate);
         Task<T?> FindOneAsync(Expression<Func<T, bool>> predicate);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> GetWithIncludesAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes) where T : class;
     }
 }

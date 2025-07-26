@@ -16,5 +16,6 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task<bool> Existed(string email);
         
         Task<bool> UpdateCustomer(int cusId, CustomerDto customer);
+        Task<CustomerDto?> GetCustomerWithDetailsByEmailAsync(string email);
     }
 }

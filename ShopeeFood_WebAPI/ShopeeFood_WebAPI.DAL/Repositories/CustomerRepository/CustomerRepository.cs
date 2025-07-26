@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ShopeeFood_WebAPI.DAL.IRepositories;
 using ShopeeFood_WebAPI.DAL.IRepositories.ICustomerRepository;
 using ShopeeFood_WebAPI.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,9 +23,9 @@ namespace ShopeeFood_WebAPI.DAL.Repositories.CustomerRepository
             _mapper = mapper;
         }
 
-        public Task<Customer> GetCustomer(int userId)
+        public async Task<Customer> GetCustomerProfile(string email)
         {
-            throw new NotImplementedException();
+            return await _context.Customers.Include(c => c.CustomerAddresses).Include(c => c.CustomerExternalLogins).FirstOrDefaultAsync(c => c.Email == email);
         }
     }
 }

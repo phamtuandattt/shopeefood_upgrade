@@ -17,5 +17,6 @@ namespace ShopeeFood_WebAPI.Infrastructure.Common
         public const string IS_EXISTED = "Object already exists";
         public const string REGISTERED_SUCCESS = "User registered successfully";
         public const string INVALID_REFRESH = "Invalid refresh token";
+        public const string INVALID_TOKEN = "Invalid token";
     }
 }

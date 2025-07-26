@@ -1,5 +1,6 @@
 ﻿using log4net;
 using log4net.Config;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ShopeeFood_WebAPI.ApplicationServices;
@@ -40,9 +41,17 @@ public static class RegisterDependentServices
         // Load it as an instance too (optional)
         var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>();
 
-        builder.Services.AddAuthentication("Bearer")
+        //builder.Services.AddAuthentication("Bearer")
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
         .AddJwtBearer("Bearer", options =>
         {
+            options.RequireHttpsMetadata = false;
+            options.SaveToken = true;
+
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
@@ -52,7 +61,8 @@ public static class RegisterDependentServices
 
                 ValidIssuer = jwtSettings.Issuer,
                 ValidAudience = jwtSettings.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key)),
+                ClockSkew = TimeSpan.Zero
             };
         });
 

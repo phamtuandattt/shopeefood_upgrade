@@ -14,11 +14,14 @@ using ShopeeFood_WebAPI.BLL.Servives;
 using Newtonsoft.Json.Linq;
 using ShopeeFood_WebAPI.DAL.Models;
 using Azure.Core;
+using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
+using System.Net.WebSockets;
 
 namespace ShopeeFood_WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/customers")]
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerServices _customerServices;
@@ -32,6 +35,42 @@ namespace ShopeeFood_WebAPI.Controllers
             _tokenService = tokenService;
             _mapper = mapper;
             _config = configuration;
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetCustomerProfile()
+        {
+            // Extract email from JWT token
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized(new ApiResponse
+                {
+                    status = HttpStatusCode.Unauthorized.ToString(),
+                    message = ApiResponseMessage.INVALID_TOKEN,
+                    data = ""
+                });
+            }
+            
+            var result = await _customerServices.GetCustomerWithDetailsByEmailAsync(email);
+            if (result == null)
+            {
+                return NotFound(new ApiResponse
+                {
+                    status = HttpStatusCode.NotFound + "",
+                    message = ApiResponseMessage.NOT_FOUND,
+                    data = ""
+                });
+            }
+
+            return Ok(new ApiResponse
+            {
+                status = HttpStatusCode.OK + "",
+                message = ApiResponseMessage.SUCCESS,
+                data = JsonConvert.SerializeObject(result)
+            });
         }
 
         [HttpPost("login")]

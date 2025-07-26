@@ -140,6 +140,22 @@ namespace ShopeeFood_WebAPI.DAL.Repositories
             return item;
         }
 
+        public async Task<T?> GetWithIncludesAsync<T>(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes) where T : class
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            // Apply all includes dynamically
+            if (includes != null)
+            {
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+
+            return await query.FirstOrDefaultAsync(predicate);
+        }
+
         public async Task<bool> UpdateAsync(T item)
         {
             var existingItem = await _dbSet.FindAsync(GetPrimaryKeyValue(item));
