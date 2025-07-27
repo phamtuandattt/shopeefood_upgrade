@@ -1,22 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+﻿
 using ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos;
 using ShopeeFood_WebAPI.BLL.IServices;
 using ShopeeFood_WebAPI.RequestModels.UserRequestDtos;
 using ShopeeFood_WebAPI.ResponseDtos.CustomerResponseDto;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using ShopeeFood_WebAPI.BLL.Servives;
-using Newtonsoft.Json.Linq;
-using ShopeeFood_WebAPI.DAL.Models;
-using Azure.Core;
-using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
-using System.Net.WebSockets;
+
 
 namespace ShopeeFood_WebAPI.Controllers
 {
