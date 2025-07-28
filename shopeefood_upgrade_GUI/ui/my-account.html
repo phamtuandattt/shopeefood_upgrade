@@ -1,0 +1,89 @@
+<div class="container-profile">
+    <!-- Header Section -->
+    <div class="my-account-header">
+        <div class="avatar-section">
+            <div class="avatar">
+                <img src="https://media.istockphoto.com/id/1307568521/photo/its-the-denim-that-does-it-for-me.jpg?s=612x612&w=0&k=20&c=0RQfpn8VJxXl6sO4aUehTsPvyYKGPwVwz1EdJRBU_Nw="
+                    alt="User Avatar" id="avatarImg">
+            </div>
+        </div>
+        <div class="user-info">
+            <h1 class="user-name" id="userName">John Doe</h1>
+        </div>
+    </div>
+
+    <!-- Address Management Section -->
+    <div class="content">
+        <div class="section-header">
+            <h2>Address Management</h2>
+            <button class="my-profile-btn btn-orange" onclick="showAddAddressForm()">+ Add New
+                Address</button>
+        </div>
+
+        <!-- Add/Edit Address Form -->
+        <div class="address-form" id="addressForm" style="display: none;">
+            <h3 id="formTitle">Add New Address</h3>
+            <form id="addressFormElement">
+                <div class="form-row">
+                    <div class="my-profile-form-group">
+                        <label for="addressLabel">Address Label</label>
+                        <input type="text" id="addressLabel" placeholder="e.g., Home, Work, etc." required>
+                    </div>
+                    <div class="my-profile-form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter full name" required>
+                    </div>
+                </div>
+
+                <div class="my-profile-form-group">
+                    <label for="streetAddress">Street Address</label>
+                    <input type="text" id="streetAddress" placeholder="Enter street address" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="my-profile-form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="Enter city" required>
+                    </div>
+                    <div class="my-profile-form-group">
+                        <label for="state">State/Province</label>
+                        <input type="text" id="state" placeholder="Enter state" required>
+                    </div>
+                    <div class="my-profile-form-group">
+                        <label for="zipCode">ZIP/Postal Code</label>
+                        <input type="text" id="zipCode" placeholder="Enter ZIP code" required>
+                    </div>
+                </div>
+
+                <div class="my-profile-form-group">
+                    <label for="country">Country</label>
+                    <select id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                    </select>
+                </div>
+
+                <div class="my-profile-form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" placeholder="Enter phone number">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="my-profile-btn btn-secondary"
+                        onclick="cancelAddressForm()">Cancel</button>
+                    <button type="submit" class="my-profile-btn btn-orange">Save Address</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Address List -->
+        <div class="address-list" id="addressList">
+            <!-- Sample addresses will be populated here -->
+        </div>
+    </div>
+</div>

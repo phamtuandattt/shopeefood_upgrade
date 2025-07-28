@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../css/header-menu.css">
     <link rel="stylesheet" href="../css/banner.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/my-profile.css">
+    <link rel="stylesheet" href="../css/order-history.css">
+
+
 </head>
 
 <style>
@@ -71,1109 +75,270 @@
         </header>
         <!---------------------- END HEADER ---------------------->
 
-        <!---------------------- BANNER - LEFT ---------------------->
-        <div class="banner" id="banner-left">
-            <div class="banner-container">
-                <div class="now-search">
-                    <div>
-                        <h1 class="title">Đặt Đồ ăn, giao hàng từ 20'...</h1>
-                        <div class="local">có 87917 địa điểm ở TP. HCM từ 00:00 - 23:59</div>
-                    </div>
-
-                    <div class="form-search">
-                        <div class="input-group">
-                            <input type="text" id="txtSearchHome" placeholder="Tìm địa điểm, món ăn, địa chỉ..."
-                                value="">
-                            <a href="/ho-chi-minh/danh-sach-dia-diem-giao-tan-noi?q=">
-                                <button type="button" class="btn btn-search">
-                                    <span class="icon icon-search"></span>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="searching" id="searching-banner">
-                            <div class="restaurant-item">
-                                <img alt="Dish image" class="restaurant-image" height="50"
-                                    src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
-                                    width="50" />
-                                <div class="restaurant-details">
-                                    <p class="restaurant-name">
-                                        Cơm Tấm Phúc Lộc Thọ - Nguyễn Thị Thập
-                                    </p>
-                                    <p class="restaurant-address">
-                                        223 Nguyễn Thị Thập, P. Tân Phú, Quận 7, TP. HCM
-                                    </p>
-                                </div>
-                                <div class="restaurant-status">
-                                    Mở cửa
-                                    <i class="fas fa-circle">
-                                    </i>
-                                </div>
-                            </div>
-                            <div class="restaurant-item">
-                                <img alt="Dish image" class="restaurant-image" height="50"
-                                    src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
-                                    width="50" />
-                                <div class="restaurant-details">
-                                    <p class="restaurant-name">
-                                        Cơm Tấm Phúc Lộc Thọ - Tô Ký
-                                    </p>
-                                    <p class="restaurant-address">
-                                        12/6 Tô Ký, P. Tân Chánh Hiệp, Quận 12, TP. HCM
-                                    </p>
-                                </div>
-                                <div class="restaurant-status">
-                                    Mở cửa
-                                    <i class="fas fa-circle">
-                                    </i>
-                                </div>
-                            </div>
-                            <div class="restaurant-item">
-                                <img alt="Dish image" class="restaurant-image" height="50"
-                                    src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
-                                    width="50" />
-                                <div class="restaurant-details">
-                                    <p class="restaurant-name">
-                                        Cơm Tấm Phúc Lộc Thọ - Lê Đức Thọ
-                                    </p>
-                                    <p class="restaurant-address">
-                                        38 Lê Đức Thọ, P. 7, Gò Vấp, TP. HCM
-                                    </p>
-                                </div>
-                                <div class="restaurant-status">
-                                    Mở cửa
-                                    <i class="fas fa-circle">
-                                    </i>
-                                </div>
-                            </div>
-                            <div class="restaurant-item">
-                                <img alt="Dish image" class="restaurant-image" height="50"
-                                    src="https://storage.googleapis.com/a1aa/image/M7U0WhaRPSxs0tSEotGVzBX-Jl0R3jGg4WWqFmaSUaM.jpg"
-                                    width="50" />
-                                <div class="restaurant-details">
-                                    <p class="restaurant-name">
-                                        Cơm Tấm Phúc Lộc Thọ - 155 Lê Văn Quới
-                                    </p>
-                                    <p class="restaurant-address">
-                                        155 Lê Văn Quới, P. Bình Trị Đông, Bình Tân, TP. HCM
-                                    </p>
-                                </div>
-                                <div class="restaurant-status">
-                                    Mở cửa
-                                    <i class="fas fa-circle">
-                                    </i>
-                                </div>
-                            </div>
-                            <div class="search-more">
-                                <i class="fas fa-search">
-                                </i>
-                                <span>
-                                    Tìm thêm kết quả cho
-                                    <strong>
-                                        cơm
-                                    </strong>
-                                </span>
-                            </div>
-                        </div>
-                        <div id="loader-searching-banner" class="loader" style="margin: auto;"></div>
-                    </div>
-
-                    <div class="category-list-filter">
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-giao-tan-noi"><span
-                                class="category-item ">All</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-food-giao-tan-noi"><span
-                                class="category-item ">Đồ ăn</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-drink-giao-tan-noi"><span
-                                class="category-item ">Đồ uống</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-vegetarian-giao-tan-noi"><span
-                                class="category-item ">Đồ chay</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-cake-pastry-giao-tan-noi"><span
-                                class="category-item ">Bánh kem</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-desserts-giao-tan-noi"><span
-                                class="category-item ">Tráng miệng</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-pizza-pasta-burger-giao-tan-noi"><span
-                                class="category-item ">Pizza/Burger</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-hotpot-giao-tan-noi"><span
-                                class="category-item ">Món lẩu</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-sushi-giao-tan-noi"><span
-                                class="category-item ">Sushi</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-soup-based-giao-tan-noi"><span
-                                class="category-item ">Mì phở</span></a>
-                        <a href="/ho-chi-minh/danh-sach-dia-diem-phuc-vu-rice-giao-tan-noi"><span
-                                class="category-item ">Cơm hộp</span></a>
-                    </div>
-
-                    <div>
-                        <div class="font18 mb-2 mt-3" style="margin-left: 5px;">Sử dụng App ShopeeFood để có nhiều giảm
-                            giá <br>và trải nghiệm tốt hơn</div>
-                        <a target="_blank" rel="noopener noreferrer"
-                            href="https://play.google.com/store/apps/details?id=com.deliverynow"
-                            title="Google play"><span class="icon icon-gg-play-big"></span>
-                        </a>
-                        <a target="_blank" rel="noopener noreferrer"
-                            href="https://itunes.apple.com/us/app/deliverynow/id1137866760" title="App Store">
-                            <span class="icon icon-app-store-big"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---------------------- END BANNER - LEFT ---------------------->
+        <!-- -------------------- BANNER - LEFT ---------------------->
 
         <!---------------------- BANNER - RIGHT ---------------------->
-        <div class="banner-right clearfix" id="banner-right">
-            <div class="banner-right-container">
-                <div class="main-banner-right-home">
-                    <div class="user-get-local">
-                        <div class="row align-items-center no-gutters pointer">
-                            <div class="col-auto">
-                                <span class="txt-blue txt-bold">Đồ ăn</span>
-                                <i class="icon-arrow-right"></i>
-                            </div>
-                            <div class="col">Chọn địa chỉ giao hàng</div>
-                            <div class="col-auto">
-                                <span class=""><i class="icon-next"></i></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="list-res-banner-right">
-                        <div class="title-wrapper">
-                            <h2 class="title">Ưu đãi</h2>
-                            <a class="view-all-deal" href="/ho-chi-minh/food/deals">
-                                <span class="icon-list-deal">
-                                    <span class="square"></span>
-                                    <span class="square"></span>
-                                    <span class="square"></span>
-                                    <span class="square"></span>
-                                </span>Xem tất cả
-                            </a>
-                        </div>
-
-                        <div class="list-restaurant">
-                            <div class="now-loading-restaurant">
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêu thích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="list-res-banner-right list-res-district">
-                        <div class="header-tab row align-items-center">
-                            <div class="col">
-                                <button class="item-tab false">Gần tôi</button>
-                                <button class="item-tab active">Bán chạy</button>
-                                <button class="item-tab false">Đánh giá</button>
-                                <button class="item-tab false">Giao nhanh</button>
-                            </div>
-                            <div class="col-auto">
-                                <select name="districtId">
-                                    <option value="-1">Chọn quận/ huyện</option>
-                                    <option value="1">Quận 1</option>
-                                    <option value="2">Gò Vấp</option>
-                                    <option value="4">Quận 2</option>
-                                    <option value="5">Quận 3</option>
-                                    <option value="6">Quận 4</option>
-                                    <option value="7">Quận 5</option>
-                                    <option value="8">Quận 6</option>
-                                    <option value="9">Quận 7</option>
-                                    <option value="10">Quận 8</option>
-                                    <option value="11">Quận 9</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="list-restaurant-district">
-                            <div class="now-loading-restaurant">
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                            </div>
-                            <div class="item-restaurant-district">
-                                <a class="item-content" href="#">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <div class="img-restaurant">
-                                                <img src="https://down-spe-vn.img.susercontent.com/vn-11134513-7r98o-lstxn3t869axee@resize_ss280x175!@crop_w280_h175_cT"
-                                                    class="">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="info-restaurant">
-                                                <div class="name-res">
-                                                    <span class="icon-quality-merchant"
-                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood">
-
-                                                    </span>Xôi Bình Tiên
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="address-res mb-1">78/2 Phạm Viết Chánh, P. 19, Bình
-                                                            Thạnh, TP. HCM</div>
-                                                    </div>
-
-                                                </div>
-                                                <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                            </div>
-                                        </div>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant-district">
-                                <a class="item-content" href="#">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <div class="img-restaurant">
-                                                <img src="https://down-spe-vn.img.susercontent.com/vn-11134513-7r98o-lstxn3t869axee@resize_ss280x175!@crop_w280_h175_cT"
-                                                    class="">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="info-restaurant">
-                                                <div class="name-res">
-                                                    <span class="icon-quality-merchant"
-                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood">
-
-                                                    </span>Xôi Bình Tiên
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="address-res mb-1">78/2 Phạm Viết Chánh, P. 19, Bình
-                                                            Thạnh, TP. HCM</div>
-                                                    </div>
-
-                                                </div>
-                                                <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                            </div>
-                                        </div>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant-district">
-                                <a class="item-content" href="#">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <div class="img-restaurant">
-                                                <img src="https://down-spe-vn.img.susercontent.com/vn-11134513-7r98o-lstxn3t869axee@resize_ss280x175!@crop_w280_h175_cT"
-                                                    class="">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="info-restaurant">
-                                                <div class="name-res">
-                                                    <span class="icon-quality-merchant"
-                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood">
-
-                                                    </span>Xôi Bình Tiên
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="address-res mb-1">78/2 Phạm Viết Chánh, P. 19, Bình
-                                                            Thạnh, TP. HCM</div>
-                                                    </div>
-
-                                                </div>
-                                                <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                            </div>
-                                        </div>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant-district">
-                                <a class="item-content" href="#">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <div class="img-restaurant">
-                                                <img src="https://down-spe-vn.img.susercontent.com/vn-11134513-7r98o-lstxn3t869axee@resize_ss280x175!@crop_w280_h175_cT"
-                                                    class="">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="info-restaurant">
-                                                <div class="name-res">
-                                                    <span class="icon-quality-merchant"
-                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood">
-
-                                                    </span>Xôi Bình Tiên
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="address-res mb-1">78/2 Phạm Viết Chánh, P. 19, Bình
-                                                            Thạnh, TP. HCM</div>
-                                                    </div>
-
-                                                </div>
-                                                <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                            </div>
-                                        </div>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant-district">
-                                <a class="item-content" href="#">
-                                    <div class="row no-gutters">
-                                        <div class="col-auto">
-                                            <div class="img-restaurant">
-                                                <img src="https://down-spe-vn.img.susercontent.com/vn-11134513-7r98o-lstxn3t869axee@resize_ss280x175!@crop_w280_h175_cT"
-                                                    class="">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="info-restaurant">
-                                                <div class="name-res">
-                                                    <span class="icon-quality-merchant"
-                                                        title="Đây là 1 trong những Merchants được đánh giá cao trong ShopeeFood">
-
-                                                    </span>Xôi Bình Tiên
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="address-res mb-1">78/2 Phạm Viết Chánh, P. 19, Bình
-                                                            Thạnh, TP. HCM</div>
-                                                    </div>
-
-                                                </div>
-                                                <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                            </div>
-                                        </div>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="list-res-banner-right">
-                        <div class="title-wrapper">
-                            <h2 class="title">Ưu đãi</h2>
-                            <a class="view-all-deal" href="/ho-chi-minh/food/deals">
-                                <span class="icon-list-deal">
-                                    <span class="square"></span>
-                                    <span class="square"></span>
-                                    <span class="square"></span>
-                                    <span class="square"></span>
-                                </span>Xem tất cả
-                            </a>
-                        </div>
-
-                        <div class="list-restaurant">
-                            <div class="now-loading-restaurant">
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                                <div class="box-loading">
-                                    <div class="box-thumbnail"></div>
-                                    <div class="box-line-df"></div>
-                                    <div class="box-line-lgx"></div>
-                                    <div class="box-line-lg"></div>
-                                </div>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêu thích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="item-restaurant">
-                                <a target="_blank" class="item-content"
-                                    href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
-                                    <div class="img-restaurant">
-                                        <div class="tag-preferred">
-                                            <i class="icon-like" aria-hidden="true"></i>Yêuthích
-                                        </div>
-                                        <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!@crop_w280_h175_cT"
-                                            class="">
-                                    </div>
-                                    <div class="info-restaurant">
-                                        <div class="info-basic-res">
-                                            <h4 class="name-res"
-                                                title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
-                                                Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ
-                                            </h4>
-                                            <div class="address-res"
-                                                title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">5 Lưu
-                                                Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM</div>
-                                        </div>
-                                        <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
-                                        <div class="opentime-status">
-                                            <span class="stt online" title="Mở cửa"
-                                                style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---------------------- END BANNER - RIGHT ---------------------->
 
         <!---------------------- CONTAINER - BOTTOM ---------------------->
         <div class="container">
-            <div class="now-container-coporation">
-                <h4 class="title"><span>Đơn hàng của bạn sẽ được bảo quản như thế nào?</span></h4>
-                <span>
-                    <p class="font15"> ShopeeFood sẽ bảo quản đơn của bạn bằng túi &amp; thùng để chống nắng mưa, giữ
-                        nhiệt... trên đường đi một cách tốt nhất. </p>
-                </span>
-                <img src="../img/Box-food-preservation-footer.png" alt="food preservation">
-            </div>
+            <!---------------------- CONTAINER - HOME ---------------------->
 
-            <div class="now-container-coporation img-right">
-                <h4 class="title"><span>Ứng dụng Shopee Partner</span></h4>
-                <span>
-                    <p class="font14">- <b>Ứng dụng Shopee Partner</b> là ứng dụng quản lý đơn hàng cho các nhà hàng đối
-                        tác của dịch vụ đặt món tận nơi </p>
-                    <p class="font14"> - <b>ShopeeFood.vn</b> luôn sẵn sàng hợp tác với các nhà hàng, quán ăn, cafe...
-                        để mở rộng kinh doanh cũng như gia tăng khách hàng. Hãy kết nối vào hệ thống đặt và giao hàng để
-                        giảm bớt chi phí quản lý, vận hành, marketing, công nghệ... <br> Đăng ký tham gia: <b>
-                            <a href="#" target="_blank">tại đây</a>
-                        </b>
-                    </p>
-                </span>
-                <div class="bg-corporation"><img src="../img/banner-phone-reg-merchant.png" alt="NowMerchant App"
-                        title="NowMerchant App" width="294px"></div>
-            </div>
+            <!---------------------- MY PROFILE ---------------------->
+            <div class="my-profile-container">
+                <!-- Left Menu -->
+                <div class="profile-menu">
+                    <h4>My Profile</h4>
+                    <ul>
+                        <li class="active" onclick="loadSection('account')">My Account</li>
+                        <li onclick="loadSection('favorite')">My Favorite</li>
+                        <li onclick="loadSection('orders')">Order History</li>
+                    </ul>
+                </div>
 
-            <div class="now-container-coporation img-right">
-                <h4 class="title">
-                    <a href="#">
-                        <span>
-                            <span style="color: #EE4D2D;font-weight: bold;">ShopeeFood.vn</span>
-                            Hợp tác nhân viên giao nhận - ShopeeFood Driver
-                        </span>
-                    </a>
-                </h4>
-                <span>
-                    <p class="font15">Giúp bạn tăng thu nhập trong thời gian rảnh rỗi</p>
-                    <p>
-                        <span style="color: #EE4D2D;font-weight: bold;">ShopeeFood</span> tìm kiếm hợp tác với các cá
-                        nhân để thực hiện việc giao hàng, chúng tôi sẽ cung cấp ứng dụng (app), 1 số dụng cụ cần thiết
-                        để bạn có thể tiếp nhận &amp; giao hàng, kiếm thêm thu nhập <br>Đăng ký tham gia
-                        <a href="#" style="color: #4D77A2; font-weight:bold">tại đây</a>
-                        hoặc gửi Email qua
-                        <a href="#" style="color: #4D77A2; font-weight:bold">tuyendung@gofast.vn</a>
-                        - hoặc gọi qua số điện thoại (028) 7109 9179.
-                    </p>
-                </span>
-                <div class="bg-corporation">
-                    <img src="../img/bg-deliverynow-dat-mon-truc-tuyen-giao-hang-tan-noi.png" class="bg-deliverynow"
-                        alt="bg-deliverynow-dat-mon-truc-tuyen-giao-hang-tan-noi"
-                        title="bg-deliverynow-dat-mon-truc-tuyen-giao-hang-tan-noi" width="170px" data-change-lang=""
-                        style="width: 170px;">
+                <div class="profile-content">
+
+                    <!---------------- START GUI -------------- -->
+                    <!-- A. Main Container -->
+                    <div class="main-container">
+                        <!-- B. Header Section -->
+                        <div class="order-history-header-section">
+                            <h1 class="page-title">My Order History</h1>
+                            <p class="page-subtitle">Track and manage your past orders</p>
+                        </div>
+
+                        <!-- C. Filter Area -->
+                        <!-- C. Filter Area -->
+                        <div class="filter-area">
+                            <!-- C0. Filter Toggle Header -->
+                            <div class="filter-toggle-header" onclick="toggleFilterArea()">
+                                <div class="filter-header-content">
+                                    <h3 class="filter-title">
+                                        <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
+                                        </svg>
+                                        Filters & Search
+                                    </h3>
+                                    <span class="active-filters-count" id="activeFiltersCount" style="display: none;">3
+                                        active</span>
+                                </div>
+                                <div class="toggle-controls">
+                                    <button class="btn-quick-clear" onclick="event.stopPropagation(); clearFilters();"
+                                        style="display: none;" id="quickClearBtn">
+                                        Clear All
+                                    </button>
+                                    <div class="toggle-arrow" id="toggleArrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- C1-C6. Collapsible Filter Content -->
+                            <div class="filter-content" id="filterContent">
+                                <div class="filter-container">
+                                    <!-- C1. Time Filter -->
+                                    <div class="filter-group">
+                                        <label for="timeFilter">Time Period</label>
+                                        <select id="timeFilter" class="filter-select"
+                                            onchange="updateActiveFiltersCount()">
+                                            <option value="all">All Time</option>
+                                            <option value="week">Last 7 Days</option>
+                                            <option value="month">Last 30 Days</option>
+                                            <option value="3months">Last 3 Months</option>
+                                            <option value="year">Last Year</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- C2. Price Range Filter -->
+                                    <div class="filter-group">
+                                        <label for="priceFilter">Price Range</label>
+                                        <select id="priceFilter" class="filter-select"
+                                            onchange="updateActiveFiltersCount()">
+                                            <option value="all">All Prices</option>
+                                            <option value="0-25">$0 - $25</option>
+                                            <option value="25-50">$25 - $50</option>
+                                            <option value="50-100">$50 - $100</option>
+                                            <option value="100+">$100+</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- C3. Status Filter -->
+                                    <div class="filter-group">
+                                        <label for="statusFilter">Order Status</label>
+                                        <select id="statusFilter" class="filter-select"
+                                            onchange="updateActiveFiltersCount()">
+                                            <option value="all">All Status</option>
+                                            <option value="delivered">Delivered</option>
+                                            <option value="cancelled">Cancelled</option>
+                                            <option value="refunded">Refunded</option>
+                                            <option value="processing">Processing</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- C4. Sort Options -->
+                                    <div class="filter-group">
+                                        <label for="sortFilter">Sort By</label>
+                                        <select id="sortFilter" class="filter-select"
+                                            onchange="updateActiveFiltersCount()">
+                                            <option value="date-desc">Newest First</option>
+                                            <option value="date-asc">Oldest First</option>
+                                            <option value="price-desc">Highest Price</option>
+                                            <option value="price-asc">Lowest Price</option>
+                                            <option value="items-desc">Most Items</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- C5. Search Filter -->
+                                    <div class="filter-group search-group">
+                                        <label for="searchFilter">Search Orders</label>
+                                        <input type="text" id="searchFilter" class="filter-input"
+                                            placeholder="Search by restaurant or food name..."
+                                            oninput="updateActiveFiltersCount()">
+                                    </div>
+
+                                    <!-- C6. Apply Filters Button -->
+                                    <div class="filter-actions">
+                                        <button class="btn-apply-filters" onclick="applyFilters()">Apply
+                                            Filters</button>
+                                        <button class="btn-clear-filters" onclick="clearFilters()">Clear All</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- D. Order List Area -->
+                        <!-- D. Order List Area -->
+                        <div class="order-list-area">
+                            <div class="order-summary">
+                                <span id="orderCount">12 orders found</span>
+                                <div class="results-info">
+                                    <span id="pageInfo">Showing 1-5 of 12 orders</span>
+                                </div>
+                            </div>
+
+                            <!-- D1. Order Cards Container -->
+                            <div class="order-cards-container" id="orderCardsContainer">
+                                <!-- Order cards will be populated here by JavaScript -->
+                            </div>
+
+                            <!-- D2. Pagination Controls -->
+                            <div class="pagination-container" id="paginationContainer">
+                                <div class="pagination-info">
+                                    <span id="paginationInfo">Page 1 of 3</span>
+                                </div>
+
+                                <div class="pagination-controls">
+                                    <button class="pagination-btn btn-first" id="btnFirst" onclick="goToPage(1)"
+                                        disabled>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41z" />
+                                            <path d="M6 6h2v12H6z" />
+                                        </svg>
+                                        First
+                                    </button>
+
+                                    <button class="pagination-btn btn-prev" id="btnPrev" onclick="goToPreviousPage()"
+                                        disabled>
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                                        </svg>
+                                        Previous
+                                    </button>
+
+                                    <div class="page-numbers" id="pageNumbers">
+                                        <!-- Page numbers will be generated here -->
+                                    </div>
+
+                                    <button class="pagination-btn btn-next" id="btnNext" onclick="goToNextPage()">
+                                        Next
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M8.59 16.59L13.18 12l-4.59-4.59L10 6l6 6-6 6-1.41-1.41z" />
+                                        </svg>
+                                    </button>
+
+                                    <button class="pagination-btn btn-last" id="btnLast" onclick="goToPage('last')">
+                                        Last
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6-1.41 1.41z" />
+                                            <path d="M16 6h2v12h-2z" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="items-per-page">
+                                    <label for="itemsPerPage">Items per page:</label>
+                                    <select id="itemsPerPage" class="items-per-page-select"
+                                        onchange="changeItemsPerPage()">
+                                        <option value="5" selected>5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="all">All</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- E. Order Details Modal -->
+                        <div class="order-details-modal" id="orderDetailsModal" style="display: none;">
+                            <div class="modal-overlay" onclick="closeOrderDetails()"></div>
+                            <div class="order-detail-modal-content">
+                                <!-- E1. Modal Header -->
+                                <div class="modal-header">
+                                    <h2 id="modalOrderTitle">Order Details</h2>
+                                    <button class="modal-close-btn" onclick="closeOrderDetails()">&times;</button>
+                                </div>
+
+                                <!-- E2. Order Info Section -->
+                                <div class="order-info-section">
+                                    <div class="order-meta">
+                                        <span class="order-id" id="modalOrderId">Order #12345</span>
+                                        <span class="order-date" id="modalOrderDate">March 15, 2024</span>
+                                        <span class="order-status" id="modalOrderStatus">Delivered</span>
+                                    </div>
+                                </div>
+
+                                <!-- E3. Order Items List -->
+                                <div class="order-items-section">
+                                    <h3>Order Items</h3>
+                                    <div class="order-items-list" id="orderItemsList">
+                                        <!-- Order items will be populated here -->
+                                    </div>
+                                </div>
+
+                                <!-- E4. Order Summary -->
+                                <div class="order-summary-section">
+                                    <div class="summary-row">
+                                        <span>Subtotal:</span>
+                                        <span id="modalSubtotal">$0.00</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Delivery Fee:</span>
+                                        <span id="modalDeliveryFee">$0.00</span>
+                                    </div>
+                                    <div class="summary-row">
+                                        <span>Tax:</span>
+                                        <span id="modalTax">$0.00</span>
+                                    </div>
+                                    <div class="summary-row total-row">
+                                        <span>Total:</span>
+                                        <span id="modalTotal">$0.00</span>
+                                    </div>
+                                </div>
+
+                                <!-- E5. Modal Actions -->
+                                <div class="modal-actions">
+                                    <button class="btn-reorder" onclick="reorderItems()">Reorder</button>
+                                    <button class="btn-return-order" onclick="returnOrder()">Return Order</button>
+                                    <button class="btn-download-receipt" onclick="downloadReceipt()">Download
+                                        Receipt</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <hr />
@@ -1189,7 +354,8 @@
                     <p class="title-block">Công ty</p>
                     <ul class="menu-footer">
                         <li class="menu-item"><a href="#">Giới thiệu</a></li>
-                        <li class="menu-item"><a href="#" target="_blank" rel="noopener noreferrer">Trung tâm Trợ
+                        <li class="menu-item"><a href="#" target="_blank" rel="noopener noreferrer">Trung tâm
+                                Trợ
                                 giúp</a></li>
                         <li class="menu-item"><a href="#">Quy chế</a></li>
                         <li class="menu-item"><a href="#">Điều khoản sử dụng</a></li>
@@ -1199,7 +365,8 @@
                         <li class="menu-item"><a href="#">Hợp tác nhân viên giao nhận</a></li>
                         <li class="menu-item"><a href="#">Đăng ký quán</a></li>
                         <li class="menu-item"><a href="#">ShopeeFood Uni</a></li>
-                        <li class="menu-item"><a href="#" target="_blank" rel="noopener noreferrer">Shopee Blog</a></li>
+                        <li class="menu-item"><a href="#" target="_blank" rel="noopener noreferrer">Shopee
+                                Blog</a></li>
                     </ul>
                 </div>
 
@@ -1250,7 +417,8 @@
                         <p>Giấy CN ĐKDN số: 0311828036</p>
                         <p>do Sở Kế hoạch và Đầu tư TP.HCM cấp ngày 11/6/2012,</p>
                         <p>sửa đổi lần thứ 23, ngày 10/12/2020</p>
-                        <p>Chịu trách nhiệm quản lý nội dung và vấn đề bảo vệ quyền lợi người tiêu dùng: Nguyễn Hồ Quảng
+                        <p>Chịu trách nhiệm quản lý nội dung và vấn đề bảo vệ quyền lợi người tiêu dùng: Nguyễn
+                            Hồ Quảng
                             Giang</p>
                         <p>Điện thoại liên hệ: 028 71096879</p>
                         <p>Email: <a href="mailto:support@shopeefood.vn">support@shopeefood.vn</a></p>
@@ -1367,10 +535,10 @@
         </div>
     </div>
 
-
-
     <script src="../js/header-menu.js"></script>
     <script src="../js/banner.js"></script>
+    <script src="../js/my-account.js"></script>
+    <script src="../js/order-history.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
