@@ -31,14 +31,14 @@
     padding: 12px 15px;
     margin-bottom: 10px;
     background-color: #fff;
-    border-radius: 6px;
+    /* border-radius: 6px; */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.profile-menu li:hover {
+/* .profile-menu li:hover {
     background-color: #e6f0ff;
-}
+} */
 
 .profile-menu li.active {
     background-color: #007bff;
@@ -387,3 +387,116 @@
 }
 
 /*-------------------- END MY ACCOUNT --------------------*/
+
+
+/*-------------------- BUTTON MY ACCOUNT --------------------*/
+.btn-my-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    color: black;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* Orange fade effect for Quick Reorder */
+.btn-my-profile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 140, 0, 0.2) 20%,
+        rgba(255, 165, 0, 0.6) 50%,
+        rgba(255, 140, 0, 0.2) 80%,
+        transparent 100%
+    );
+    transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+}
+
+/* Orange Fade Overlay - Initially Hidden */
+.btn-my-profile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 140, 0, 0) 0%,
+        rgba(255, 140, 0, 0.1) 10%,
+        rgba(255, 140, 0, 0.3) 30%,
+        rgba(255, 165, 0, 0.6) 50%,
+        rgba(255, 140, 0, 0.3) 70%,
+        rgba(255, 140, 0, 0.1) 90%,
+        rgba(255, 140, 0, 0) 100%
+    );
+    transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -2;
+}
+
+/* Solid Orange Background for Complete Coverage */
+.btn-my-profile::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 140, 0, 0) 0%,
+        rgba(255, 140, 0, 0.8) 40%,
+        rgba(255, 140, 0, 0.95) 50%,
+        rgba(255, 140, 0, 0.8) 60%,
+        rgba(255, 140, 0, 0) 100%
+    );
+    transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: -1;
+}
+
+/* Hover State - Orange Fade from Left to Right */
+.btn-my-profile:hover::before,
+.btn-my-profile:hover::after {
+    left: 100%;
+}
+
+.btn-my-profile:hover {
+    background: linear-gradient(135deg, #f1fff4, #ffc672);
+    color: black;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+/* Active State - Immediate Orange Fill */
+.btn-my-profile.active {
+    background: linear-gradient(135deg, #f1fff4, #ffc672);
+    color: black;
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 3px 10px rgba(230, 126, 0, 0.5);
+}
+
+/* .btn-my-profile:active::before,
+.btn-my-profile:active::after,
+.btn-my-profile.active::before,
+.btn-my-profile.active::after {
+    left: 0;
+    background: rgba(230, 126, 0, 0.9);
+    transition: all 0.1s ease;
+} */
+ /*-------------------- BUTTON MY ACCOUNT --------------------*/

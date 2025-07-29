@@ -31,5 +31,10 @@ namespace ShopeeFood_WebApp.Helpers
         {
             return currentId == expectedId ? "active" : "";
         }
+
+        public static string IsActive(string currentId, string expectedId)
+        {
+            return currentId == expectedId ? "active-profile" : "";
+        }
     }
 }

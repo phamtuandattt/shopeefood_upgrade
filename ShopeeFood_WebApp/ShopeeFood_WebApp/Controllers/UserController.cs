@@ -31,18 +31,24 @@ namespace ShopeeFood_WebApp.Controllers
         [Route("/my-account")]
         public ActionResult MyAccountModule()
         {
+            ViewBag.PageTitle = "My Account";
+            ViewBag.ActiveProfile = "my-account";
             return View();
         }
 
         [Route("/my-favorite")]
         public ActionResult MyFavoriteModule()
         {
+            ViewBag.PageTitle = "My Favorite";
+            ViewBag.ActiveProfile = "my-favorite";
             return View();
         }
 
         [Route("/order-history")]
         public ActionResult OrderHistoryModule()
         {
+            ViewBag.PageTitle = "Order History";
+            ViewBag.ActiveProfile = "order-history";
             return View();
         }
 

@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = "_Layout";
+    var activeId = ViewBag.ActiveProfile ?? "my-account";
 }
 <html>
 <head>
@@ -21,9 +22,9 @@
         <div class="profile-menu">
             <h4>My Profile</h4>
             <ul>
-                <li class="active-profile" onclick="loadSection('account')">My Account</li>
-                <li onclick="loadSection('favorite')">My Favorite</li>
-                <li onclick="loadSection('orders')">Order History</li>
+                <li class="btn-my-profile @MenuHelper.IsActive(activeId, "my-account")" onclick="window.location.href ='/my-account'">My Account</li>
+                <li class="btn-my-profile @MenuHelper.IsActive(activeId, " my-favorite")" onclick="window.location.href ='/my-favorite'">My Favorite</li>
+                <li class="btn-my-profile @MenuHelper.IsActive(activeId, "order-history")" onclick="window.location.href ='/order-history'">Order History</li>
             </ul>
         </div>
 
