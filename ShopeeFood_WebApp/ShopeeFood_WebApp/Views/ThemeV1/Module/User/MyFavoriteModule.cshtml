@@ -1,0 +1,187 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutMyProfile";
+    var context = HttpContextAccessor.HttpContext;
+    if (context is null)
+    {
+        context = this.Context;
+    }
+
+}
+
+
+<div class="container-profile">
+    <div class="content">
+        <!-- Header Section -->
+        <div class="section-header">
+            <h2>Address Management</h2>
+            <button class="my-profile-btn btn-orange" onclick="showAddAddressForm()">
+                + Add New
+                Address
+            </button>
+        </div>
+
+        <!-- Address Management Section -->
+        <div class="list-res-banner-right">
+            <div class="list-restaurant">
+                <div class="item-restaurant">
+                    <a target="_blank" class="item-content"
+                       href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
+                        <div class="img-restaurant">
+                            <div class="tag-preferred">
+                                <i class="icon-like" aria-hidden="true"></i>Yêu thích
+                            </div>
+                            <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!"
+                                 class="">
+                        </div>
+                        <div class="info-restaurant">
+                            <div class="info-basic-res">
+                                <h4 class="name-res"
+                                    title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
+                                    Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu
+                                    Đình Lễ
+                                </h4>
+                                <div class="address-res" title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">
+                                    5
+                                    Lưu
+                                    Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM
+                                </div>
+                            </div>
+                            <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
+                            <div class="opentime-status">
+                                <span class="stt online" title="Mở cửa"
+                                      style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-restaurant">
+                    <a target="_blank" class="item-content"
+                       href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
+                        <div class="img-restaurant">
+                            <div class="tag-preferred">
+                                <i class="icon-like" aria-hidden="true"></i>Yêu thích
+                            </div>
+                            <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!"
+                                 class="">
+                        </div>
+                        <div class="info-restaurant">
+                            <div class="info-basic-res">
+                                <h4 class="name-res"
+                                    title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
+                                    Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu
+                                    Đình Lễ
+                                </h4>
+                                <div class="address-res" title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">
+                                    5
+                                    Lưu
+                                    Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM
+                                </div>
+                            </div>
+                            <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
+                            <div class="opentime-status">
+                                <span class="stt online" title="Mở cửa"
+                                      style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-restaurant">
+                    <a target="_blank" class="item-content"
+                       href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
+                        <div class="img-restaurant">
+                            <div class="tag-preferred">
+                                <i class="icon-like" aria-hidden="true"></i>Yêu thích
+                            </div>
+                            <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!"
+                                 class="">
+                        </div>
+                        <div class="info-restaurant">
+                            <div class="info-basic-res">
+                                <h4 class="name-res"
+                                    title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
+                                    Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu
+                                    Đình Lễ
+                                </h4>
+                                <div class="address-res" title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">
+                                    5
+                                    Lưu
+                                    Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM
+                                </div>
+                            </div>
+                            <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
+                            <div class="opentime-status">
+                                <span class="stt online" title="Mở cửa"
+                                      style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-restaurant">
+                    <a target="_blank" class="item-content"
+                       href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
+                        <div class="img-restaurant">
+                            <div class="tag-preferred">
+                                <i class="icon-like" aria-hidden="true"></i>Yêu thích
+                            </div>
+                            <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!"
+                                 class="">
+                        </div>
+                        <div class="info-restaurant">
+                            <div class="info-basic-res">
+                                <h4 class="name-res"
+                                    title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
+                                    Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu
+                                    Đình Lễ
+                                </h4>
+                                <div class="address-res" title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">
+                                    5
+                                    Lưu
+                                    Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM
+                                </div>
+                            </div>
+                            <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
+                            <div class="opentime-status">
+                                <span class="stt online" title="Mở cửa"
+                                      style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-restaurant">
+                    <a target="_blank" class="item-content"
+                       href="/ho-chi-minh/banh-mi-thit-nuong-don-don-banh-mi-cha-ca-sua-bap-5-luu-dinh-le">
+                        <div class="img-restaurant">
+                            <div class="tag-preferred">
+                                <i class="icon-like" aria-hidden="true"></i>Yêu thích
+                            </div>
+                            <img src="https://down-bs-vn.img.susercontent.com/vn-11134513-7ras8-m20poujd9jffba@resize_ss280x175!"
+                                 class="">
+                        </div>
+                        <div class="info-restaurant">
+                            <div class="info-basic-res">
+                                <h4 class="name-res"
+                                    title="Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu Đình Lễ">
+                                    Bánh Mì Thịt Nướng Dòn Dòn, Bánh Mì Chả Cá &amp; Sữa Bắp - 5 Lưu
+                                    Đình Lễ
+                                </h4>
+                                <div class="address-res" title="5 Lưu Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM">
+                                    5
+                                    Lưu
+                                    Đình Lễ, P. An Khánh, Thành Phố Thủ Đức, TP. HCM
+                                </div>
+                            </div>
+                            <p class="content-promotion"><i class="icon-tag"></i> Giảm món</p>
+                            <div class="opentime-status">
+                                <span class="stt online" title="Mở cửa"
+                                      style="color: rgb(35, 152, 57); background-color: rgb(35, 152, 57);"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

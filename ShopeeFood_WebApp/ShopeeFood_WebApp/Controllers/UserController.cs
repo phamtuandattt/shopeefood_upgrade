@@ -28,6 +28,24 @@ namespace ShopeeFood_WebApp.Controllers
             return View(profileViewModel);
         }
 
+        [Route("/my-account")]
+        public ActionResult MyAccountModule()
+        {
+            return View();
+        }
+
+        [Route("/my-favorite")]
+        public ActionResult MyFavoriteModule()
+        {
+            return View();
+        }
+
+        [Route("/order-history")]
+        public ActionResult OrderHistoryModule()
+        {
+            return View();
+        }
+
         [Route("/login")]
         public ActionResult LoginModule()
         {

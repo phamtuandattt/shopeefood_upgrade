@@ -1,0 +1,1445 @@
+/* A. Main Container */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* B. Header Section */
+.order-history-header-section {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    font-weight: 400;
+}
+
+/* C. Filter Area */
+.filter-area {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid #dee2e6;
+}
+
+.filter-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.filter-select,
+.filter-input {
+    padding: 12px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.search-group {
+    grid-column: span 2;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.btn-apply-filters,
+.btn-clear-filters {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.btn-apply-filters {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-apply-filters:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-clear-filters {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-clear-filters:hover {
+    background-color: #545b62;
+}
+
+/* C. Filter Area - Updated for Collapsible */
+.filter-area {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid #dee2e6;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* C0. Filter Toggle Header */
+.filter-toggle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.filter-toggle-header:hover {
+    background-color: #f8f9fa;
+}
+
+.filter-header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.filter-icon {
+    color: #007bff;
+}
+
+.active-filters-count {
+    background-color: #007bff;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.toggle-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-quick-clear {
+    padding: 6px 12px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.btn-quick-clear.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.btn-quick-clear:hover {
+    background-color: #545b62;
+    transform: scale(1.05);
+}
+
+.toggle-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    transition: all 0.3s ease;
+    color: #495057;
+}
+
+.toggle-arrow:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.toggle-arrow.rotated {
+    transform: rotate(180deg);
+}
+
+.toggle-arrow svg {
+    transition: transform 0.3s ease;
+}
+
+/* C1-C6. Filter Content - Collapsible */
+.filter-content {
+    max-height: 500px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #f8f9fa;
+}
+
+.filter-content.collapsed {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.filter-container {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+/* Enhanced Filter States */
+.filter-select.has-value,
+.filter-input.has-value {
+    border-color: #007bff;
+    background-color: #e7f3ff;
+}
+
+.filter-group.active label {
+    color: #007bff;
+    font-weight: 700;
+}
+
+/* Filter Summary Bar (when collapsed) */
+.filter-summary {
+    padding: 15px 25px;
+    background-color: #e7f3ff;
+    border-bottom: 1px solid #b3d9ff;
+    font-size: 0.9rem;
+    color: #004085;
+    display: none;
+}
+
+.filter-summary.show {
+    display: block;
+}
+
+.filter-summary-item {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.filter-summary-item .remove-filter {
+    margin-left: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.filter-summary-item .remove-filter:hover {
+    color: #ffcccc;
+}
+
+/* Responsive Updates for Collapsible */
+@media (max-width: 768px) {
+    .filter-toggle-header {
+        padding: 15px 20px;
+    }
+    
+    .filter-title {
+        font-size: 1.1rem;
+    }
+    
+    .toggle-controls {
+        gap: 10px;
+    }
+    
+    .filter-container {
+        padding: 20px;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .search-group {
+        grid-column: span 1;
+    }
+    
+    .filter-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-header-content {
+        gap: 10px;
+    }
+    
+    .active-filters-count {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+    
+    .btn-quick-clear {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+    
+    .toggle-arrow {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Animation for filter content */
+.filter-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.filter-content.collapsed {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Enhanced hover effects */
+.filter-area:hover {
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
+}
+
+.filter-area.expanded {
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+}
+
+
+/* D. Order List Area */
+.order-list-area {
+    margin-bottom: 30px;
+}
+
+.order-summary {
+    margin-bottom: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.order-summary span {
+    font-weight: 600;
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+/* D1. Order Cards */
+.order-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-card {
+    background-color: white;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.order-card:hover {
+    border-color: #007bff;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.restaurant-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.order-date {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.order-status-price {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-delivered {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status-refunded {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-processing {
+    background-color: #cce7ff;
+    color: #004085;
+}
+
+.order-total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #28a745;
+}
+
+.order-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-preview-items {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.preview-item-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #e9ecef;
+}
+
+.more-items {
+    background-color: #e9ecef;
+    color: #6c757d;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.order-summary-info {
+    text-align: right;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.item-count {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.order-id {
+    font-weight: 600;
+}
+
+.no-orders {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+    font-size: 1.1rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #dee2e6;
+}
+.order-list-area {
+    margin-bottom: 30px;
+}
+
+.order-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #dee2e6;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-summary span {
+    font-weight: 600;
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+.results-info {
+    color: #6c757d;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* D2. Pagination Styles */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.pagination-info {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 2px solid #dee2e6;
+    background-color: white;
+    color: #495057;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-height: 40px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: #007bff;
+    color: #007bff;
+    background-color: #f8f9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+.pagination-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+.pagination-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination-btn.active:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Page Numbers */
+.page-numbers {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.page-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #dee2e6;
+    background-color: white;
+    color: #495057;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-number:hover:not(.active) {
+    border-color: #007bff;
+    color: #007bff;
+    background-color: #f8f9ff;
+}
+
+.page-number.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #6c757d;
+    font-weight: bold;
+}
+
+/* Items Per Page */
+.items-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #495057;
+}
+
+.items-per-page label {
+    font-weight: 500;
+}
+
+.items-per-page-select {
+    padding: 6px 12px;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    background-color: white;
+    color: #495057;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.items-per-page-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Loading State for Pagination */
+.pagination-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #6c757d;
+}
+
+.pagination-loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dee2e6;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+/* Empty State */
+.no-orders {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6c757d;
+    font-size: 1.1rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 2px dashed #dee2e6;
+    margin-bottom: 20px;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+    .pagination-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .pagination-controls {
+        order: 2;
+        justify-content: center;
+    }
+    
+    .pagination-info {
+        order: 1;
+        text-align: center;
+    }
+    
+    .items-per-page {
+        order: 3;
+        justify-content: center;
+    }
+    
+    .pagination-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .btn-first,
+    .btn-last {
+        display: none; /* Hide first/last buttons on mobile */
+    }
+    
+    .page-numbers {
+        gap: 2px;
+    }
+    
+    .page-number {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+    
+    .order-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination-controls {
+        gap: 4px;
+    }
+    
+    .pagination-btn {
+        padding: 6px 8px;
+        font-size: 0.7rem;
+        min-height: 36px;
+    }
+    
+    .pagination-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .page-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.7rem;
+    }
+    
+    /* Show fewer page numbers on very small screens */
+    .page-numbers .page-number:nth-child(n+6) {
+        display: none;
+    }
+}
+
+/* Animation for page transitions */
+.order-cards-container {
+    transition: opacity 0.3s ease;
+}
+
+.order-cards-container.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Pagination accessibility improvements */
+.pagination-btn:focus,
+.page-number:focus,
+.items-per-page-select:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .pagination-btn,
+    .page-number {
+        border-width: 3px;
+    }
+    
+    .pagination-btn.active,
+    .page-number.active {
+        border-width: 3px;
+    }
+}
+
+/* E. Order Details Modal */
+.order-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.order-detail-modal-content {
+    background-color: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* E1. Modal Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    border-bottom: 2px solid #e9ecef;
+    background-color: #f8f9fa;
+    border-radius: 16px 16px 0 0;
+}
+
+.modal-header h2 {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+/* E2. Order Info Section */
+.order-info-section {
+    padding: 20px 25px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.order-meta {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.order-id {
+    font-weight: 700;
+    color: #007bff;
+    font-size: 1.1rem;
+}
+
+/* E3. Order Items Section */
+.order-items-section {
+    padding: 25px;
+}
+
+.order-items-section h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.order-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-item-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    gap: 15px;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.item-image-container {
+    width: 80px;
+    height: 80px;
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.item-price {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.item-quantity {
+    text-align: center;
+}
+
+.quantity-label {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.item-total {
+    text-align: right;
+}
+
+.total-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #28a745;
+}
+
+
+/* E4. Order Summary Section (continued) */
+.order-summary-section {
+    padding: 25px;
+    border-top: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 1rem;
+}
+
+.summary-row:not(:last-child) {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.total-row {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    border-top: 2px solid #007bff;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.total-row span:last-child {
+    color: #28a745;
+}
+
+/* E5. Modal Actions */
+.modal-actions {
+    padding: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    border-top: 2px solid #e9ecef;
+    background-color: white;
+    border-radius: 0 0 16px 16px;
+}
+
+.btn-reorder,
+.btn-return-order,
+.btn-download-receipt {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    flex: 1;
+    max-width: 150px;
+}
+
+.btn-reorder {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-reorder:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-return-order {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-return-order:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-download-receipt {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-download-receipt:hover {
+    background-color: #545b62;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 15px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .filter-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .search-group {
+        grid-column: span 1;
+    }
+    
+    .filter-actions {
+        flex-direction: column;
+    }
+    
+    .order-card {
+        padding: 15px;
+    }
+    
+    .order-card-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .order-status-price {
+        align-self: flex-end;
+        text-align: right;
+    }
+    
+    .order-card-body {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .order-summary-info {
+        text-align: left;
+        align-self: flex-start;
+    }
+    
+    .order-detail-modal-content {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-header {
+        padding: 20px 15px;
+    }
+    
+    .order-info-section,
+    .order-items-section,
+    .order-summary-section,
+    .modal-actions {
+        padding: 20px 15px;
+    }
+    
+    .order-item-row {
+        grid-template-columns: 60px 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+    }
+    
+    .item-image-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .item-quantity {
+        grid-column: 1;
+        grid-row: 2;
+        text-align: left;
+    }
+    
+    .item-total {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: right;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .btn-reorder,
+    .btn-return-order,
+    .btn-download-receipt {
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.8rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    
+    .filter-area {
+        padding: 20px 15px;
+    }
+    
+    .order-preview-items {
+        flex-wrap: wrap;
+    }
+    
+    .preview-item-image {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .restaurant-name {
+        font-size: 1.1rem;
+    }
+    
+    .order-total {
+        font-size: 1.1rem;
+    }
+    
+    .order-meta {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
+
+/* Animation Effects */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.order-card {
+    animation: slideDown 0.3s ease-out;
+}
+
+.order-details-modal {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.order-detail-modal-content {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Loading States */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: #6c757d;
+}
+
+.loading::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dee2e6;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hover Effects for Interactive Elements */
+.order-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.05), transparent);
+    transition: left 0.5s;
+    pointer-events: none;
+}
+
+.order-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.order-card:hover::before {
+    left: 100%;
+}
+
+/* Focus States for Accessibility */
+.filter-select:focus,
+.filter-input:focus,
+.btn-apply-filters:focus,
+.btn-clear-filters:focus,
+.btn-reorder:focus,
+.btn-return-order:focus,
+.btn-download-receipt:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .filter-area,
+    .modal-actions,
+    .btn-apply-filters,
+    .btn-clear-filters {
+        display: none;
+    }
+    
+    .order-card {
+        border: 1px solid #000;
+        break-inside: avoid;
+        margin-bottom: 20px;
+    }
+    
+    .order-details-modal {
+        position: static;
+        background: none;
+    }
+    
+    .order-detail-modal-content {
+        box-shadow: none;
+        max-width: none;
+        width: 100%;
+    }
+}
+
+/* Dark Mode Support (Optional)
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e9ecef;
+    }
+    
+    .main-container {
+        background-color: #2c3e50;
+    }
+    
+    .filter-area {
+        background-color: #34495e;
+        border-color: #495057;
+    }
+    
+    .filter-select,
+    .filter-input {
+        background-color: #495057;
+        border-color: #6c757d;
+        color: #e9ecef;
+    }
+    
+    .order-card {
+        background-color: #34495e;
+        border-color: #495057;
+    }
+    
+    .order-detail-modal-content {
+        background-color: #2c3e50;
+    }
+    
+    .modal-header {
+        background-color: #34495e;
+    }
+    
+    .order-summary-section {
+        background-color: #34495e;
+    }
+} */
+
+/* Scrollbar Styling */
+.order-detail-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.order-detail-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.order-detail-modal-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.order-detail-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .order-card {
+        border-width: 3px;
+    }
+    
+    .order-status {
+        border: 2px solid currentColor;
+    }
+    
+    .btn-apply-filters,
+    .btn-clear-filters,
+    .btn-reorder,
+    .btn-return-order,
+    .btn-download-receipt {
+        border: 2px solid currentColor;
+    }
+}

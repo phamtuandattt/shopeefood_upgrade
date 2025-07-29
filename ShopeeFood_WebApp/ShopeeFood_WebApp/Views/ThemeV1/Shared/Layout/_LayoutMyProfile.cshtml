@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = "_Layout";
+}
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    @{
+        var cssList = new List<string> {
+            "my-profile.css",
+            "order-history.css"
+        };
+        await Html.RenderPartialAsync("_Css_Js_Render", cssList);
+    }
+
+</head>
+<body>
+    <div class="my-profile-container">
+        <!-- Left Menu -->
+        <div class="profile-menu">
+            <h4>My Profile</h4>
+            <ul>
+                <li class="active-profile" onclick="loadSection('account')">My Account</li>
+                <li onclick="loadSection('favorite')">My Favorite</li>
+                <li onclick="loadSection('orders')">Order History</li>
+            </ul>
+        </div>
+
+        <div class="profile-content">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <hr />
+
+
+    <!-- Render JS -->
+    @{
+        var jsListEnd = new List<string> {
+            "my-account.js",
+            "order-history.js"
+        };
+        await Html.RenderPartialAsync("_Css_Js_Render", jsListEnd);
+    }
+    <!-- END RENDER -->
+
+</body>
+</html>
