@@ -25,5 +25,9 @@ public partial class CustomerAddress
 
     public DateTime? CreatedAt { get; set; }
 
+    public string? AddressName { get; set; }
+
+    public string? AddressPhoneNumber { get; set; }
+
     public virtual Customer? Customer { get; set; }
 }

@@ -135,6 +135,8 @@ public partial class ShopeefoodDbContext : DbContext
             entity.HasKey(e => e.AddressId).HasName("PK__Customer__091C2A1B9A53E935");
 
             entity.Property(e => e.AddressId).HasColumnName("AddressID");
+            entity.Property(e => e.AddressName).HasMaxLength(50);
+            entity.Property(e => e.AddressPhoneNumber).HasMaxLength(20);
             entity.Property(e => e.AddressType).HasMaxLength(50);
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("(getdate())")

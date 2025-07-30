@@ -23,6 +23,7 @@ namespace ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos
         public string? PhoneNumber { get; set; }
 
         public string? Email { get; set; }
+
         public string? PasswordHash { get; set; }
 
         public string? Avata { get; set; }
@@ -33,9 +34,9 @@ namespace ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos
 
         public DateTime? RefreshTokenExpiryTime { get; set; }
 
-        public List<CustomerAddress>? Addresses { get; set; }
+        public List<CustomerAddressDto>? CustomerAddresses { get; set; }
 
-        public List<CustomerExternalLogin>? ExternalLogins { get; set; }
+        public List<CustomerExternalLoginDto>? CustomerExternalLogins { get; set; }
     }
 
     public class CustomerAddressDto
@@ -59,9 +60,13 @@ namespace ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos
         public string? Note { get; set; }
 
         public DateTime? CreatedAt { get; set; }
+
+        public string? AddressName { get; set; }
+
+        public string? AddressPhoneNumber { get; set; }
     }
 
-    public class CustomerExternalLogin
+    public class CustomerExternalLoginDto
     {
         public int ExternalLoginId { get; set; }
 

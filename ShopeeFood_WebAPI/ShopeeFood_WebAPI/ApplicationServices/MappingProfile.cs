@@ -31,6 +31,8 @@ namespace ShopeeFood_WebAPI.ApplicationServices
             CreateMap<MenuDetailShop, CategoryItem>();
 
             CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<CustomerAddress, CustomerAddressDto>().ReverseMap();
+            CreateMap<CustomerExternalLogin, CustomerExternalLoginDto>().ReverseMap();
         }
     }
 }

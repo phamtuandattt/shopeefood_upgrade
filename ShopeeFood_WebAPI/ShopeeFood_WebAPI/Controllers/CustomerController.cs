@@ -6,6 +6,7 @@ using ShopeeFood_WebAPI.ResponseDtos.CustomerResponseDto;
 using System.Security.Claims;
 using ShopeeFood_WebAPI.BLL.Servives;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace ShopeeFood_WebAPI.Controllers
@@ -67,8 +68,10 @@ namespace ShopeeFood_WebAPI.Controllers
         public async Task<IActionResult> Login([FromBody] CustomerLoginRequestDto login)
         {
             var user = await _customerServices.GetCustomerByEmail(login.Email);
-            //var result = hasher.VerifyHashedPassword(user, user.PasswordHash, login.Password); //if keep PasswordHasher<T>
-            if (user == null || !BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash))
+            var hasher = new PasswordHasher<CustomerDto>();
+            var result = hasher.VerifyHashedPassword(user, user.PasswordHash, login.Password); //if keep PasswordHasher<T>
+            //if (user == null || !BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash))
+            if (user == null || result == PasswordVerificationResult.Failed)
             {
                 return Unauthorized(new ApiResponse
                 {
@@ -149,10 +152,10 @@ namespace ShopeeFood_WebAPI.Controllers
                 RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7),
             };
 
-            //var hasher = new PasswordHasher<CustomerDto>();
-            //customer.PasswordHash = hasher.HashPassword(customer, request.Password);
+            var hasher = new PasswordHasher<CustomerDto>();
+            customer.PasswordHash = hasher.HashPassword(customer, request.Password);
 
-            customer.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            //customer.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
             await _customerServices.AddAsync(customer);
 
