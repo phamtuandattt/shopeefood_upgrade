@@ -25,9 +25,9 @@ namespace ShopeeFood.BLL.DTOS.CustomerDTOs
 
         public DateTime? RefreshTokenExpiryTime { get; set; }
 
-        public List<CustomerAddressDto>? Addresses { get; set; }
+        public List<CustomerAddressDto>? CustomerAddresses { get; set; }
 
-        public List<CustomerExternalLoginDto>? ExternalLogins { get; set; }
+        public List<CustomerExternalLoginDto>? CustomerExternalLogins { get; set; }
     }
 
     public class CustomerAddressDto
@@ -51,6 +51,10 @@ namespace ShopeeFood.BLL.DTOS.CustomerDTOs
         public string? Note { get; set; }
 
         public DateTime? CreatedAt { get; set; }
+
+        public string? AddressName { get; set; }
+
+        public string? AddressPhoneNumber { get; set; }
     }
 
     public class CustomerExternalLoginDto

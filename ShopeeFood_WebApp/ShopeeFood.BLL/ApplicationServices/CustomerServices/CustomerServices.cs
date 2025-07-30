@@ -28,7 +28,7 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
             var apiUrl = _configuration["GetCustomerProfile"];
             try
             {
-                RestServices.SetBearerAuthorization("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkYXR0ZXN0X2FwaUB5b3BtYWlsLmNvbSIsImp0aSI6IjVkN2ViYzFmLTA0ZmEtNDNmNi04NTliLWM5N2Q1YmQ3NmRmZiIsImV4cCI6MTc1MzUyMjQ3NywiaXNzIjoic2hvcGVlLWNsb25lLndlYmFwaSIsImF1ZCI6InNob3BlZS1jbG9uZS53ZWJhcHAifQ.WL5AiOS7a06Hwi0qRPtsdzNScJ7lugKx4WOpxiDo4ZU");
+                RestServices.SetBearerAuthorization("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkYXR0ZXN0X2FwaUB5b3BtYWlsLmNvbSIsImp0aSI6IjY1ODUxOGEzLTdjMTYtNGQyMC04M2ViLWQ2NGI3NmFhNzkyNSIsImV4cCI6MTc1Mzg0NjQ5NSwiaXNzIjoic2hvcGVlLWNsb25lLndlYmFwaSIsImF1ZCI6InNob3BlZS1jbG9uZS53ZWJhcHAifQ.jv41rbXf845ao04fb6fZaKzZnxCTGxuBP_dDYxUmT28");
                 var result = await RestServices.GetAsync<CustomerResponseDto, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
                 if (result.IsSuccess)
                 {

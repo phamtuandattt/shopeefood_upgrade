@@ -24,16 +24,39 @@ namespace ShopeeFood_WebApp.Controllers
             {
                 HttpContext.Response.Redirect("/login");
             }
-            var profileViewModel = Mapper.Map<CustomerProfileViewModel>(profile);
+            var profileViewModel = Mapper.Map<CustomerProfileModel>(profile.Data);
             return View(profileViewModel);
         }
 
         [Route("/my-account")]
-        public ActionResult MyAccountModule()
+        public async Task<IActionResult> MyAccountModule()
         {
+            var profile = await customerServices.GetCustomerProfile(HttpContext, "");
+            if (profile == null)
+            {
+                HttpContext.Response.Redirect("/login");
+            }
+            var profileModel = Mapper.Map<CustomerProfileModel>(profile?.Data);
+
+            var customerInfo = new CustomerInfoViewModel
+            {
+                CustomerId = profileModel.CustomerId,
+                CustomerName = profileModel.FullName,
+                Email = profileModel.Email,
+                Avata = profileModel.Avata
+            };
+
+            var viewModel = new CustomerProfileViewModel()
+            {
+                CustomerInfo = customerInfo,
+                CustomerAddresses = Mapper.Map<List<CustomerAddressViewModel>>(profileModel?.CustomerAddresses),
+                CustomerExternalLogins = Mapper.Map<List<CustomerExternalLoginViewModel>>(profileModel?.CustomerExternalLogins)
+            };
+
             ViewBag.PageTitle = "My Account";
             ViewBag.ActiveProfile = "my-account";
-            return View();
+            
+            return View(viewModel);
         }
 
         [Route("/my-favorite")]

@@ -1,4 +1,7 @@
-﻿
+﻿@using Newtonsoft.Json
+@using ShopeeFood_WebApp.Models.Customers
+
+@model CustomerProfileViewModel
 @{
     Layout = "_LayoutMyProfile";
     var context = HttpContextAccessor.HttpContext;
@@ -7,6 +10,9 @@
         context = this.Context;
     }
 
+    var userInfo = Model.CustomerInfo;
+    var addressList = JsonConvert.SerializeObject(Model.CustomerAddresses);
+    var externalLogins = JsonConvert.SerializeObject(Model.CustomerExternalLogins);
 }
 
 <div class="container-profile">
@@ -14,12 +20,12 @@
     <div class="my-account-header">
         <div class="avatar-section">
             <div class="avatar">
-                <img src="https://media.istockphoto.com/id/1307568521/photo/its-the-denim-that-does-it-for-me.jpg?s=612x612&w=0&k=20&c=0RQfpn8VJxXl6sO4aUehTsPvyYKGPwVwz1EdJRBU_Nw="
+                <img src="@userInfo.Avata"
                      alt="User Avatar" id="avatarImg">
             </div>
         </div>
         <div class="user-info">
-            <h1 class="user-name" id="userName">John Doe</h1>
+            <h1 class="user-name" id="userName">@userInfo.CustomerName</h1>
         </div>
     </div>
 
@@ -27,10 +33,7 @@
     <div class="content">
         <div class="section-header">
             <h2>Address Management</h2>
-            <button class="my-profile-btn btn-orange" onclick="showAddAddressForm()">
-                + Add New
-                Address
-            </button>
+            <button class="my-profile-btn btn-orange" onclick="showAddAddressForm()">+ Add New Address</button>
         </div>
 
         <!-- Add/Edit Address Form -->
@@ -102,3 +105,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    let addresses = @Html.Raw(addressList);
+</script>

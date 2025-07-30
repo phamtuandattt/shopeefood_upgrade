@@ -23,7 +23,13 @@ namespace ShopeeFood_WebApp.Areas
 
             CreateMap<ShopCityBussinessJsonResponse, ShopCityBusinessResponseDto>().ReverseMap();
 
-            CreateMap<CustomerResponseDto, CustomerProfileViewModel>().ReverseMap();
+            CreateMap<CustomerAddressViewModel, CustomerAddressModel>().ReverseMap();
+            CreateMap<CustomerExternalLoginViewModel, CustomerExternalLoginModel>().ReverseMap();
+
+            CreateMap<CustomerProfileModel, CustomerResponseDto>().ReverseMap();
+            CreateMap<CustomerAddressModel, CustomerAddressDto>().ReverseMap();
+            CreateMap<CustomerExternalLoginModel, CustomerExternalLoginDto>().ReverseMap();
+
         }
     }
 }

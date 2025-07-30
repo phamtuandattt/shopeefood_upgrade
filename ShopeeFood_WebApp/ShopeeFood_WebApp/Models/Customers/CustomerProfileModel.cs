@@ -1,15 +1,30 @@
 ﻿namespace ShopeeFood_WebApp.Models.Customers
 {
-    public class CustomerProfileViewModel
+    public class CustomerProfileModel
     {
-        public CustomerInfoViewModel CustomerInfo { get; set; }
+        public int CustomerId { get; set; }
 
-        public List<CustomerAddressViewModel> CustomerAddresses { get; set; }
+        public string? FullName { get; set; }
 
-        public List<CustomerExternalLoginViewModel> CustomerExternalLogins { get; set; }
+        public string? PhoneNumber { get; set; }
+
+        public string? Email { get; set; }
+        public string? PasswordHash { get; set; }
+
+        public string? Avata { get; set; }
+
+        public DateTime? CreatedAt { get; set; }
+
+        public string? RefreshToken { get; set; }
+
+        public DateTime? RefreshTokenExpiryTime { get; set; }
+
+        public List<CustomerAddressModel>? CustomerAddresses { get; set; }
+
+        public List<CustomerExternalLoginModel>? CustomerExternalLogins { get; set; }
     }
 
-    public class CustomerAddressViewModel
+    public class CustomerAddressModel
     {
         public int AddressId { get; set; }
 
@@ -36,7 +51,7 @@
         public string? AddressPhoneNumber { get; set; }
     }
 
-    public class CustomerExternalLoginViewModel
+    public class CustomerExternalLoginModel
     {
         public int ExternalLoginId { get; set; }
 

@@ -99,246 +99,97 @@
 
                     <!---------------- START GUI -------------- -->
                     <!-- A. Main Container -->
-                    <div class="main-container">
-                        <!-- B. Header Section -->
-                        <div class="order-history-header-section">
-                            <h1 class="page-title">My Order History</h1>
-                            <p class="page-subtitle">Track and manage your past orders</p>
-                        </div>
-
-                        <!-- C. Filter Area -->
-                        <!-- C. Filter Area -->
-                        <div class="filter-area">
-                            <!-- C0. Filter Toggle Header -->
-                            <div class="filter-toggle-header" onclick="toggleFilterArea()">
-                                <div class="filter-header-content">
-                                    <h3 class="filter-title">
-                                        <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
-                                        </svg>
-                                        Filters & Search
-                                    </h3>
-                                    <span class="active-filters-count" id="activeFiltersCount" style="display: none;">3
-                                        active</span>
-                                </div>
-                                <div class="toggle-controls">
-                                    <button class="btn-quick-clear" onclick="event.stopPropagation(); clearFilters();"
-                                        style="display: none;" id="quickClearBtn">
-                                        Clear All
-                                    </button>
-                                    <div class="toggle-arrow" id="toggleArrow">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
-                                        </svg>
-                                    </div>
+                    <div class="container-profile">
+                        <!-- Header Section -->
+                        <div class="my-account-header">
+                            <div class="avatar-section">
+                                <div class="avatar">
+                                    <img src="https://media.istockphoto.com/id/1307568521/photo/its-the-denim-that-does-it-for-me.jpg?s=612x612&w=0&k=20&c=0RQfpn8VJxXl6sO4aUehTsPvyYKGPwVwz1EdJRBU_Nw="
+                                        alt="User Avatar" id="avatarImg">
                                 </div>
                             </div>
-
-                            <!-- C1-C6. Collapsible Filter Content -->
-                            <div class="filter-content" id="filterContent">
-                                <div class="filter-container">
-                                    <!-- C1. Time Filter -->
-                                    <div class="filter-group">
-                                        <label for="timeFilter">Time Period</label>
-                                        <select id="timeFilter" class="filter-select"
-                                            onchange="updateActiveFiltersCount()">
-                                            <option value="all">All Time</option>
-                                            <option value="week">Last 7 Days</option>
-                                            <option value="month">Last 30 Days</option>
-                                            <option value="3months">Last 3 Months</option>
-                                            <option value="year">Last Year</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- C2. Price Range Filter -->
-                                    <div class="filter-group">
-                                        <label for="priceFilter">Price Range</label>
-                                        <select id="priceFilter" class="filter-select"
-                                            onchange="updateActiveFiltersCount()">
-                                            <option value="all">All Prices</option>
-                                            <option value="0-25">$0 - $25</option>
-                                            <option value="25-50">$25 - $50</option>
-                                            <option value="50-100">$50 - $100</option>
-                                            <option value="100+">$100+</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- C3. Status Filter -->
-                                    <div class="filter-group">
-                                        <label for="statusFilter">Order Status</label>
-                                        <select id="statusFilter" class="filter-select"
-                                            onchange="updateActiveFiltersCount()">
-                                            <option value="all">All Status</option>
-                                            <option value="delivered">Delivered</option>
-                                            <option value="cancelled">Cancelled</option>
-                                            <option value="refunded">Refunded</option>
-                                            <option value="processing">Processing</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- C4. Sort Options -->
-                                    <div class="filter-group">
-                                        <label for="sortFilter">Sort By</label>
-                                        <select id="sortFilter" class="filter-select"
-                                            onchange="updateActiveFiltersCount()">
-                                            <option value="date-desc">Newest First</option>
-                                            <option value="date-asc">Oldest First</option>
-                                            <option value="price-desc">Highest Price</option>
-                                            <option value="price-asc">Lowest Price</option>
-                                            <option value="items-desc">Most Items</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- C5. Search Filter -->
-                                    <div class="filter-group search-group">
-                                        <label for="searchFilter">Search Orders</label>
-                                        <input type="text" id="searchFilter" class="filter-input"
-                                            placeholder="Search by restaurant or food name..."
-                                            oninput="updateActiveFiltersCount()">
-                                    </div>
-
-                                    <!-- C6. Apply Filters Button -->
-                                    <div class="filter-actions">
-                                        <button class="btn-apply-filters" onclick="applyFilters()">Apply
-                                            Filters</button>
-                                        <button class="btn-clear-filters" onclick="clearFilters()">Clear All</button>
-                                    </div>
-                                </div>
+                            <div class="user-info">
+                                <h1 class="user-name" id="userName">John Doe</h1>
                             </div>
                         </div>
 
-                        <!-- D. Order List Area -->
-                        <!-- D. Order List Area -->
-                        <div class="order-list-area">
-                            <div class="order-summary">
-                                <span id="orderCount">12 orders found</span>
-                                <div class="results-info">
-                                    <span id="pageInfo">Showing 1-5 of 12 orders</span>
-                                </div>
+                        <!-- Address Management Section -->
+                        <div class="content">
+                            <div class="section-header">
+                                <h2>Address Management</h2>
+                                <button class="my-profile-btn btn-orange" onclick="showAddAddressForm()">+ Add New
+                                    Address</button>
                             </div>
 
-                            <!-- D1. Order Cards Container -->
-                            <div class="order-cards-container" id="orderCardsContainer">
-                                <!-- Order cards will be populated here by JavaScript -->
+                            <!-- Add/Edit Address Form -->
+                            <div class="address-form" id="addressForm" style="display: none;">
+                                <h3 id="formTitle">Add New Address</h3>
+                                <form id="addressFormElement">
+                                    <div class="form-row">
+                                        <div class="my-profile-form-group">
+                                            <label for="addressLabel">Address Label</label>
+                                            <input type="text" id="addressLabel" placeholder="e.g., Home, Work, etc."
+                                                required>
+                                        </div>
+                                        <div class="my-profile-form-group">
+                                            <label for="fullName">Full Name</label>
+                                            <input type="text" id="fullName" placeholder="Enter full name" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-profile-form-group">
+                                        <label for="streetAddress">Street Address</label>
+                                        <input type="text" id="streetAddress" placeholder="Enter street address"
+                                            required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="my-profile-form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" id="city" placeholder="Enter city" required>
+                                        </div>
+                                        <div class="my-profile-form-group">
+                                            <label for="state">State/Province</label>
+                                            <input type="text" id="state" placeholder="Enter state" required>
+                                        </div>
+                                        <div class="my-profile-form-group">
+                                            <label for="zipCode">ZIP/Postal Code</label>
+                                            <input type="text" id="zipCode" placeholder="Enter ZIP code" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-profile-form-group">
+                                        <label for="country">Country</label>
+                                        <select id="country" required>
+                                            <option value="">Select Country</option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                            <option value="UK">United Kingdom</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="DE">Germany</option>
+                                            <option value="FR">France</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="my-profile-form-group">
+                                        <label for="phoneNumber">Phone Number</label>
+                                        <input type="tel" id="phoneNumber" placeholder="Enter phone number">
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="button" class="my-profile-btn btn-secondary"
+                                            onclick="cancelAddressForm()">Cancel</button>
+                                        <button type="submit" class="my-profile-btn btn-orange">Save Address</button>
+                                    </div>
+                                </form>
                             </div>
 
-                            <!-- D2. Pagination Controls -->
-                            <div class="pagination-container" id="paginationContainer">
-                                <div class="pagination-info">
-                                    <span id="paginationInfo">Page 1 of 3</span>
-                                </div>
-
-                                <div class="pagination-controls">
-                                    <button class="pagination-btn btn-first" id="btnFirst" onclick="goToPage(1)"
-                                        disabled>
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6 1.41-1.41z" />
-                                            <path d="M6 6h2v12H6z" />
-                                        </svg>
-                                        First
-                                    </button>
-
-                                    <button class="pagination-btn btn-prev" id="btnPrev" onclick="goToPreviousPage()"
-                                        disabled>
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                                        </svg>
-                                        Previous
-                                    </button>
-
-                                    <div class="page-numbers" id="pageNumbers">
-                                        <!-- Page numbers will be generated here -->
-                                    </div>
-
-                                    <button class="pagination-btn btn-next" id="btnNext" onclick="goToNextPage()">
-                                        Next
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M8.59 16.59L13.18 12l-4.59-4.59L10 6l6 6-6 6-1.41-1.41z" />
-                                        </svg>
-                                    </button>
-
-                                    <button class="pagination-btn btn-last" id="btnLast" onclick="goToPage('last')">
-                                        Last
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6-1.41 1.41z" />
-                                            <path d="M16 6h2v12h-2z" />
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <div class="items-per-page">
-                                    <label for="itemsPerPage">Items per page:</label>
-                                    <select id="itemsPerPage" class="items-per-page-select"
-                                        onchange="changeItemsPerPage()">
-                                        <option value="5" selected>5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="all">All</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- E. Order Details Modal -->
-                        <div class="order-details-modal" id="orderDetailsModal" style="display: none;">
-                            <div class="modal-overlay" onclick="closeOrderDetails()"></div>
-                            <div class="order-detail-modal-content">
-                                <!-- E1. Modal Header -->
-                                <div class="modal-header">
-                                    <h2 id="modalOrderTitle">Order Details</h2>
-                                    <button class="modal-close-btn" onclick="closeOrderDetails()">&times;</button>
-                                </div>
-
-                                <!-- E2. Order Info Section -->
-                                <div class="order-info-section">
-                                    <div class="order-meta">
-                                        <span class="order-id" id="modalOrderId">Order #12345</span>
-                                        <span class="order-date" id="modalOrderDate">March 15, 2024</span>
-                                        <span class="order-status" id="modalOrderStatus">Delivered</span>
-                                    </div>
-                                </div>
-
-                                <!-- E3. Order Items List -->
-                                <div class="order-items-section">
-                                    <h3>Order Items</h3>
-                                    <div class="order-items-list" id="orderItemsList">
-                                        <!-- Order items will be populated here -->
-                                    </div>
-                                </div>
-
-                                <!-- E4. Order Summary -->
-                                <div class="order-summary-section">
-                                    <div class="summary-row">
-                                        <span>Subtotal:</span>
-                                        <span id="modalSubtotal">$0.00</span>
-                                    </div>
-                                    <div class="summary-row">
-                                        <span>Delivery Fee:</span>
-                                        <span id="modalDeliveryFee">$0.00</span>
-                                    </div>
-                                    <div class="summary-row">
-                                        <span>Tax:</span>
-                                        <span id="modalTax">$0.00</span>
-                                    </div>
-                                    <div class="summary-row total-row">
-                                        <span>Total:</span>
-                                        <span id="modalTotal">$0.00</span>
-                                    </div>
-                                </div>
-
-                                <!-- E5. Modal Actions -->
-                                <div class="modal-actions">
-                                    <button class="btn-reorder" onclick="reorderItems()">Reorder</button>
-                                    <button class="btn-return-order" onclick="returnOrder()">Return Order</button>
-                                    <button class="btn-download-receipt" onclick="downloadReceipt()">Download
-                                        Receipt</button>
-                                </div>
+                            <!-- Address List -->
+                            <div class="address-list" id="addressList">
+                                <!-- Sample addresses will be populated here -->
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <hr />

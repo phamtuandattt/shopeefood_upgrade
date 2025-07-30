@@ -138,7 +138,9 @@ CREATE TABLE CustomerExternalLogins (
 CREATE TABLE CustomerAddresses (
     AddressID INT PRIMARY KEY IDENTITY,
     CustomerID INT FOREIGN KEY REFERENCES Customers(CustomerID),
-    AddressType NVARCHAR(50), -- e.g. Home, Work, Other
+    AddressType NVARCHAR(50),-- e.g. Home, Work, Other
+	AddressName NVARCHAR(50), -- David, Json, Marry
+	AddressPhoneNumber NVARCHAR(20),
     Street NVARCHAR(200),
     WardID INT,
     IsDefault BIT DEFAULT 0,
