@@ -18,15 +18,15 @@
     <div class="or-text" aria-label="Hoặc đăng nhập bằng tài khoản của bạn">
         Hoặc đăng nhập bằng tài khoản của bạn
     </div>
-    <form>
+    <form action="/login" method="post">
         <div class="input-group-login-form">
             <i class="far fa-envelope" aria-hidden="true"></i>
-            <input type="text" placeholder="Tên đăng nhập hoặc Email" aria-label="Tên đăng nhập hoặc Email"
+            <input type="text" name="email" placeholder="Tên đăng nhập hoặc Email" aria-label="Tên đăng nhập hoặc Email"
                    required />
         </div>
         <div class="input-group-login-form">
             <i class="fas fa-lock" aria-hidden="true"></i>
-            <input type="password" placeholder="Mật khẩu" aria-label="Mật khẩu" required />
+            <input type="password" name="password" placeholder="Mật khẩu" aria-label="Mật khẩu" required />
         </div>
         <div class="checkbox-row">
             <label>

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.Mvc;
+using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
 using ShopeeFood_WebApp.Models.Customers;
+using System.Net.WebSockets;
 
 namespace ShopeeFood_WebApp.Controllers
 {
@@ -19,20 +22,22 @@ namespace ShopeeFood_WebApp.Controllers
         [Route("/profile")]
         public async Task<IActionResult> GetProfile()
         {
-            var profile = await customerServices.GetCustomerProfile(HttpContext, "");
-            if (profile == null)
-            {
-                HttpContext.Response.Redirect("/login");
-            }
-            var profileViewModel = Mapper.Map<CustomerProfileModel>(profile.Data);
-            return View(profileViewModel);
+            //var profile = await customerServices.GetCustomerProfile(HttpContext, "");
+            //if (profile == null)
+            //{
+            //    HttpContext.Response.Redirect("/login");
+            //}
+            //var profileViewModel = Mapper.Map<CustomerProfileModel>(profile.Data);
+            //return View(profileViewModel);
+
+            return View();
         }
 
         [Route("/my-account")]
         public async Task<IActionResult> MyAccountModule()
         {
             var profile = await customerServices.GetCustomerProfile(HttpContext, "");
-            if (profile == null)
+            if (profile == null || profile.Data == null)
             {
                 HttpContext.Response.Redirect("/login");
             }
@@ -78,9 +83,24 @@ namespace ShopeeFood_WebApp.Controllers
         [Route("/login")]
         public ActionResult LoginModule()
         {
-            
-
             return View();
+        }
+
+        [HttpPost]
+        [Route("/login")]
+        public async Task<IActionResult> LoginModule(string email, string password)
+        {
+            var requestDto = new CustomerLoginRequestDto(email, password);
+            var clientSession = new ClientSession(HttpContext);
+            var response = await customerServices.Login(HttpContext, requestDto);
+            if (response is not null || response.Data != null)
+            {
+                var loginResutl = Mapper.Map<LoginResult>(response.Data);
+                clientSession.AccessToken = loginResutl.AccessToken;
+                return Redirect("/my-account");
+            }
+
+            return Redirect("/");
         }
     }
 }

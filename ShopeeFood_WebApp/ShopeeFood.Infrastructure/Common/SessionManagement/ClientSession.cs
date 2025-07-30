@@ -27,18 +27,23 @@ namespace ShopeeFood.Infrastructure.Common.SessionManagement
 
         }
 
+        public ClientSession(HttpContext context)
+        {
+            _current = context;
+
+        }
 
 
         #region Session is string
-        public string jwtToken
+        public string AccessToken
         {
             get
             {
-                return _current.Session.GetString("jwtToken") as string;
+                return _current.Session.GetString("AccessToken") as string;
             }
             set
             {
-                _current.Session.SetString("jwtToken", value);
+                _current.Session.SetString("AccessToken", value);
             }
         }
 
