@@ -7,6 +7,7 @@ using System.Security.Claims;
 using ShopeeFood_WebAPI.BLL.Servives;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System.Net.WebSockets;
 
 
 namespace ShopeeFood_WebAPI.Controllers
@@ -226,6 +227,103 @@ namespace ShopeeFood_WebAPI.Controllers
                 status = HttpStatusCode.OK + "",
                 message = ApiResponseMessage.SUCCESS,
                 data = JsonConvert.SerializeObject(response)
+            });
+        }
+
+        //[Authorize]
+        [HttpPost("add-customer-address")]
+        public async Task<IActionResult> AddCustomerAddress([FromBody] CustomerAddressRequestDto requestDto)
+        {
+            // Extract email from JWT token
+            var IsParseSucces = int.TryParse((User.FindFirst(ClaimTypes.NameIdentifier)?.Value), out var customerId);
+
+            if (!IsParseSucces || requestDto is null)
+            {
+                return Unauthorized(new ApiResponse
+                {
+                    status = HttpStatusCode.Unauthorized.ToString(),
+                    message = ApiResponseMessage.INVALID_TOKEN,
+                    data = ""
+                });
+            }
+
+            try
+            {
+                var addModel = _mapper.Map<CustomerAddressDto>(requestDto);
+                addModel.CustomerId = customerId;
+
+                await _customerServices.AddCustomerAddressAsync(addModel);
+
+                return Ok(new ApiResponse
+                {
+                    status = HttpStatusCode.OK + "",
+                    message = ApiResponseMessage.SUCCESS,
+                    data = ""
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ApiResponse
+                {
+                    status = HttpStatusCode.InternalServerError + "",
+                    message = ex.Message,
+                    data = ""
+                }); ;
+            }
+        }
+
+
+        [Authorize]
+        [HttpPost("update-address")]
+        public async Task<IActionResult> UpdateCustomerAddress([FromBody] CustomerAddressRequestDto requestDto)
+        {
+            // Extract email from JWT token
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            //var email = "dattest_api@yopmail.com";
+
+            if (string.IsNullOrEmpty(email) || requestDto is null)
+            {
+                return Unauthorized(new ApiResponse
+                {
+                    status = HttpStatusCode.Unauthorized.ToString(),
+                    message = ApiResponseMessage.INVALID_TOKEN,
+                    data = ""
+                });
+            }
+
+            var result = await _customerServices.GetCustomerAddressByEmail(email);
+            if (result == null)
+            {
+                return NotFound(new ApiResponse
+                {
+                    status = HttpStatusCode.NotFound + "",
+                    message = ApiResponseMessage.NOT_FOUND,
+                    data = ""
+                });
+            }
+            
+            var updateModel = result.Find(adr => adr.AddressId == requestDto.AddressId);
+            if (updateModel != null)
+            {
+                var updateModelNew = _mapper.Map(requestDto, updateModel);
+
+                var response = await _customerServices.UpdateCustomerAddress(updateModelNew);
+                if (response)
+                {
+                    return Ok(new ApiResponse
+                    {
+                        status = HttpStatusCode.OK + "",
+                        message = ApiResponseMessage.SUCCESS,
+                        data = ""
+                    });
+                }
+            }
+
+            return BadRequest(new ApiResponse
+            {
+                status = HttpStatusCode.BadRequest.ToString(),
+                message = ApiResponseMessage.NOT_FOUND,
+                data = ""
             });
         }
     }

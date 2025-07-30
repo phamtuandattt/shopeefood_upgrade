@@ -23,6 +23,14 @@ namespace ShopeeFood_WebAPI.DAL.Repositories.CustomerRepository
             _mapper = mapper;
         }
 
+        public async Task<List<CustomerAddress>> GetCustomerAddressesByEmailAsync(string email)
+        {
+            return await _context.CustomerAddresses
+                         .Include(a => a.Customer)
+                         .Where(a => a.Customer != null && a.Customer.Email == email)
+                         .ToListAsync();
+        }
+
         public async Task<Customer> GetCustomerProfile(string email)
         {
             return await _context.Customers.Include(c => c.CustomerAddresses).Include(c => c.CustomerExternalLogins).FirstOrDefaultAsync(c => c.Email == email);

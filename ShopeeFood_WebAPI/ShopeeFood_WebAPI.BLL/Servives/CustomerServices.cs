@@ -20,12 +20,14 @@ namespace ShopeeFood_WebAPI.BLL.Servives
     public class CustomerServices : ICustomerServices
     {
         private readonly IRepository<Customer> _repository;
+        private readonly IRepository<CustomerAddress> _customerAddressRepo;
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
 
-        public CustomerServices(IRepository<Customer> repository, ICustomerRepository customerRepository, IMapper mapper)
+        public CustomerServices(IRepository<Customer> repository, IRepository<CustomerAddress> customerAddressRepo, ICustomerRepository customerRepository, IMapper mapper)
         {
             _repository = repository;
+            _customerAddressRepo = customerAddressRepo;
             _customerRepository = customerRepository;
             _mapper = mapper;
         }
@@ -36,6 +38,19 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             {
                 var cus = _mapper.Map<Customer>(customer);
                 await _repository.AddAsync(cus);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
+        }
+
+        public async Task AddCustomerAddressAsync(CustomerAddressDto customerAddress)
+        {
+            try
+            {
+                var address = _mapper.Map<CustomerAddress>(customerAddress);
+                await _customerAddressRepo.AddAsync(address);
             }
             catch (Exception ex)
             {
@@ -60,6 +75,23 @@ namespace ShopeeFood_WebAPI.BLL.Servives
                 Logger.Error(ex.Message);
             }
             return new CustomerDto();
+        }
+
+        public async Task<List<CustomerAddressDto?>> GetCustomerAddressByEmail(string email)
+        {
+            try
+            {
+                var addesses = await _customerRepository.GetCustomerAddressesByEmailAsync(email);
+                var reponse = _mapper.Map<List<CustomerAddressDto>>(addesses);
+
+                return reponse;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+            }
+
+            return new List<CustomerAddressDto?>();
         }
 
         public async Task<CustomerDto> GetCustomerByEmail(string email)
@@ -101,6 +133,25 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             try
             {
                 await _repository.UpdateAsync(item);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateCustomerAddress(CustomerAddressDto customerAddress)
+        {
+            var item = await _customerAddressRepo.GetByIdAsync(customerAddress.AddressId);
+            if (item == null)
+            {
+                return false;
+            }
+            var item_n = _mapper.Map(customerAddress, item);
+            try
+            {
+                await _customerAddressRepo.UpdateAsync(item_n);
                 return true;
             }
             catch (Exception)

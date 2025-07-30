@@ -30,7 +30,7 @@ namespace ShopeeFood_WebAPI.BLL.Servives
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, customer.CustomerId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, customer.CustomerId.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, customer.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
