@@ -1,10 +1,61 @@
 ﻿@using ShopeeFood_WebApp.Models.Cities;
+@using ShopeeFood.Infrastructure.Common.SessionManagement;
 
 @model CityViewModel
 @{
     var activeId = (int?)ViewBag.ActiveCategoryId ?? 1;
+    var session = new ClientSession(HttpContextAccessor?.HttpContext);
+    var isLogin = session.IsLogin;
+    var userInfo = session.CurrentUser;
 }
+<style>
+    .my-account-header-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        right: -85px;
+        cursor: pointer;
+        color: black;
+    }
 
+    .search {
+        position: absolute;
+        right: 60px;
+    }
+
+    .login {
+        position: absolute;
+        right: -85px;
+    }
+
+    .user-info-header {
+        flex: 1;
+        margin-left: 10px;
+    }
+
+    .user-name-header {
+        margin: 10px 10px 10px 0
+    }
+
+    .avatar-section-header {
+        flex: 0 0 auto;
+    }
+
+    .avatar-header {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .avatar-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+</style>
 <!-- MENU -->
 <header class="main-header">
     <div class="container-header">
@@ -46,9 +97,25 @@
                     <div class="search">
                         <button onclick="showSearchModal()" id="openModal">🔍</button>
                     </div>
-                    <div class="login">
-                        <button class="btn-login-header">Đăng nhập</button>
-                    </div>
+                    @if (isLogin)
+                    {
+                        <a href="/my-account" class="my-account-header-menu">
+                            <div class="user-info-header">
+                                <p class="user-name-header" id="userName">@userInfo.FullName</p>
+                            </div>
+                            <div class="avatar-section-header">
+                                <div class="avatar-header">
+                                    <img src="@userInfo.Avata" alt="User Avatar" id="avatarImg">
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="login">
+                            <button class="btn-login-header">Đăng nhập</button>
+                        </div>
+                    }
                     <div class="language">
                         <img src="~/Content/ThemeV1/img/vietnam.png" alt="Vietnam Flag">
                     </div>

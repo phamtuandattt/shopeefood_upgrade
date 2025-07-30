@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopeeFood.BLL.DTOS.CustomerDTOs
+namespace ShopeeFood.Infrastructure
 {
-    public class CustomerLoginResponseDto
+    public class UserProfileModel
     {
         public int CustomerId { get; set; }
         public string? FullName { get; set; }

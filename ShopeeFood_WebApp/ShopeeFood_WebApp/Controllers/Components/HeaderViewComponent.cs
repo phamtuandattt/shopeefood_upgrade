@@ -20,6 +20,9 @@ namespace ShopeeFood_WebApp.Controllers.Components
 
         public async Task<IViewComponentResult> InvokeAsync(int cityId)
         {
+            // Handle get cache check login
+
+
             var cities = await businessServices.GetAllByCity(httpContextAccessor.HttpContext);
             var business = await businessServices.GetBusinessByCity(httpContextAccessor.HttpContext, cityId);
 

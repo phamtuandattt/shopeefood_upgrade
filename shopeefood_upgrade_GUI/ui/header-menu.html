@@ -30,6 +30,39 @@
         text-align: left;
         background-color: #f2f2f2;
     }
+
+    .my-account-header-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .user-info-header {
+        flex: 1;
+        margin-left: 10px;
+    }
+
+    .user-name-header {
+        margin: 10px 25px 10px 0
+    }
+
+    .avatar-section-header {
+        flex: 0 0 auto;
+    }
+
+    .avatar-header {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-header img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 </style>
 
 <body>
@@ -62,9 +95,20 @@
                             <div class="search">
                                 <button onclick="showSearchModal()" id="openModal">🔍</button>
                             </div>
-                            <div class="login">
+                            <!-- <div class="login">
                                 <button>Đăng nhập</button>
+                            </div> -->
+                            <div class="my-account-header-menu">
+                                <div class="user-info-header">
+                                    <p class="user-name-header" id="userName">@userInfo.FullName</p>
+                                </div>
+                                <div class="avatar-section-header">
+                                    <div class="avatar-header">
+                                        <img src="@userInfo.Avata" alt="User Avatar" id="avatarImg">
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="language">
                                 <img src="../img/vietnam.png" alt="Vietnam Flag">
                             </div>

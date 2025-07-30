@@ -95,8 +95,11 @@ namespace ShopeeFood_WebApp.Controllers
             var response = await customerServices.Login(HttpContext, requestDto);
             if (response is not null || response.Data != null)
             {
-                var loginResutl = Mapper.Map<LoginResult>(response.Data);
+                var loginResutl = Mapper.Map<UserProfileModel>(response.Data);
                 clientSession.AccessToken = loginResutl.AccessToken;
+                clientSession.IsLogin = loginResutl.Success;
+                clientSession.CurrentUser = loginResutl;
+
                 return Redirect("/my-account");
             }
 

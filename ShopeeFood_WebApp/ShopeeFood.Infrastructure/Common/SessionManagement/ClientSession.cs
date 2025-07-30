@@ -69,11 +69,11 @@ namespace ShopeeFood.Infrastructure.Common.SessionManagement
 
 
         #region Session is bool
-        public bool ExampleSessionBool
+        public bool IsLogin
         {
             get
             {
-                var byteArray = _current.Session.Get("ExampleSessionBool");
+                var byteArray = _current.Session.Get("IsLogin");
                 if (byteArray is null || byteArray.Any() == false)
                 {
                     return false;
@@ -85,7 +85,7 @@ namespace ShopeeFood.Infrastructure.Common.SessionManagement
             {
                 var obj = SessionExtensions.GetByteFromObject<bool>(value);
 
-                _current.Session.Set("ExampleSessionBool", obj);
+                _current.Session.Set("IsLogin", obj);
             }
         }
 
@@ -93,25 +93,25 @@ namespace ShopeeFood.Infrastructure.Common.SessionManagement
 
 
         #region Session is object
-        public object? ExampleSessionObject
+        public UserProfileModel? CurrentUser
         {
             get
             {
-                var byteArray = _current.Session.Get("ExampleSessionObject");
+                var byteArray = _current.Session.Get("CurrentUser");
                 if (byteArray is null || byteArray.Any() == false)
                 {
-                    return new object();
+                    return new UserProfileModel();
                 }
 
-                var obj = SessionExtensions.GetObjectFromByte<object>(byteArray);
+                var obj = SessionExtensions.GetObjectFromByte<UserProfileModel>(byteArray);
 
                 return obj;
             }
             set
             {
-                var byteArray = SessionExtensions.GetByteFromObject<object>(value);
+                var byteArray = SessionExtensions.GetByteFromObject<UserProfileModel>(value);
 
-                _current.Session.Set("ExampleSessionObject", byteArray);
+                _current.Session.Set("CurrentUser", byteArray);
             }
         }
 

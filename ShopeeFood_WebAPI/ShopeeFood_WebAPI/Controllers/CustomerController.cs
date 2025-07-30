@@ -92,7 +92,8 @@ namespace ShopeeFood_WebAPI.Controllers
                 Avata = user.Avata,
                 AccessToken = jwtToken,
                 RefreshToken = user.RefreshToken,
-                RefreshTokenExpiryTime = user.RefreshTokenExpiryTime
+                RefreshTokenExpiryTime = user.RefreshTokenExpiryTime,
+                Success = true,
             };
 
             return Ok(new ApiResponse
@@ -167,7 +168,8 @@ namespace ShopeeFood_WebAPI.Controllers
                 PhoneNumber = customer.PhoneNumber,
                 Avata = customer.Avata,
                 RefreshToken = customer.RefreshToken,
-                RefreshTokenExpiryTime = customer.RefreshTokenExpiryTime
+                RefreshTokenExpiryTime = customer.RefreshTokenExpiryTime,
+                Success = true
             };
 
             return Ok( new ApiResponse
@@ -215,7 +217,8 @@ namespace ShopeeFood_WebAPI.Controllers
                 Avata = user.Avata,
                 AccessToken = newAccessToken,
                 RefreshToken = newRefreshToken,
-                RefreshTokenExpiryTime = user.RefreshTokenExpiryTime
+                RefreshTokenExpiryTime = user.RefreshTokenExpiryTime,
+                Success = true
             };
 
             return Ok(new ApiResponse

@@ -30,7 +30,7 @@ namespace ShopeeFood_WebApp.Areas
             CreateMap<CustomerAddressModel, CustomerAddressDto>().ReverseMap();
             CreateMap<CustomerExternalLoginModel, CustomerExternalLoginDto>().ReverseMap();
 
-            CreateMap<CustomerLoginResponseDto, LoginResult>().ReverseMap();
+            CreateMap<CustomerLoginResponseDto, UserProfileModel>().ReverseMap();
 
         }
     }
