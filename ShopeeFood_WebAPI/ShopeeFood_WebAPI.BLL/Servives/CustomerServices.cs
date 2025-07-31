@@ -45,17 +45,19 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             }
         }
 
-        public async Task AddCustomerAddressAsync(CustomerAddressDto customerAddress)
+        public async Task<CustomerAddressDto> AddCustomerAddressAsync(CustomerAddressDto customerAddress)
         {
             try
             {
                 var address = _mapper.Map<CustomerAddress>(customerAddress);
                 await _customerAddressRepo.AddAsync(address);
+                return _mapper.Map<CustomerAddressDto>(address);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.Message);
             }
+            return new CustomerAddressDto();
         }
 
         public async Task<bool> Existed(string email)

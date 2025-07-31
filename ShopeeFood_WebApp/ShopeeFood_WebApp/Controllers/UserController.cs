@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
@@ -101,6 +102,32 @@ namespace ShopeeFood_WebApp.Controllers
                 clientSession.CurrentUser = loginResutl;
 
                 return Redirect("/my-account");
+            }
+
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        [Route("/add-customer-address")]
+        public async Task<IActionResult> AddCustomerAddress(CustomerAddressRequestDto requestDto)
+        {
+            var response = await customerServices.AddCustomerAddress(HttpContext, requestDto);
+            if (response is not null && response.Data is not null)
+            {
+                return Json(response.Data);
+            }
+
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        [Route("/update-customer-address")]
+        public async Task<IActionResult> UpdateCustomerAddress(CustomerAddressRequestDto requestDto)
+        {
+            var response = await customerServices.AddCustomerAddress(HttpContext, requestDto);
+            if (response is not null && response.Data is not null)
+            {
+                return Json(response.Data);
             }
 
             return Redirect("/");

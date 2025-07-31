@@ -24,6 +24,44 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
 
         }
 
+        public async Task<AppActionResult<CustomerAddressDto, ApiErrorResponse>> AddCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto)
+        {
+            Logger.Info("BENGIN - Add customer address");
+            var response = new AppActionResult<CustomerAddressDto, ApiErrorResponse>();
+            var apiUrl = _configuration["AddCustomerAddress"];
+            var clientSession = new ClientSession(_httpContextAccessor);
+            try
+            {
+                if (requestDto != null)
+                {
+                    RestServices.SetBearerAuthorization(clientSession.AccessToken);
+                    var postData = SerializeParams(requestDto);
+                    var result = await RestServices.PostAsync<CustomerAddressDto, ApiErrorResponse>(postData, $"{ApiDomain}{apiUrl}");
+                    if (result.IsSuccess)
+                    {
+                        Logger.Info($"Add success: ");
+                        response.SetResult(result.Data);
+                    }
+                    else
+                    {
+                        response.SetError(result.Error);
+                        Logger.Info($"FAIL to add customer address: . ErrorCode: {result.Error?.ErrorCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"FAIL to add customer address: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - Add customer address.");
+            }
+
+            return response;
+        }
+
         public async Task<AppActionResult<CustomerResponseDto, ApiErrorResponse>> GetCustomerProfile(HttpContext httpContext, string email)
         {
             Logger.Info("BENGIN - Get customer profile");

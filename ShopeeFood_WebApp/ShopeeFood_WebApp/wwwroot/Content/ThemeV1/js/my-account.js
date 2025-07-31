@@ -56,14 +56,14 @@ function renderAddresses() {
         addressCard.className = 'address-card';
         addressCard.innerHTML = `
                     <div class="address-header">
-                        <h4>${address.AddressType}</h4>
+                        <h4>${address.addressType}</h4>
                         <div class="address-actions">
-                            <button class="btn-icon" onclick="editAddress(${address.AddressId})" title="Edit">
+                            <button class="btn-icon" onclick="editAddress(${address.addressId})" title="Edit">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
                                 </svg>
                             </button>
-                            <button class="btn-icon btn-delete" onclick="deleteAddress(${address.AddressId})" title="Delete">
+                            <button class="btn-icon btn-delete" onclick="deleteAddress(${address.addressId})" title="Delete">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                                 </svg>
@@ -71,9 +71,9 @@ function renderAddresses() {
                         </div>
                     </div>
                     <div class="address-details">
-                        <p><strong>${address.AddressName}</strong></p>
-                        <p>${address.Street}</p>
-                        ${address.AddressPhoneNumber ? `<p>Phone: ${address.AddressPhoneNumber}</p>` : ''}
+                        <p><strong>${address.addressName}</strong></p>
+                        <p>${address.street}</p>
+                        ${address.addressPhoneNumber ? `<p>Phone: ${address.addressPhoneNumber}</p>` : ''}
                     </div>
                 `;
         addressList.appendChild(addressCard);
@@ -120,14 +120,14 @@ function deleteAddress(id) {
 
 function saveAddress() {
     const formData = {
-        label: document.getElementById('addressLabel').value,
-        fullName: document.getElementById('fullName').value,
-        streetAddress: document.getElementById('streetAddress').value,
-        city: document.getElementById('city').value,
-        state: document.getElementById('state').value,
-        zipCode: document.getElementById('zipCode').value,
-        country: document.getElementById('country').value,
-        phoneNumber: document.getElementById('phoneNumber').value
+        AddressType: document.getElementById('addressLabel').value,
+        AddressName: document.getElementById('fullName').value,
+        Street: document.getElementById('streetAddress').value,
+        //city: document.getElementById('city').value,
+        //state: document.getElementById('state').value,
+        //zipCode: document.getElementById('zipCode').value,
+        //country: document.getElementById('country').value,
+        AddressPhoneNumber: document.getElementById('phoneNumber').value
     };
 
     if (editingAddressId) {
@@ -136,16 +136,36 @@ function saveAddress() {
         if (index !== -1) {
             addresses[index] = { ...addresses[index], ...formData };
         }
-    } else {
-        // Add new address
-        const newAddress = {
-            id: Date.now(), // Simple ID generation
-            ...formData
-        };
-        addresses.push(newAddress);
+    }
+    else {
+        const apiUrl = '/add-customer-address';
+
+        $.ajax({
+            url: apiUrl,
+            type: "POST",
+            data: formData,
+            beforeSend: function () {
+                document.querySelector('.loader-redirect-overlay').style.display = 'flex';
+            },
+            complete: function () {
+                document.querySelector('.loader-redirect-overlay').style.display = 'none';
+            },
+            success: function (response) {
+                if (response != null) {
+                    // Add new address
+                    //const newAddress = {
+                    //    id: Date.now(), // Simple ID generation
+                    //    ...formData
+                    //};
+                    console.log(response);
+                    addresses.push(response);
+                    renderAddresses();
+                }
+                console.log(response);
+            }
+        });
     }
 
-    renderAddresses();
     cancelAddressForm();
 }
 

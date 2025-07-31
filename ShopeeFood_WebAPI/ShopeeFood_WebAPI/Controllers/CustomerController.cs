@@ -230,7 +230,7 @@ namespace ShopeeFood_WebAPI.Controllers
             });
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("add-customer-address")]
         public async Task<IActionResult> AddCustomerAddress([FromBody] CustomerAddressRequestDto requestDto)
         {
@@ -252,14 +252,16 @@ namespace ShopeeFood_WebAPI.Controllers
                 var addModel = _mapper.Map<CustomerAddressDto>(requestDto);
                 addModel.CustomerId = customerId;
 
-                await _customerServices.AddCustomerAddressAsync(addModel);
-
-                return Ok(new ApiResponse
+                var result = await _customerServices.AddCustomerAddressAsync(addModel);
+                if (result != null)
                 {
-                    status = HttpStatusCode.OK + "",
-                    message = ApiResponseMessage.SUCCESS,
-                    data = ""
-                });
+                    return Ok(new ApiResponse
+                    {
+                        status = HttpStatusCode.OK + "",
+                        message = ApiResponseMessage.SUCCESS,
+                        data = JsonConvert.SerializeObject(result)
+                    });
+                }
             }
             catch (Exception ex)
             {
@@ -267,9 +269,15 @@ namespace ShopeeFood_WebAPI.Controllers
                 {
                     status = HttpStatusCode.InternalServerError + "",
                     message = ex.Message,
-                    data = ""
+                    data = null
                 }); ;
             }
+            return BadRequest(new ApiResponse
+            {
+                status = HttpStatusCode.InternalServerError + "",
+                message = ApiResponseMessage.BAD_REQUEST,
+                data = null
+            }); ;
         }
 
 

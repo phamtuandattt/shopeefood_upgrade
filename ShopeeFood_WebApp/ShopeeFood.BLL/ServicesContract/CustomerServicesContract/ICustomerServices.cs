@@ -15,5 +15,7 @@ namespace ShopeeFood.BLL.ServicesContract.CustomerServicesContract
         Task<AppActionResult<CustomerResponseDto, ApiErrorResponse>> GetCustomerProfile(HttpContext httpContext, string email);
 
         Task<AppActionResult<CustomerLoginResponseDto, ApiErrorResponse>> Login(HttpContext httpContext, CustomerLoginRequestDto requestDto);
+
+        Task<AppActionResult<CustomerAddressDto, ApiErrorResponse>> AddCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto);
     }
 }
