@@ -46,6 +46,7 @@ namespace ShopeeFood_WebApp
 
             builder.Services.AddScoped<RestServices>();
             builder.Services.AddScoped<ModuleContentSerivces>();
+            builder.Services.AddScoped<LoadApiSettingService>();
             
             builder.Services.AddTransient<IBusinessServices, BusinessServices>();
             builder.Services.AddTransient<IShopServices, ShopServices>();

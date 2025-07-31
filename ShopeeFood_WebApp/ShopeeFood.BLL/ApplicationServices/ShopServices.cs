@@ -11,6 +11,7 @@ using ShopeeFood.Infrastructure.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,7 +33,9 @@ namespace ShopeeFood.BLL.ApplicationServices
         {
             Logger.Info("BEGIN - Get shop of the city by business");
             var response = new AppActionResult<IEnumerable<ShopResponseDtos>, ApiErrorResponse>();
-            var apiUrl = _configuration["GetShopOfCityFollowBusinessField"];
+            //var apiUrl = _configuration["GetShopOfCityFollowBusinessField"];
+            var apiSetting = ApiSettingServices.LoadApiSettings(_httpContextAccessor.HttpContext);
+            var apiUrl = apiSetting.GetShopOfCityFollowBusinessField;
             try
             {
                 if (request != null)

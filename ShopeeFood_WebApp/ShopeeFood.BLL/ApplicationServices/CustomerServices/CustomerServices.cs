@@ -28,8 +28,10 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
         {
             Logger.Info("BENGIN - Add customer address");
             var response = new AppActionResult<CustomerAddressDto, ApiErrorResponse>();
-            var apiUrl = _configuration["AddCustomerAddress"];
+            //var apiUrl = _configuration["AddCustomerAddress"];
             var clientSession = new ClientSession(_httpContextAccessor);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.AddCustomerAddress;
             try
             {
                 if (requestDto != null)
@@ -66,8 +68,10 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
         {
             Logger.Info("BENGIN - Delete customer address");
             var response = new AppActionResult<StatusReponseDto, ApiErrorResponse>();
-            var apiUrl = _configuration["DeleteCustomerAddress"];
+            //var apiUrl = _configuration["DeleteCustomerAddress"];
             var clientSession = new ClientSession(_httpContextAccessor);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.DeleteCustomerAddress;
             try
             {
                 if (requestDto != null)
@@ -104,7 +108,9 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
         {
             Logger.Info("BENGIN - Get customer profile");
             var response = new AppActionResult<CustomerResponseDto, ApiErrorResponse>();
-            var apiUrl = _configuration["GetCustomerProfile"];
+            //var apiUrl = _configuration["GetCustomerProfile"];
+            var settings = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = settings.GetCustomerProfile;
             var clientSession = new ClientSession(_httpContextAccessor);
             try
             {
@@ -138,8 +144,10 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
         {
             Logger.Info("BENGIN - Login");
             var response = new AppActionResult<CustomerLoginResponseDto, ApiErrorResponse>();
-            var apiUrl = _configuration["UserLogin"];
+            //var apiUrl = _configuration["UserLogin"];
             var clientSession = new ClientSession(_httpContextAccessor.HttpContext);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.UserLogin;
             try
             {
                 if (requestDto != null)
@@ -175,8 +183,10 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
         {
             Logger.Info("BENGIN - Update customer address");
             var response = new AppActionResult<CustomerAddressDto, ApiErrorResponse>();
-            var apiUrl = _configuration["UpdateCustomerAddress"];
+            //var apiUrl = _configuration["UpdateCustomerAddress"];
             var clientSession = new ClientSession(_httpContextAccessor);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.UpdateCustomerAddress; ;
             try
             {
                 if (requestDto != null)

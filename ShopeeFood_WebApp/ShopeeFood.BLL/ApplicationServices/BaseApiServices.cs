@@ -17,7 +17,7 @@ namespace ShopeeFood.BLL.ApplicationServices
         protected RestServices RestServices { get; set; }
         protected IHttpContextAccessor _httpContextAccessor { get; set; }
         protected readonly IConfiguration _configuration;
-
+        protected LoadApiSettingService ApiSettingServices { get; set; }
 
         protected string ApiDomain
         {
@@ -30,7 +30,7 @@ namespace ShopeeFood.BLL.ApplicationServices
             _httpContextAccessor = httpContextAccessor;
             _configuration = configuration;
             RestServices = _httpContextAccessor.HttpContext.RequestServices.GetService<RestServices>();
-            //ApiDomain = _configuration["ApiDomain"];
+            ApiSettingServices = _httpContextAccessor.HttpContext.RequestServices.GetService<LoadApiSettingService>();
         }
 
         protected virtual JObject SerializeParams<TInput>(TInput reqParams)

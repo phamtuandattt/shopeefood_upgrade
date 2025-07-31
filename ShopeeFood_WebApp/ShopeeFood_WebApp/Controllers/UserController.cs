@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
+using ShopeeFood.Infrastructure.Common;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
 using ShopeeFood_WebApp.Models;
 using ShopeeFood_WebApp.Models.Customers;
@@ -147,17 +148,17 @@ namespace ShopeeFood_WebApp.Controllers
                 if (response.Data.IsSuccess)
                 {
                     objReturn.success = true;
-                    objReturn.type = "success";
-                    objReturn.title = "Delete success";
-                    objReturn.message = "The item has been successfully deleted from your account.";
+                    objReturn.type = PopupManagement.GetPopupType(PopupType.Success);
+                    objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Delete, true);
+                    objReturn.message = PopupManagement.DELETE_SUCCESS_MESSAGE;
 
                     return Json(objReturn);
                 }
             }
             objReturn.success = false;
-            objReturn.type = "error";
-            objReturn.title = "Delete Failed";
-            objReturn.message = "Unable to delete the order. Please try again later.";
+            objReturn.type = PopupManagement.GetPopupType(PopupType.Error);
+            objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Delete, false);
+            objReturn.message = PopupManagement.DELETE_FAIL_MESSAGE;
 
             return Json(objReturn);
         }

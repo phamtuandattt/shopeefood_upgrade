@@ -236,7 +236,7 @@ function showPopupMessage(type, title, message, options = {}) {
     // Create popup HTML
     const popupHTML = `
         <div class="popup-message ${config.size} ${type}">
-            ${config.showCloseButton ? '<button class="popup-close" onclick="closePopup()">×</button>' : ''}
+            ${config.showCloseButton ? '<button class="popup-close" onclick="closePopup()"> x </button>' : ''}
             
             <div class="popup-header">
                 <div class="popup-icon-container ${type}">

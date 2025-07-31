@@ -339,7 +339,7 @@ function showConfirmationPopup() {
     showPopupMessage('warning', 'Confirm Action', 'This popup will close with a rotate animation.', {
         showFooter: true,
         buttons: [
-            { text: 'Cancel', type: 'secondary', action: 'closePopup("rotate-out")' },
+            { text: 'Cancel', type: 'secondary', action: 'closePopup("slide-up")' },
             { text: 'Delete', type: 'danger', action: 'handleDelete()' }
         ],
         customIcon: `

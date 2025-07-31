@@ -34,7 +34,8 @@ namespace ShopeeFood.BLL.ApplicationServices
         {
             Logger.Info("BEGIN - Get business of the city");
             var response = new AppActionResult<IEnumerable<CityDto>, ApiErrorResponse>();
-            var apiUrl = _configuration["GetCities"];
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.GetCities;
             try
             {
                 var result = await RestServices.GetAsync<IEnumerable<CityDto>, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
@@ -67,7 +68,9 @@ namespace ShopeeFood.BLL.ApplicationServices
         {
             Logger.Info("BEGIN - Get business of the city");
             var response = new AppActionResult<IEnumerable<BusinessDto>, ApiErrorResponse>();
-            var apiUrl = string.Format(_configuration["GetBusinessOfCity"], cityId);
+            //var apiUrl = string.Format(_configuration["GetBusinessOfCity"], cityId);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = string.Format(apiSetting.GetBusinessOfCity, cityId);
             try
             {
                 if (cityId != 0)
@@ -102,7 +105,9 @@ namespace ShopeeFood.BLL.ApplicationServices
         {
             Logger.Info("BEGIN - Get business and shop in the city");
             var response = new AppActionResult<ShopCityBusinessResponseDto, ApiErrorResponse>();
-            var apiUrl = string.Format(_configuration["GetShopCityBusinesses"]);
+            //var apiUrl = string.Format(_configuration["GetShopCityBusinesses"]);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.GetShopCityBusinesses;
             try
             {
                 if (requetsDto != null)
