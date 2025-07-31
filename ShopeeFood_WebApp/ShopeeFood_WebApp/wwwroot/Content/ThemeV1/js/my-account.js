@@ -93,53 +93,70 @@ function showAddAddressForm() {
 }
 
 function editAddress(id) {
-    const address = addresses.find(addr => addr.AddressId === id);
+    const address = addresses.find(addr => addr.addressId === id);
     if (address) {
         editingAddressId = id;
         document.getElementById('formTitle').textContent = 'Edit Address';
         document.getElementById('addressForm').style.display = 'block';
 
         // Populate form with existing data
-        document.getElementById('addressLabel').value = address.AddressType;
-        document.getElementById('fullName').value = address.AddressName;
-        document.getElementById('streetAddress').value = address.Street;
+        document.getElementById('addressLabel').value = address.addressType;
+        document.getElementById('fullName').value = address.addressName;
+        document.getElementById('streetAddress').value = address.street;
         //document.getElementById('city').value = address.city;
         //document.getElementById('state').value = address.state;
         //document.getElementById('zipCode').value = address.zipCode;
         //document.getElementById('country').value = address.country;
-        document.getElementById('phoneNumber').value = address.AddressPhoneNumber || '';
+        document.getElementById('phoneNumber').value = address.addressPhoneNumber || '';
     }
 }
 
 function deleteAddress(id) {
     if (confirm('Are you sure you want to delete this address?')) {
-        addresses = addresses.filter(addr => addr.AddressId !== id);
+        addresses = addresses.filter(addr => addr.addressId !== id);
         renderAddresses();
     }
 }
 
 function saveAddress() {
     const formData = {
-        AddressType: document.getElementById('addressLabel').value,
-        AddressName: document.getElementById('fullName').value,
-        Street: document.getElementById('streetAddress').value,
+        addressType: document.getElementById('addressLabel').value,
+        addressName: document.getElementById('fullName').value,
+        street: document.getElementById('streetAddress').value,
         //city: document.getElementById('city').value,
         //state: document.getElementById('state').value,
         //zipCode: document.getElementById('zipCode').value,
         //country: document.getElementById('country').value,
-        AddressPhoneNumber: document.getElementById('phoneNumber').value
+        addressPhoneNumber: document.getElementById('phoneNumber').value
     };
 
     if (editingAddressId) {
         // Update existing address
-        const index = addresses.findIndex(addr => addr.id === editingAddressId);
-        if (index !== -1) {
-            addresses[index] = { ...addresses[index], ...formData };
-        }
+        const index = addresses.findIndex(addr => addr.addressId === editingAddressId);
+        var requestDto = { ...addresses[index], ...formData };
+        const apiUrl = "/update-customer-address";
+        $.ajax({
+            url: apiUrl,
+            type: "POST",
+            data: requestDto,
+            beforeSend: function () {
+                document.querySelector('.loader-redirect-overlay').style.display = 'flex';
+            },
+            complete: function () {
+                document.querySelector('.loader-redirect-overlay').style.display = 'none';
+            },
+            success: function (response) {
+                if (response != null) {
+                    if (index !== -1) {
+                        addresses[index] = { ...addresses[index], ...response };
+                    }
+                    renderAddresses();
+                }
+            }
+        });
     }
     else {
         const apiUrl = '/add-customer-address';
-
         $.ajax({
             url: apiUrl,
             type: "POST",
@@ -157,15 +174,12 @@ function saveAddress() {
                     //    id: Date.now(), // Simple ID generation
                     //    ...formData
                     //};
-                    console.log(response);
                     addresses.push(response);
                     renderAddresses();
                 }
-                console.log(response);
             }
         });
     }
-
     cancelAddressForm();
 }
 

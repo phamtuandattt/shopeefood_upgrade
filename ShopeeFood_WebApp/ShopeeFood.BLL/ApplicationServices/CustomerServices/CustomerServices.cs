@@ -132,5 +132,43 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
 
             return response;
         }
+
+        public async Task<AppActionResult<CustomerAddressDto, ApiErrorResponse>> UpdateCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto)
+        {
+            Logger.Info("BENGIN - Update customer address");
+            var response = new AppActionResult<CustomerAddressDto, ApiErrorResponse>();
+            var apiUrl = _configuration["UpdateCustomerAddress"];
+            var clientSession = new ClientSession(_httpContextAccessor);
+            try
+            {
+                if (requestDto != null)
+                {
+                    RestServices.SetBearerAuthorization(clientSession.AccessToken);
+                    var postData = SerializeParams(requestDto);
+                    var result = await RestServices.PostAsync<CustomerAddressDto, ApiErrorResponse>(postData, $"{ApiDomain}{apiUrl}");
+                    if (result.IsSuccess)
+                    {
+                        Logger.Info($"Update success! ");
+                        response.SetResult(result.Data);
+                    }
+                    else
+                    {
+                        response.SetError(result.Error);
+                        Logger.Info($"FAIL to update customer address: . ErrorCode: {result.Error?.ErrorCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"FAIL to update customer address: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - update customer address.");
+            }
+
+            return response;
+        }
     }
 }

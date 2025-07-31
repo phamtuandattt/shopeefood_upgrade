@@ -124,7 +124,7 @@ namespace ShopeeFood_WebApp.Controllers
         [Route("/update-customer-address")]
         public async Task<IActionResult> UpdateCustomerAddress(CustomerAddressRequestDto requestDto)
         {
-            var response = await customerServices.AddCustomerAddress(HttpContext, requestDto);
+            var response = await customerServices.UpdateCustomerAddress(HttpContext, requestDto);
             if (response is not null && response.Data is not null)
             {
                 return Json(response.Data);

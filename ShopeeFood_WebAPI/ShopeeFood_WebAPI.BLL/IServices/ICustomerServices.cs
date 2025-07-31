@@ -19,8 +19,7 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task<CustomerDto?> GetCustomerWithDetailsByEmailAsync(string email);
 
         Task<CustomerAddressDto> AddCustomerAddressAsync(CustomerAddressDto customerAddress);
-        Task<bool> UpdateCustomerAddress(CustomerAddressDto customerAddress);
-
+        Task<CustomerAddressDto> UpdateCustomerAddress(CustomerAddressDto customerAddress);
         Task<List<CustomerAddressDto?>> GetCustomerAddressByEmail(string email);
     }
 }

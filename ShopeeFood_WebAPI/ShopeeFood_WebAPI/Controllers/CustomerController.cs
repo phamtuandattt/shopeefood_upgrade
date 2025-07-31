@@ -316,13 +316,13 @@ namespace ShopeeFood_WebAPI.Controllers
                 var updateModelNew = _mapper.Map(requestDto, updateModel);
 
                 var response = await _customerServices.UpdateCustomerAddress(updateModelNew);
-                if (response)
+                if (response is not null)
                 {
                     return Ok(new ApiResponse
                     {
                         status = HttpStatusCode.OK + "",
                         message = ApiResponseMessage.SUCCESS,
-                        data = ""
+                        data = JsonConvert.SerializeObject(response)
                     });
                 }
             }
@@ -331,7 +331,7 @@ namespace ShopeeFood_WebAPI.Controllers
             {
                 status = HttpStatusCode.BadRequest.ToString(),
                 message = ApiResponseMessage.NOT_FOUND,
-                data = ""
+                data = null
             });
         }
     }

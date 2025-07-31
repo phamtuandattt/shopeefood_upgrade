@@ -143,22 +143,22 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             }
         }
 
-        public async Task<bool> UpdateCustomerAddress(CustomerAddressDto customerAddress)
+        public async Task<CustomerAddressDto> UpdateCustomerAddress(CustomerAddressDto customerAddress)
         {
             var item = await _customerAddressRepo.GetByIdAsync(customerAddress.AddressId);
             if (item == null)
             {
-                return false;
+                return new CustomerAddressDto();
             }
             var item_n = _mapper.Map(customerAddress, item);
             try
             {
                 await _customerAddressRepo.UpdateAsync(item_n);
-                return true;
+                return _mapper.Map<CustomerAddressDto>(item_n);
             }
             catch (Exception)
             {
-                return false;
+                return new CustomerAddressDto();
             }
         }
     }
