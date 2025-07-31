@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
+using ShopeeFood_WebApp.Models;
 using ShopeeFood_WebApp.Models.Customers;
 using System.Net.WebSockets;
 
@@ -84,6 +85,7 @@ namespace ShopeeFood_WebApp.Controllers
         [Route("/login")]
         public ActionResult LoginModule()
         {
+            ViewBag.PageTitle = "Login";
             return View();
         }
 
@@ -131,6 +133,33 @@ namespace ShopeeFood_WebApp.Controllers
             }
 
             return Redirect("/");
+        }
+
+        [HttpPost]
+        [Route("/delete-customer-address")]
+        public async Task<IActionResult> DeleteCustomerAddress(int customerAddressId)
+        {
+            var objReturn = new PopupMessageContentJsonResponse();
+            var requestDto = new CustomerAddressRequestDto() { AddressId = customerAddressId };
+            var response = await customerServices.DeleteCustomerAddress(HttpContext, requestDto);
+            if (response is not null && response.Data is not null)
+            {
+                if (response.Data.IsSuccess)
+                {
+                    objReturn.success = true;
+                    objReturn.type = "success";
+                    objReturn.title = "Delete success";
+                    objReturn.message = "The item has been successfully deleted from your account.";
+
+                    return Json(objReturn);
+                }
+            }
+            objReturn.success = false;
+            objReturn.type = "error";
+            objReturn.title = "Delete Failed";
+            objReturn.message = "Unable to delete the order. Please try again later.";
+
+            return Json(objReturn);
         }
     }
 }

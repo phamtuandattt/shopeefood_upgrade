@@ -23,6 +23,19 @@ namespace ShopeeFood_WebAPI.DAL.Repositories.CustomerRepository
             _mapper = mapper;
         }
 
+        public async Task DeleteAddressAsync(CustomerAddress address)
+        {
+            _context.CustomerAddresses.Remove(address);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<CustomerAddress?> GetAddressByIdAsync(int addressId)
+        {
+            return await _context.CustomerAddresses
+                .Include(x => x.Customer)
+                .FirstOrDefaultAsync(x => x.AddressId == addressId);
+        }
+
         public async Task<List<CustomerAddress>> GetCustomerAddressesByEmailAsync(string email)
         {
             return await _context.CustomerAddresses

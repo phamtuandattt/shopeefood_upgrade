@@ -60,6 +60,23 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             return new CustomerAddressDto();
         }
 
+        public async Task DeleteAddressAsync(string email, int addressId)
+        {
+            var address = await _customerRepository.GetAddressByIdAsync(addressId);
+            if (address.Customer != null && address.Customer.Email == email)
+            {
+                await _customerRepository.DeleteAddressAsync(address);
+            }
+            if (address == null)
+            {
+                Logger.Error("Address not found.");
+            }
+            if (address.Customer == null || address.Customer.Email != email)
+            {
+                Logger.Error("You are not authorized to delete this address.");
+            }
+        }
+
         public async Task<bool> Existed(string email)
         {
             return await _repository.ExistsAsync(e => e.Email == email);

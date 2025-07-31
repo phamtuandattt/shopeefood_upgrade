@@ -62,6 +62,44 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
             return response;
         }
 
+        public async Task<AppActionResult<StatusReponseDto, ApiErrorResponse>> DeleteCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto)
+        {
+            Logger.Info("BENGIN - Delete customer address");
+            var response = new AppActionResult<StatusReponseDto, ApiErrorResponse>();
+            var apiUrl = _configuration["DeleteCustomerAddress"];
+            var clientSession = new ClientSession(_httpContextAccessor);
+            try
+            {
+                if (requestDto != null)
+                {
+                    RestServices.SetBearerAuthorization(clientSession.AccessToken);
+                    var postData = SerializeParams(requestDto);
+                    var result = await RestServices.PostAsync<StatusReponseDto, ApiErrorResponse>(postData, $"{ApiDomain}{apiUrl}");
+                    if (result.IsSuccess)
+                    {
+                        Logger.Info($"Delete success! ");
+                        response.SetResult(result.Data);
+                    }
+                    else
+                    {
+                        response.SetError(result.Error);
+                        Logger.Info($"FAIL to delete customer address: . ErrorCode: {result.Error?.ErrorCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"FAIL to delete customer address: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - delete customer address.");
+            }
+
+            return response;
+        }
+
         public async Task<AppActionResult<CustomerResponseDto, ApiErrorResponse>> GetCustomerProfile(HttpContext httpContext, string email)
         {
             Logger.Info("BENGIN - Get customer profile");

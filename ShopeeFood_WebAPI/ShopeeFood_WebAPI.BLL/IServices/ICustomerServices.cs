@@ -1,4 +1,5 @@
 ﻿using ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos;
+using ShopeeFood_WebAPI.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,11 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task<bool> UpdateCustomer(int cusId, CustomerDto customer);
         Task<CustomerDto?> GetCustomerWithDetailsByEmailAsync(string email);
 
+        // Customer address
         Task<CustomerAddressDto> AddCustomerAddressAsync(CustomerAddressDto customerAddress);
         Task<CustomerAddressDto> UpdateCustomerAddress(CustomerAddressDto customerAddress);
         Task<List<CustomerAddressDto?>> GetCustomerAddressByEmail(string email);
+        Task DeleteAddressAsync(string email, int addressId);
+
     }
 }

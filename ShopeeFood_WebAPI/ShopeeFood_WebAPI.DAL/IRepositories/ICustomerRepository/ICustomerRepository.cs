@@ -12,5 +12,8 @@ namespace ShopeeFood_WebAPI.DAL.IRepositories.ICustomerRepository
         Task<Customer> GetCustomerProfile(string email);
 
         Task<List<CustomerAddress>> GetCustomerAddressesByEmailAsync(string email);
+
+        Task DeleteAddressAsync(CustomerAddress address);
+        Task<CustomerAddress?> GetAddressByIdAsync(int addressId);
     }
 }

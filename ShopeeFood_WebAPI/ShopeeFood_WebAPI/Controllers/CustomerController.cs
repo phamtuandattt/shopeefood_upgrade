@@ -334,5 +334,43 @@ namespace ShopeeFood_WebAPI.Controllers
                 data = null
             });
         }
+
+        [Authorize]
+        [HttpPost("delete-address")]
+        public async Task<IActionResult> DeleteCustomerAddress([FromBody] CustomerAddressRequestDto requestDto)
+        {
+            // Extract email from JWT token
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            //var email = "dattest_api@yopmail.com";
+
+            if (string.IsNullOrEmpty(email) || requestDto is null)
+            {
+                return Unauthorized(new ApiResponse
+                {
+                    status = HttpStatusCode.Unauthorized.ToString(),
+                    message = ApiResponseMessage.INVALID_TOKEN,
+                    data = ""
+                });
+            }
+            try
+            {
+                await _customerServices.DeleteAddressAsync(email, requestDto.AddressId);
+                return Ok(new ApiResponse
+                {
+                    status = HttpStatusCode.OK.ToString(),
+                    message = ApiResponseMessage.SUCCESS,
+                    data = JsonConvert.SerializeObject(new ApiModelResponse(true))
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ApiResponse
+                {
+                    status = HttpStatusCode.InternalServerError.ToString(),
+                    message = ex.Message,
+                    data = ""
+                });
+            }
+        }
     }
 }

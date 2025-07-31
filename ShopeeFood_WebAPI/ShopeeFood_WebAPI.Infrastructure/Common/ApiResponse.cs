@@ -12,4 +12,14 @@ namespace ShopeeFood_WebAPI.Infrastructure.Common
         public string? message { get; set; }
         public string? data { get; set; }
     }
+
+    public class ApiModelResponse
+    {
+        public bool IsSuccess { get; set; } = false;
+
+        public ApiModelResponse(bool IsSuccess) 
+        {
+            this.IsSuccess = IsSuccess;
+        }
+    }
 }

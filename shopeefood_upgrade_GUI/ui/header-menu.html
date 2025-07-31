@@ -223,7 +223,8 @@
                                     <div class="form-actions">
                                         <button type="button" class="my-profile-btn btn-secondary"
                                             onclick="cancelAddressForm()">Cancel</button>
-                                        <button type="submit" class="my-profile-btn btn-orange">Save Address</button>
+                                        <button type="submit" class="my-profile-btn btn-orange" 
+                                        onclick="showPopupMessage('success', 'Delete success', 'The item has been successfully deleted from your account.', {autoClose: true})">Save Address</button>
                                     </div>
                                 </form>
                             </div>
@@ -331,6 +332,50 @@
     </footer>
     <!---------------------- END - FOOTER ---------------------->
 
+<!-- POPUP MESSAGE CONTAINER (Add this to your HTML body) -->
+<div id="popup-container"></div>
+
+<!-- DEMO BUTTONS TO TEST POPUP MESSAGES -->
+<div class="popup-demo-section" style="margin: 30px 0; padding: 20px; background: #f8f9fa; border-radius: 12px;">
+    <h3>Popup Message Demo</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;">
+        
+        <button class="btn-custom-white success" onclick="showPopupMessage('success', 'Delete success', 'The item has been successfully deleted from your account.')">
+            Show Success Popup
+        </button>
+        
+        <button class="btn-custom-white warning" onclick="showPopupMessage('error', 'Delete failed', 'Unable to delete the item. Please try again later.')">
+            Show Error Popup
+        </button>
+        
+        <button class="btn-custom-white info" onclick="showPopupMessage('info', 'Information', 'This is an informational message for your reference.')">
+            Show Info Popup
+        </button>
+        
+        <button class="btn-custom-white warning" onclick="showPopupMessage('warning', 'Warning', 'Please be careful with this action. It cannot be undone.')">
+            Show Warning Popup
+        </button>
+        
+        <button class="btn-custom-white primary" onclick="showPopupMessage('loading', 'Processing', 'Please wait while we process your request...')">
+            Show Loading Popup
+        </button>
+        
+        <button class="btn-custom-white secondary" onclick="showCustomPopup()">
+            Show Custom Popup
+        </button>
+        
+        <button class="btn-custom-white primary" onclick="showConfirmationPopup()">
+            Show Confirmation Popup
+        </button>
+        
+        <button class="btn-custom-white info" onclick="showProgressPopup()">
+            Show Progress Popup
+        </button>
+        
+    </div>
+</div>
+
+
 
     <!-- MODEL SEARCH OF MAIN-HEADER-->
     <div id="searchModal" class="modal">
@@ -426,7 +471,6 @@
                 </div>
             </div>
             <div id="loader" class="loader"></div>
-
         </div>
     </div>
 
