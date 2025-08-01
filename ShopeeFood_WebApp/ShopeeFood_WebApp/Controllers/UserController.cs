@@ -114,26 +114,47 @@ namespace ShopeeFood_WebApp.Controllers
         [Route("/add-customer-address")]
         public async Task<IActionResult> AddCustomerAddress(CustomerAddressRequestDto requestDto)
         {
+            var objReturn = new PopupMessageContentJsonResponse();
             var response = await customerServices.AddCustomerAddress(HttpContext, requestDto);
             if (response is not null && response.Data is not null)
             {
-                return Json(response.Data);
+                objReturn.success = true;
+                objReturn.type = PopupManagement.GetPopupType(PopupType.Success);
+                objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Add, true);
+                objReturn.message = PopupManagement.ADD_CUSTOMER_ADDRESS_SUCCESS_MESSAGE;
+                objReturn.dataReturn = response.Data;
+                return Json(objReturn);
             }
-
-            return Redirect("/");
+            objReturn.success = false;
+            objReturn.type = PopupManagement.GetPopupType(PopupType.Success);
+            objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Add, true);
+            objReturn.message = PopupManagement.ADD_CUSTOMER_ADDRESS_SUCCESS_MESSAGE;
+            objReturn.dataReturn = response.Data;
+            return Json(objReturn);
         }
 
         [HttpPost]
         [Route("/update-customer-address")]
         public async Task<IActionResult> UpdateCustomerAddress(CustomerAddressRequestDto requestDto)
         {
+            var objReturn = new PopupMessageContentJsonResponse();
             var response = await customerServices.UpdateCustomerAddress(HttpContext, requestDto);
             if (response is not null && response.Data is not null)
             {
-                return Json(response.Data);
+                objReturn.success = true;
+                objReturn.type = PopupManagement.GetPopupType(PopupType.Success);
+                objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Update, true);
+                objReturn.message = PopupManagement.UPDATE_CUSTOMER_ADDRESS_SUCCESS_MESSAGE;
+                objReturn.dataReturn = response.Data;
+                return Json(objReturn);
             }
 
-            return Redirect("/");
+            objReturn.success = false;
+            objReturn.type = PopupManagement.GetPopupType(PopupType.Error);
+            objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Update, true);
+            objReturn.message = PopupManagement.UPDATE_CUSTOMER_ADDRESS_FAIL_MESSAGE;
+            objReturn.dataReturn = null;
+            return Json(objReturn);
         }
 
         [HttpPost]

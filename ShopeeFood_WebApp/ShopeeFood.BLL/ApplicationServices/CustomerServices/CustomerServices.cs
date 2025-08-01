@@ -186,7 +186,7 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
             //var apiUrl = _configuration["UpdateCustomerAddress"];
             var clientSession = new ClientSession(_httpContextAccessor);
             var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
-            var apiUrl = apiSetting.UpdateCustomerAddress; ;
+            var apiUrl = apiSetting.UpdateCustomerAddress;
             try
             {
                 if (requestDto != null)

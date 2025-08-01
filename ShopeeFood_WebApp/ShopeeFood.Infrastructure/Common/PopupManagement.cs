@@ -13,6 +13,11 @@ namespace ShopeeFood.Infrastructure.Common
         public static string DELETE_FAIL_MESSAGE = "Unable to delete the order. Please try again later.";
         public static string DELETE_SUCCESS_MESSAGE = "The item has been successfully deleted from your account.";
 
+        public static string UPDATE_CUSTOMER_ADDRESS_SUCCESS_MESSAGE = "Your request has been processed successfully!";
+        public static string UPDATE_CUSTOMER_ADDRESS_FAIL_MESSAGE = "Unable to update the address. Please try again later.";
+
+        public static string ADD_CUSTOMER_ADDRESS_SUCCESS_MESSAGE = "Your request has been processed successfully!";
+        public static string ADD_CUSTOMER_ADDRESS_FAIL_MESSAGE = "Unable to add the address. Please try again later.";
 
         static IDictionary<PopupType, string> PopupTypes;
         static IDictionary<PopupAction, string> PopupActions;

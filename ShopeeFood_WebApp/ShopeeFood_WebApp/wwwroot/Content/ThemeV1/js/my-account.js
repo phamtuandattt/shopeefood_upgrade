@@ -185,11 +185,16 @@ function saveAddress() {
                 document.querySelector('.loader-redirect-overlay').style.display = 'none';
             },
             success: function (response) {
-                if (response != null) {
+                if (response != null && response.success) {
+                    console.log(response.dataReturn);
                     if (index !== -1) {
-                        addresses[index] = { ...addresses[index], ...response };
+                        addresses[index] = { ...addresses[index], ...response.dataReturn };
                     }
                     renderAddresses();
+                    showSuccessPopup(response.title, response.message);
+                }
+                else {
+                    showErrorPopup(response.title, response.message);
                 }
             }
         });
@@ -207,14 +212,18 @@ function saveAddress() {
                 document.querySelector('.loader-redirect-overlay').style.display = 'none';
             },
             success: function (response) {
-                if (response != null) {
+                if (response != null && response.success) {
                     // Add new address
                     //const newAddress = {
                     //    id: Date.now(), // Simple ID generation
                     //    ...formData
                     //};
-                    addresses.push(response);
+                    addresses.push(response.dataReturn);
+                    showSuccessPopup(response.title, response.message);
                     renderAddresses();
+                }
+                else {
+                    showErrorPopup(response.title, response.message);
                 }
             }
         });

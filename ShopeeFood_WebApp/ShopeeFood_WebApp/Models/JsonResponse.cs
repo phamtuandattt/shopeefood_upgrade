@@ -35,5 +35,8 @@ namespace ShopeeFood_WebApp.Models
 
         [JsonProperty("isAutoClose")]
         public bool isAutoClose { get; set; }
+
+        [JsonProperty("dataReturn")]
+        public object dataReturn { get; set; }
     }
 }
