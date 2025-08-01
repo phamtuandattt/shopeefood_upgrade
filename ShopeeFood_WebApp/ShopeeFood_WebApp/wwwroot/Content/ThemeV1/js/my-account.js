@@ -1,38 +1,11 @@
-//let addresses = [
-//    {
-//        id: 1,
-//        label: "Home",
-//        fullName: "John Doe",
-//        streetAddress: "123 Main Street",
-//        city: "New York",
-//        state: "NY",
-//        zipCode: "10001",
-//        country: "US",
-//        phoneNumber: "+1 (555) 123-4567"
-//    },
-//    {
-//        id: 2,
-//        label: "Work",
-//        fullName: "John Doe",
-//        streetAddress: "456 Business Ave",
-//        city: "New York",
-//        state: "NY",
-//        zipCode: "10002",
-//        country: "US",
-//        phoneNumber: "+1 (555) 987-6543"
-//    },
-//    {
-//        id: 3,
-//        label: "Work",
-//        fullName: "John Doe",
-//        streetAddress: "456 Business Ave",
-//        city: "New York",
-//        state: "NY",
-//        zipCode: "10002",
-//        country: "US",
-//        phoneNumber: "+1 (555) 987-6543"
-//    }
-//];
+
+let closeAnimationTypeList = {
+    default: 'default',
+    slideUup: 'slide-up',
+    slideDown: 'slide-down',
+    fadeScalde: 'fade-scale',
+    rotateOut: 'rotate-out'
+};
 
 let editingAddressId = null;
 
@@ -112,33 +85,76 @@ function editAddress(id) {
 }
 
 function deleteAddress(id) {
-    if (confirm('Are you sure you want to delete this address?')) {
-        const apiUrl = "/delete-customer-address";
-        $.ajax({
-            url: apiUrl,
-            type: "POST",
-            data: { customerAddressId : id },
-            beforeSend: function () {
-                document.querySelector('.loader-redirect-overlay').style.display = 'flex';
-            },
-            complete: function () {
-                document.querySelector('.loader-redirect-overlay').style.display = 'none';
-            },
-            success: function (response) {
-                if (response != null) {
-                    addresses = addresses.filter(addr => addr.addressId !== id);
-                    renderAddresses();
-                    showPopupMessage(response.type, response.title, response.message, { autoClose: true })
-                }
-                else {
-                    showPopupMessage(response.type, response.title, response.message, { autoClose: true })
-                }
-            },
-            error: function () {
-                showPopupMessage(response.type, response.title, response.message, { autoClose: true })
+    //if (confirm('Are you sure you want to delete this address?')) {
+    //    const apiUrl = "/delete-customer-address";
+    //    $.ajax({
+    //        url: apiUrl,
+    //        type: "POST",
+    //        data: { customerAddressId : id },
+    //        beforeSend: function () {
+    //            document.querySelector('.loader-redirect-overlay').style.display = 'flex';
+    //        },
+    //        complete: function () {
+    //            document.querySelector('.loader-redirect-overlay').style.display = 'none';
+    //        },
+    //        success: function (response) {
+    //            if (response != null) {
+    //                addresses = addresses.filter(addr => addr.addressId !== id);
+    //                renderAddresses();
+    //                showPopupMessage(response.type, response.title, response.message, { autoClose: true })
+    //            }
+    //            else {
+    //                showPopupMessage(response.type, response.title, response.message, { autoClose: true })
+    //            }
+    //        },
+    //        error: function () {
+    //            showPopupMessage(response.type, response.title, response.message, { autoClose: true })
+    //        }
+    //    });
+    //}
+    deleteOrderWithPopup(id);
+}
+
+// Enhanced integration function
+function deleteOrderWithPopup(id) {
+    showPopupMessage('warning', 'Confirm Delete', 'Are you sure you want to delete this address? This action cannot be undone.', {
+        showFooter: true,
+        buttons: [
+            { text: 'Cancel', type: 'secondary', action: 'closePopupSafe("slide-down")' },
+            { text: 'Delete', type: 'danger', action: `confirmDeleteOrder('${id}')` }
+        ],
+        closeAnimation: 'rotate-out'
+    });
+}
+
+function confirmDeleteOrder(id) {
+    const apiUrl = "/delete-customer-address";
+    $.ajax({
+        url: apiUrl,
+        type: "POST",
+        data: { customerAddressId: id },
+        beforeSend: function () {
+            // Show loading
+            showLoadingPopup('Deleting address', 'Please wait while we delete your address...');
+        },
+        complete: function () {
+            setTimeout(() => {
+                closePopupSafe('fade-scale');
+            }, 3000);
+        },
+        success: function (response) {
+            if (response != null && response.success) {
+                showSuccessPopup(response.title, response.message);
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
             }
-        });
-    }
+            else {
+                showErrorPopup(response.title, response.message);
+            }
+        },
+        error: function () { }
+    });
 }
 
 function saveAddress() {
@@ -520,36 +536,4 @@ function closePopupSafe(animationType = 'default') {
     }, 500);
 }
 
-// Enhanced integration function
-function deleteOrderWithPopup(orderId) {
-    showPopupMessage('warning', 'Confirm Delete', 'Are you sure you want to delete this order? This action cannot be undone.', {
-        showFooter: true,
-        buttons: [
-            { text: 'Cancel', type: 'secondary', action: 'closePopupSafe("slide-down")' },
-            { text: 'Delete', type: 'danger', action: `confirmDeleteOrder('${orderId}')` }
-        ],
-        closeAnimation: 'rotate-out'
-    });
-}
 
-function confirmDeleteOrder(orderId) {
-    closePopupSafe('rotate-out');
-
-    setTimeout(() => {
-        // Show loading
-        showLoadingPopup('Deleting Order', 'Please wait while we delete your order...');
-
-        // Simulate API call
-        setTimeout(() => {
-            closePopupSafe('fade-scale');
-            setTimeout(() => {
-                // Simulate success or failure
-                if (Math.random() > 0.3) {
-                    showSuccessPopup('Delete Success', 'Your order has been successfully deleted.');
-                } else {
-                    showErrorPopup('Delete Failed', 'Unable to delete the order. Please try again later.');
-                }
-            }, 400);
-        }, 2000);
-    }, 400);
-}
