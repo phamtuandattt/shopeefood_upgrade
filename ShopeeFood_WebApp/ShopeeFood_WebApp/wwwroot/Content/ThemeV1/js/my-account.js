@@ -82,6 +82,12 @@ function editAddress(id) {
         //document.getElementById('country').value = address.country;
         document.getElementById('phoneNumber').value = address.addressPhoneNumber || '';
     }
+
+    // Scroll into view
+    document.getElementById('addressForm').style.scrollMargin = "100px";
+    document.getElementById('addressForm').scrollIntoView();
+
+    document.getElementById('addressLabel').focus();
 }
 
 function deleteAddress(id) {
@@ -342,11 +348,6 @@ function closePopup(animationType = 'default') {
     }, 400); // Match the CSS transition duration
 }
 
-// Close with specific animation
-function closePopupWithAnimation(animationType) {
-    closePopup(animationType);
-}
-
 // Get appropriate icon for popup type
 function getPopupIcon(type) {
     const icons = {
@@ -407,73 +408,6 @@ function animateProgress() {
     }
 }
 
-// Enhanced demo functions with different close animations
-function showCustomPopup() {
-    showPopupMessage('info', 'Custom Popup', 'This popup will close with a slide-up animation.', {
-        showFooter: true,
-        buttons: [
-            { text: 'Cancel', type: 'secondary', action: 'closePopup("slide-up")' },
-            { text: 'Confirm', type: 'primary', action: 'handleConfirm()' }
-        ],
-        size: 'large',
-        closeAnimation: 'slide-up'
-    });
-}
-
-function showConfirmationPopup() {
-    showPopupMessage('warning', 'Confirm Action', 'This popup will close with a rotate animation.', {
-        showFooter: true,
-        buttons: [
-            { text: 'Cancel', type: 'secondary', action: 'closePopup("rotate-out")' },
-            { text: 'Delete', type: 'danger', action: 'handleDelete()' }
-        ],
-        customIcon: `
-            <svg class="popup-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
-            </svg>
-        `,
-        closeAnimation: 'rotate-out'
-    });
-}
-
-function showProgressPopup() {
-    showPopupMessage('loading', 'Processing', 'Please wait while we process your request...', {
-        showCloseButton: false,
-        autoClose: true,
-        autoCloseDelay: 4000,
-        closeAnimation: 'fade-scale',
-        onClose: () => {
-            showPopupMessage('success', 'Complete', 'Your request has been processed successfully!', {
-                autoClose: true,
-                autoCloseDelay: 3000,
-                closeAnimation: 'slide-down'
-            });
-        }
-    });
-}
-
-function handleConfirm() {
-    closePopup('fade-scale');
-    setTimeout(() => {
-        showPopupMessage('success', 'Confirmed', 'Your action has been confirmed successfully!', {
-            autoClose: true,
-            autoCloseDelay: 3000,
-            closeAnimation: 'slide-up'
-        });
-    }, 400);
-}
-
-function handleDelete() {
-    closePopup('rotate-out');
-    setTimeout(() => {
-        showPopupMessage('success', 'Deleted', 'The item has been successfully deleted.', {
-            autoClose: true,
-            autoCloseDelay: 3000,
-            closeAnimation: 'fade-scale'
-        });
-    }, 400);
-}
-
 // Enhanced utility functions with smooth animations
 function showSuccessPopup(title, message, autoClose = true) {
     showPopupMessage('success', title, message, {
@@ -487,21 +421,6 @@ function showErrorPopup(title, message, autoClose = false) {
     showPopupMessage('error', title, message, {
         autoClose,
         closeAnimation: 'slide-down'
-    });
-}
-
-function showInfoPopup(title, message, autoClose = true) {
-    showPopupMessage('info', title, message, {
-        autoClose,
-        autoCloseDelay: 4000,
-        closeAnimation: 'fade-scale'
-    });
-}
-
-function showWarningPopup(title, message, autoClose = false) {
-    showPopupMessage('warning', title, message, {
-        autoClose,
-        closeAnimation: 'rotate-out'
     });
 }
 

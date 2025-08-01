@@ -106,6 +106,13 @@ function editAddress(id) {
         document.getElementById('country').value = address.country;
         document.getElementById('phoneNumber').value = address.phoneNumber || '';
     }
+
+    document.getElementById('addressForm').style.scrollMargin = "100px";
+    document.getElementById('addressForm').scrollIntoView();
+
+    // document.getElementById('addressForm').scroll({top:100,behavior:'smooth'});
+
+    // document.getElementByClassName("address-form")[0].scrollTop = 0
 }
 
 function deleteAddress(id) {
