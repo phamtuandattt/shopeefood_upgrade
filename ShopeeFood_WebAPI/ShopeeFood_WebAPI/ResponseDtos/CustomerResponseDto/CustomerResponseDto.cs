@@ -11,5 +11,25 @@
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
         public bool Success { get; set; } = false;
+
+        public bool IsValidUser { get; set; } = false;
+        public bool IsValidPwd { get; set; } = false;
+
+        public CustomerResponseDto() { }
+
+        public CustomerResponseDto(bool isValidUser, bool isValidPwd)
+        {
+            CustomerId = 0;
+            FullName = "";
+            Email = "";
+            PhoneNumber = "";
+            Avata = "";
+            AccessToken = "";
+            RefreshToken = "";
+            RefreshTokenExpiryTime = new DateTime();
+            Success = false;
+            IsValidUser = isValidUser;
+            IsValidPwd = isValidPwd;
+        }
     }
 }

@@ -83,6 +83,7 @@ namespace ShopeeFood_WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("/login")]
         public ActionResult LoginModule()
         {
@@ -91,23 +92,46 @@ namespace ShopeeFood_WebApp.Controllers
         }
 
         [HttpPost]
-        [Route("/login")]
-        public async Task<IActionResult> LoginModule(string email, string password)
+        [Route("/membership-login")]
+        public async Task<IActionResult> MembershipLogin(CustomerLoginRequestDto requestDto)
         {
-            var requestDto = new CustomerLoginRequestDto(email, password);
             var clientSession = new ClientSession(HttpContext);
+            var objReturn = new LoginStatusJsonResponse();
             var response = await customerServices.Login(HttpContext, requestDto);
             if (response is not null || response.Data != null)
             {
                 var loginResutl = Mapper.Map<UserProfileModel>(response.Data);
-                clientSession.AccessToken = loginResutl.AccessToken;
-                clientSession.IsLogin = loginResutl.Success;
-                clientSession.CurrentUser = loginResutl;
+                if (response.Data.IsValidUser && response.Data.IsValidPwd)
+                {
+                    clientSession.AccessToken = loginResutl.AccessToken;
+                    clientSession.IsLogin = loginResutl.Success;
+                    clientSession.CurrentUser = loginResutl;
+                    objReturn.isRedirect = true;
+                    //return Redirect("/my-account");
+                    return Json(objReturn);
+                }
 
-                return Redirect("/my-account");
+                if (!response.Data.IsValidUser) // User not existed
+                {
+                    objReturn.isValidUser = loginResutl.IsValidUser;
+                    objReturn.message = ErrorMessage.GetValue(ErrorCode.InvalidEmail);
+
+                    return Json(objReturn);
+                }
+
+                if (!response.Data.IsValidPwd) // Password incorrect
+                {
+                    objReturn.isValidPwd = loginResutl.IsValidPwd;
+                    objReturn.message = ErrorMessage.GetValue(ErrorCode.PasswordDoesNotMatch);
+
+                    return Json(objReturn);
+                }
             }
 
-            return Redirect("/");
+            objReturn.isValidUser = true;
+            objReturn.message = ErrorMessage.GetValue(ErrorCode.InvalidEmail);
+
+            return Json(objReturn);
         }
 
         [HttpPost]

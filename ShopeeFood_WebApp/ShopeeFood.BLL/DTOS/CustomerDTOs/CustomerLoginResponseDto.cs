@@ -17,5 +17,8 @@ namespace ShopeeFood.BLL.DTOS.CustomerDTOs
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
         public bool Success { get; set; }
+
+        public bool IsValidUser { get; set; }
+        public bool IsValidPwd { get; set; }
     }
 }

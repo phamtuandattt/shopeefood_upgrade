@@ -47,7 +47,7 @@ namespace ShopeeFood.Infrastructure.Common
 
         public static string GetTitlePopup(PopupAction action, bool success)
         {
-            return success ? PopupActions[action] + "success": PopupActions[action] + "Failed";
+            return success ? PopupActions[action] + " Success": PopupActions[action] + " Failed";
         }
     }
 

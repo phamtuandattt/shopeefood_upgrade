@@ -69,16 +69,26 @@ namespace ShopeeFood_WebAPI.Controllers
         public async Task<IActionResult> Login([FromBody] CustomerLoginRequestDto login)
         {
             var user = await _customerServices.GetCustomerByEmail(login.Email);
-            var hasher = new PasswordHasher<CustomerDto>();
-            var result = hasher.VerifyHashedPassword(user, user.PasswordHash, login.Password); //if keep PasswordHasher<T>
             //if (user == null || !BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash))
-            if (user == null || result == PasswordVerificationResult.Failed)
+            if (user == null)
             {
-                return Unauthorized(new ApiResponse
+                return Ok(new ApiResponse
                 {
                     status = HttpStatusCode.Unauthorized + "",
                     message = ApiResponseMessage.INVALID_TOKEN,
-                    data = ""
+                    data = JsonConvert.SerializeObject(new CustomerResponseDto(false, false))
+                });
+            }
+
+            var hasher = new PasswordHasher<CustomerDto>();
+            var result = hasher.VerifyHashedPassword(user, user.PasswordHash, login.Password); //if keep PasswordHasher<T>
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return Ok(new ApiResponse
+                {
+                    status = HttpStatusCode.NotFound + "",
+                    message = ApiResponseMessage.NOT_FOUND,
+                    data = JsonConvert.SerializeObject(new CustomerResponseDto(true, false))
                 });
             }
 
@@ -95,6 +105,9 @@ namespace ShopeeFood_WebAPI.Controllers
                 RefreshToken = user.RefreshToken,
                 RefreshTokenExpiryTime = user.RefreshTokenExpiryTime,
                 Success = true,
+
+                IsValidUser = true,
+                IsValidPwd = true,
             };
 
             return Ok(new ApiResponse

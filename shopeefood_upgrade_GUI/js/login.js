@@ -1,14 +1,3 @@
-﻿
-
-document.addEventListener("DOMContentLoaded", function () {
-    const btnLoginHeader = document.querySelector(".header-container .login .btn-login-header");
-
-    btnLoginHeader.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = '/login';
-    });
-});
-
 // LOGIN FORM VALIDATION AND FUNCTIONALITY
 
 // Email validation regex
@@ -34,14 +23,14 @@ const passwordToggle = document.getElementById('passwordToggle');
 
 // Demo credentials for testing
 const demoCredentials = {
-    email: 'david_json@yopmail.com',
-    password: 'Aa123456@'
+    email: 'demo@example.com',
+    password: 'Demo123!'
 };
 
 // LOGIN FORM VALIDATION AND FUNCTIONALITY (Continued)
 
 // Initialize form
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     initializeForm();
 });
 
@@ -53,23 +42,26 @@ function initializeForm() {
     // passwordInput.addEventListener('blur', validatePassword);
     passwordToggle.addEventListener('click', togglePasswordVisibility);
     loginForm.addEventListener('submit', handleLogin);
-
+    
     // Add real-time validation
     emailInput.addEventListener('keyup', debounce(validateEmail, 300));
     passwordInput.addEventListener('keyup', debounce(validatePassword, 300));
-
+    
     // Add focus effects
     addFocusEffects();
+    
+    // Show demo credentials hint
+    showDemoHint();
 }
 
 // Email validation function
 function validateEmail() {
     const email = emailInput.value.trim();
     const emailGroup = emailInput.closest('.input-group-login-form');
-
+    
     // Clear previous states
     clearValidationState(emailInput, emailError);
-
+    
     if (email === '') {
         if (emailInput === document.activeElement) {
             return true; // Don't show error while typing
@@ -77,17 +69,17 @@ function validateEmail() {
         showError(emailInput, emailError, 'Email address is required');
         return false;
     }
-
+    
     if (!emailRegex.test(email)) {
         showError(emailInput, emailError, 'Please enter a valid email address');
         return false;
     }
-
+    
     if (email.length > 254) {
         showError(emailInput, emailError, 'Email address is too long');
         return false;
     }
-
+    
     // Check for common email mistakes
     const commonMistakes = [
         { pattern: /@gmail\.co$/, suggestion: '@gmail.com' },
@@ -95,14 +87,14 @@ function validateEmail() {
         { pattern: /@hotmail\.co$/, suggestion: '@hotmail.com' },
         { pattern: /@outlook\.co$/, suggestion: '@outlook.com' }
     ];
-
+    
     for (let mistake of commonMistakes) {
         if (mistake.pattern.test(email)) {
             showError(emailInput, emailError, `Did you mean ${email.replace(mistake.pattern, mistake.suggestion)}?`);
             return false;
         }
     }
-
+    
     showSuccess(emailInput);
     return true;
 }
@@ -112,12 +104,12 @@ function validatePassword() {
     const password = passwordInput.value;
     const passwordGroup = passwordInput.closest('.input-group-login-form');
     const toggelePwd = passwordInput.closest('.input-group-login-form').querySelector('.password-toggle');
-
+    
     // Clear previous states
     clearValidationState(passwordInput, passwordError);
-
+    
     if (password === '') {
-        if (passwordInput === document.activeElement
+        if (passwordInput === document.activeElement 
             || toggelePwd === document.activeElement
         ) {
             return true; // Don't show error while typing
@@ -125,21 +117,21 @@ function validatePassword() {
         showError(passwordInput, passwordError, 'Password is required');
         return false;
     }
-
+    
     // Check minimum length
     if (password.length < passwordRequirements.minLength) {
         showError(passwordInput, passwordError, `Password must be at least ${passwordRequirements.minLength} characters long`);
         return false;
     }
-
+    
     // Check password strength
     const strength = calculatePasswordStrength(password);
-
+    
     if (strength.score < 3) {
         showError(passwordInput, passwordError, `Weak password. ${strength.feedback}`);
         return false;
     }
-
+    
     showSuccess(passwordInput);
     return true;
 }
@@ -148,28 +140,28 @@ function validatePassword() {
 function calculatePasswordStrength(password) {
     let score = 0;
     let feedback = [];
-
+    
     // Length check
     if (password.length >= 8) score++;
     else feedback.push('Use at least 8 characters');
-
+    
     // Character variety checks
     if (passwordRequirements.hasUpperCase.test(password)) score++;
     else feedback.push('Add uppercase letters');
-
+    
     if (passwordRequirements.hasLowerCase.test(password)) score++;
     else feedback.push('Add lowercase letters');
-
+    
     if (passwordRequirements.hasNumbers.test(password)) score++;
     else feedback.push('Add numbers');
-
+    
     if (passwordRequirements.hasSpecialChar.test(password)) score++;
     else feedback.push('Add special characters');
-
+    
     // Additional checks
     if (password.length >= 12) score++;
     if (!/(.)\1{2,}/.test(password)) score++; // No repeated characters
-
+    
     return {
         score: score,
         feedback: feedback.slice(0, 2).join(', ')
@@ -182,7 +174,7 @@ function showError(input, errorElement, message) {
     input.classList.add('invalid');
     errorElement.textContent = message;
     errorElement.classList.add('show');
-
+    
     // Update label color
     const label = input.closest('.input-group-login-form').querySelector('.input-label');
     label.style.color = '#f56565';
@@ -192,10 +184,10 @@ function showError(input, errorElement, message) {
 function showSuccess(input) {
     input.classList.remove('invalid');
     input.classList.add('valid');
-
+    
     const errorElement = input.closest('.input-group-login-form').querySelector('.error-message');
     errorElement.classList.remove('show');
-
+    
     // Update label color
     const label = input.closest('.input-group-login-form').querySelector('.input-label');
     label.style.color = '#48bb78';
@@ -205,7 +197,7 @@ function showSuccess(input) {
 function clearValidationState(input, errorElement) {
     input.classList.remove('valid', 'invalid');
     errorElement.classList.remove('show');
-
+    
     // Reset label color
     const label = input.closest('.input-group-login-form').querySelector('.input-label');
     label.style.color = '#4a5568';
@@ -215,7 +207,7 @@ function clearValidationState(input, errorElement) {
 function togglePasswordVisibility() {
     const eyeOpen = passwordToggle.querySelector('.eye-open');
     const eyeClosed = passwordToggle.querySelector('.eye-closed');
-
+    
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
         eyeOpen.style.display = 'none';
@@ -230,48 +222,71 @@ function togglePasswordVisibility() {
 }
 
 // Handle form submission
-function handleLogin(event) {
+async function handleLogin(event) {
     event.preventDefault();
-
+    
     // Validate all fields
     const isEmailValid = validateEmail();
     const isPasswordValid = validatePassword();
-
+    
     if (!isEmailValid || !isPasswordValid) {
+        showPopupMessage('error', 'Validation Error', 'Please fix the errors above and try again.');
         return;
     }
-
-    const formData = {
-        email: emailInput.value,
-        password: password.value
-    };
-
-    $.ajax({
-        url: '/membership-login',
-        type: "POST",
-        data: formData,
-        beforeSend: function () {
-            // Show loading state
-            setLoadingState(true);
-        },
-        complete: function () {
-            setLoadingState(false);
-        },
-        success: function (response) {
-            if (!response.isRedirect) {
-                if (!response.isValidUser) {
-                    showError(emailInput, emailError, response.message);
-                    emailInput.focus();
+    
+    // Show loading state
+    setLoadingState(true);
+    
+    try {
+        // Simulate API call
+        const result = await simulateLogin();
+        
+        if (result.success) {
+            showPopupMessage('success', 'Login Successful', 'Welcome back! Redirecting to dashboard...', {
+                autoClose: true,
+                autoCloseDelay: 2000,
+                onClose: () => {
+                    // Redirect to dashboard
+                    window.location.href = '/dashboard';
                 }
-                if (!response.isValidPwd) {
-                    showError(passwordInput, passwordError, response.message);
-                    passwordInput.focus();
-                }
-            }
-            else {
-                window.location.href = '/my-account';
-            }
+            });
+        } else {
+            showPopupMessage('error', 'Login Failed', result.message);
         }
+        
+    } catch (error) {
+        showPopupMessage('error', 'Connection Error', 'Unable to connect to server. Please try again.');
+    } finally {
+        setLoadingState(false);
+    }
+}
+
+// Simulate login API call
+function simulateLogin() {
+    return new Promise((resolve) => {
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        
+        setTimeout(() => {
+            // Check demo credentials
+            if (email === demoCredentials.email && password === demoCredentials.password) {
+                resolve({ success: true });
+            } else if (email === demoCredentials.email) {
+                resolve({ success: false, message: 'Incorrect password. Please try again.' });
+            } else {
+                // Simulate different error scenarios
+                const random = Math.random();
+                if (random < 0.3) {
+                    resolve({ success: false, message: 'Account not found. Please check your email address.' });
+                } else if (random < 0.6) {
+                    resolve({ success: false, message: 'Incorrect password. Please try again.' });
+                } else if (random < 0.8) {
+                    resolve({ success: false, message: 'Account is temporarily locked. Please try again later.' });
+                } else {
+                    resolve({ success: true });
+                }
+            }
+        }, 2000); // Simulate network delay
     });
 }
 
@@ -279,7 +294,7 @@ function handleLogin(event) {
 function setLoadingState(isLoading) {
     const btnText = loginBtn.querySelector('.btn-text');
     const btnSpinner = loginBtn.querySelector('.btn-spinner');
-
+    
     if (isLoading) {
         loginBtn.disabled = true;
         btnText.style.display = 'none';
@@ -296,18 +311,32 @@ function setLoadingState(isLoading) {
 // Add focus effects
 function addFocusEffects() {
     const inputs = [emailInput, passwordInput];
-
+    
     inputs.forEach(input => {
-        input.addEventListener('focus', function () {
+        input.addEventListener('focus', function() {
             this.closest('.input-wrapper').style.transform = 'translateY(-1px)';
             this.closest('.input-group-login-form').querySelector('.input-label').style.transform = 'translateY(-2px)';
         });
-
-        input.addEventListener('blur', function () {
+        
+        input.addEventListener('blur', function() {
             this.closest('.input-wrapper').style.transform = 'translateY(0)';
             this.closest('.input-group-login-form').querySelector('.input-label').style.transform = 'translateY(0)';
         });
     });
+}
+
+// Show demo credentials hint
+function showDemoHint() {
+    setTimeout(() => {
+        showPopupMessage('info', 'Demo Credentials', 
+            `You can use these demo credentials to test the login:<br>
+            <strong>Email:</strong> ${demoCredentials.email}<br>
+            <strong>Password:</strong> ${demoCredentials.password}`, {
+            autoClose: true,
+            autoCloseDelay: 8000,
+            size: 'large'
+        });
+    }, 1000);
 }
 
 // Debounce function for performance
@@ -329,7 +358,7 @@ function debounce(func, wait) {
 //         autoClose: true,
 //         autoCloseDelay: 2000
 //     });
-
+    
 //     // Simulate Google OAuth
 //     setTimeout(() => {
 //         // In real implementation, redirect to Google OAuth
@@ -342,7 +371,7 @@ function debounce(func, wait) {
 //         autoClose: true,
 //         autoCloseDelay: 2000
 //     });
-
+    
 //     // Simulate Facebook OAuth
 //     setTimeout(() => {
 //         // In real implementation, redirect to Facebook OAuth
@@ -366,20 +395,25 @@ function debounce(func, wait) {
 function fillDemoCredentials() {
     emailInput.value = demoCredentials.email;
     passwordInput.value = demoCredentials.password;
-
+    
     // Trigger validation
     validateEmail();
     validatePassword();
+    
+    showPopupMessage('success', 'Demo Filled', 'Demo credentials have been filled in the form.', {
+        autoClose: true,
+        autoCloseDelay: 2000
+    });
 }
 
 // Keyboard shortcuts
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', function(event) {
     // Ctrl/Cmd + D to fill demo credentials
     if ((event.ctrlKey || event.metaKey) && event.key === 'd') {
         event.preventDefault();
         fillDemoCredentials();
     }
-
+    
     // Enter key to submit form when focused on inputs
     if (event.key === 'Enter' && (event.target === emailInput || event.target === passwordInput)) {
         event.preventDefault();
@@ -390,7 +424,7 @@ document.addEventListener('keydown', function (event) {
 // // Form auto-save (optional)
 // function saveFormData() {
 //     const rememberMe = document.getElementById('rememberMe').checked;
-
+    
 //     if (rememberMe) {
 //         localStorage.setItem('loginEmail', emailInput.value);
 //     } else {
@@ -426,11 +460,11 @@ document.addEventListener('keydown', function (event) {
 // function showPasswordStrength() {
 //     const password = passwordInput.value;
 //     if (password.length === 0) return;
-
+    
 //     const strength = calculatePasswordStrength(password);
 //     const strengthColors = ['#f56565', '#ed8936', '#ecc94b', '#48bb78', '#38a169'];
 //     const strengthTexts = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
-
+    
 //     // You can add a strength indicator UI here
 //     console.log(`Password strength: ${strengthTexts[Math.min(strength.score, 4)]} (${strength.score}/5)`);
 // }
@@ -465,11 +499,11 @@ document.addEventListener('keydown', function (event) {
 //     // Add ARIA labels
 //     emailInput.setAttribute('aria-describedby', 'emailError');
 //     passwordInput.setAttribute('aria-describedby', 'passwordError');
-
+    
 //     // Add live regions for screen readers
 //     emailError.setAttribute('aria-live', 'polite');
 //     passwordError.setAttribute('aria-live', 'polite');
-
+    
 //     // Add form validation announcements
 //     loginForm.setAttribute('novalidate', 'true');
 // }

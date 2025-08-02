@@ -83,7 +83,7 @@ function editAddress(id) {
         document.getElementById('phoneNumber').value = address.addressPhoneNumber || '';
     }
 
-    // Scroll into view
+    // Scroll into view - scroll to div
     document.getElementById('addressForm').style.scrollMargin = "100px";
     document.getElementById('addressForm').scrollIntoView();
 

@@ -17,5 +17,8 @@ namespace ShopeeFood.Infrastructure
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpiryTime { get; set; }
         public bool Success { get; set; }
+
+        public bool IsValidUser { get; set; } = false;
+        public bool IsValidPwd { get; set; } = false;
     }
 }
