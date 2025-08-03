@@ -127,6 +127,12 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             return new CustomerDto();
         }
 
+        public async Task<CustomerDto> GetCustomerByResetToken(string resetToken)
+        {
+            var response = await _repository.FindOneAsync(reset => reset.ResetToken == resetToken && reset.ResetTokenExpiryTime > DateTime.UtcNow);
+            return _mapper.Map<CustomerDto>(response);
+        }
+
         public async Task<CustomerDto?> GetCustomerWithDetailsByEmailAsync(string email)
         {
             // Can be use either ICustomerRepository or IRepositoy<Customer> 

@@ -23,6 +23,10 @@ public partial class Customer
 
     public string? PasswordHash { get; set; }
 
+    public string? ResetToken { get; set; }
+
+    public DateTime? ResetTokenExpiryTime { get; set; }
+
     public virtual ICollection<CustomerAddress> CustomerAddresses { get; set; } = new List<CustomerAddress>();
 
     public virtual ICollection<CustomerExternalLogin> CustomerExternalLogins { get; set; } = new List<CustomerExternalLogin>();

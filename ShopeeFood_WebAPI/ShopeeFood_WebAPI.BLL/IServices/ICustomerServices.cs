@@ -25,5 +25,6 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task<List<CustomerAddressDto?>> GetCustomerAddressByEmail(string email);
         Task DeleteAddressAsync(string email, int addressId);
 
+        Task<CustomerDto> GetCustomerByResetToken(string resetToken);
     }
 }

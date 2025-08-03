@@ -16,6 +16,7 @@ using ShopeeFood_WebAPI.DAL.Repositories;
 using ShopeeFood_WebAPI.DAL.Repositories.CityRepository;
 using ShopeeFood_WebAPI.DAL.Repositories.CustomerRepository;
 using ShopeeFood_WebAPI.DAL.Repositories.ShopRepository;
+using ShopeeFood_WebAPI.Infrastructure.Common.Email;
 using System.Reflection;
 using System.Text;
 
@@ -82,6 +83,11 @@ public static class RegisterDependentServices
         builder.Services.AddScoped<ICityServies, CityServices>();
         builder.Services.AddScoped<IShopServices, ShopServices>();
         builder.Services.AddScoped<ICustomerServices, CustomerServices>();
+
+        // Get email setting
+        var eS = builder.Configuration.GetSection("EmailSettings");
+        builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+        builder.Services.AddScoped<IEmailServices, EmailServices>();
 
 
         builder.Services.AddEndpointsApiExplorer();

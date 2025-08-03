@@ -122,6 +122,8 @@ CREATE TABLE Customers (
     CreatedAt DATETIME DEFAULT GETDATE(),
 	RefreshToken NVARCHAR(MAX),
 	RefreshTokenExpiryTime DATETIME,
+	ResetToken NVARCHAR(MAX),
+	ResetTokenExpiryTime DATETIME
 );
 
 CREATE TABLE CustomerExternalLogins (

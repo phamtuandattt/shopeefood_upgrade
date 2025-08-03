@@ -8,6 +8,9 @@ using ShopeeFood_WebAPI.BLL.Servives;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Net.WebSockets;
+using Microsoft.EntityFrameworkCore;
+using ShopeeFood_WebAPI.Infrastructure.Common.Email;
+using ShopeeFood_WebAPI.DAL.Models;
 
 
 namespace ShopeeFood_WebAPI.Controllers
@@ -20,13 +23,15 @@ namespace ShopeeFood_WebAPI.Controllers
         private readonly TokenService _tokenService;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
+        private readonly IEmailServices _emailServices;
 
-        public CustomerController(ICustomerServices customerServices, TokenService tokenService, IMapper mapper, IConfiguration configuration)
+        public CustomerController(ICustomerServices customerServices, TokenService tokenService, IMapper mapper, IConfiguration configuration, IEmailServices emailServices)
         {
             _customerServices = customerServices;
             _tokenService = tokenService;
             _mapper = mapper;
             _config = configuration;
+            _emailServices = emailServices;
         }
 
         [Authorize]
@@ -372,7 +377,7 @@ namespace ShopeeFood_WebAPI.Controllers
                 {
                     status = HttpStatusCode.OK.ToString(),
                     message = ApiResponseMessage.SUCCESS,
-                    data = JsonConvert.SerializeObject(new ApiModelResponse(true))
+                    data = JsonConvert.SerializeObject(new ApiModelResponse(true, ApiResponseMessage.SUCCESS))
                 });
             }
             catch (Exception ex)
@@ -384,6 +389,73 @@ namespace ShopeeFood_WebAPI.Controllers
                     data = ""
                 });
             }
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDto request)
+        {
+            //var user = await _context.Customers.FirstOrDefaultAsync(c => c.Email == request.Email);
+
+            var user = await _customerServices.GetCustomerByEmail(request.Email);
+            if (user == null)
+            {
+                return Ok(new ApiResponse
+                {
+                    status = HttpStatusCode.NotFound.ToString(),
+                    message = ApiResponseMessage.NOT_FOUND,
+                    data = JsonConvert.SerializeObject(new ApiModelResponse(false, ApiResponseMessage.NOT_FOUND))
+                });
+
+            }    
+
+            var token = Guid.NewGuid().ToString();
+            user.ResetToken = token;
+            user.ResetTokenExpiryTime = DateTime.UtcNow.AddHours(1);
+
+            await _customerServices.UpdateCustomer(user.CustomerId, user);
+
+            // send email
+            var resetLink = $"https://yourwebapp.com/reset-password?token={token}";
+            await _emailServices.SendEmailAsync(user.Email, 
+                "Reset Your Password", 
+                $"<p>Hello,</p><p>Click <a href='{resetLink}'>here</a> to reset your password. This link is valid for 1 hour.</p>");
+
+            //return Ok(new { message = "Reset link has been sent to your email." });
+            return Ok(new ApiResponse
+            {
+                status = HttpStatusCode.OK.ToString(),
+                message = ApiResponseMessage.RESET_LINK,
+                data = JsonConvert.SerializeObject(new ApiModelResponse(true, ApiResponseMessage.RESET_LINK))
+            });
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequestDto request)
+        {
+            var user = await _customerServices.GetCustomerByResetToken(request.Token);
+            if (user == null)
+            {
+                return Ok(new ApiResponse
+                {
+                    status = HttpStatusCode.OK.ToString(),
+                    message = ApiResponseMessage.INVALID_TOKEN_RESET,
+                    data = JsonConvert.SerializeObject(new ApiModelResponse(false, ApiResponseMessage.INVALID_TOKEN_RESET))
+                });
+            }
+
+            var hasher = new PasswordHasher<CustomerDto>();
+            user.PasswordHash = hasher.HashPassword(user, request.NewPassword); // or your hash method
+            user.ResetToken = null;
+            user.ResetTokenExpiryTime = null;
+
+            await _customerServices.UpdateCustomer(user.CustomerId, user);
+
+            return Ok(new ApiResponse
+            {
+                status = HttpStatusCode.OK.ToString(),
+                message = ApiResponseMessage.RESET_SUCCESS,
+                data = JsonConvert.SerializeObject(new ApiModelResponse(true, ApiResponseMessage.RESET_SUCCESS))
+            });
         }
     }
 }

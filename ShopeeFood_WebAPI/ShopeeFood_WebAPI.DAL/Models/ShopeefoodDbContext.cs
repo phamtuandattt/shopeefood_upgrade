@@ -128,6 +128,7 @@ public partial class ShopeefoodDbContext : DbContext
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.PhoneNumber).HasMaxLength(20);
             entity.Property(e => e.RefreshTokenExpiryTime).HasColumnType("datetime");
+            entity.Property(e => e.ResetTokenExpiryTime).HasColumnType("datetime");
         });
 
         modelBuilder.Entity<CustomerAddress>(entity =>

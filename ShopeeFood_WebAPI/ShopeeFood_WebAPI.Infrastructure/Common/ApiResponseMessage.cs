@@ -54,6 +54,9 @@ namespace ShopeeFood_WebAPI.Infrastructure.Common
         public const string REGISTERED_SUCCESS = "User registered successfully";
         public const string INVALID_REFRESH = "Invalid refresh token";
         public const string INVALID_TOKEN = "Invalid token";
+        public const string RESET_LINK = "Reset link has been sent to your email.";
+        public const string INVALID_TOKEN_RESET = "Invalid or expired token.";
+        public const string RESET_SUCCESS = "Password has been reset.";
     }
 
     public enum ErrorCode

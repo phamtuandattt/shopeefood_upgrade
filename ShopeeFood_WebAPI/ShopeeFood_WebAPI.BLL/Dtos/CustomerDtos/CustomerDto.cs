@@ -34,6 +34,10 @@ namespace ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos
 
         public DateTime? RefreshTokenExpiryTime { get; set; }
 
+        public string? ResetToken { get; set; }
+
+        public DateTime? ResetTokenExpiryTime { get; set; }
+
         public List<CustomerAddressDto>? CustomerAddresses { get; set; }
 
         public List<CustomerExternalLoginDto>? CustomerExternalLogins { get; set; }
