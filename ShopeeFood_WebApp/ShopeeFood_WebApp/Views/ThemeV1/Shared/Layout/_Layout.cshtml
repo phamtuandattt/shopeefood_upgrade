@@ -16,7 +16,6 @@
             "header-menu.css",
             "banner.css",
             "footer.css",
-            "login.css"
          };
          await Html.RenderPartialAsync("_Css_Js_Render", cssList);
      }
@@ -45,8 +44,7 @@
     @{
         var jsListEnd = new List<string> {
             "header-menu.js",
-            "banner.js",
-            "login.js"
+            "banner.js"
     };  
         await Html.RenderPartialAsync("_Css_Js_Render", jsListEnd);
     }

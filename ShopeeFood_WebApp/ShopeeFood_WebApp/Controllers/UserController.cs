@@ -91,6 +91,14 @@ namespace ShopeeFood_WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Route("/reset-password")]
+        public ActionResult ResetPasswordModule()
+        {
+            ViewBag.PageTitle = "Reset Password";
+            return View();
+        }
+
         [HttpPost]
         [Route("/membership-login")]
         public async Task<IActionResult> MembershipLogin(CustomerLoginRequestDto requestDto)

@@ -45,6 +45,12 @@
     </p>
 </div>
  *@
+@{
+    var cssList = new List<string> {
+            "login.css"
+         };
+    await Html.RenderPartialAsync("_Css_Js_Render", cssList);
+}
 
 <div class="login-container">
     <div class="login-form-wrapper">
@@ -172,3 +178,11 @@
         </form>
     </div>
 </div>
+
+<!-- Render JS -->
+@{
+    var jsListEnd = new List<string> {
+            "login.js"
+    };
+    await Html.RenderPartialAsync("_Css_Js_Render", jsListEnd);
+}

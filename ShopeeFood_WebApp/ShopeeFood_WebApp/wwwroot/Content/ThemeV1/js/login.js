@@ -14,13 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
 // Email validation regex
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-// Password requirements
+//// Password requirements
+//const passwordRequirements = {
+//    minLength: 8,
+//    hasUpperCase: /[A-Z]/,
+//    hasLowerCase: /[a-z]/,
+//    hasNumbers: /\d/,
+//    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/
+//};
 const passwordRequirements = {
     minLength: 8,
+    maxLength: 128,
     hasUpperCase: /[A-Z]/,
     hasLowerCase: /[a-z]/,
     hasNumbers: /\d/,
-    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/
+    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/,
+    noRepeatedChars: /^(?!.*(.)\1{2,})/,
+    noSequential: /^(?!.*(?:abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz|123|234|345|456|567|678|789|890))/i
 };
 
 // Form elements
@@ -262,6 +272,7 @@ function handleLogin(event) {
                 if (!response.isValidUser) {
                     showError(emailInput, emailError, response.message);
                     emailInput.focus();
+                    return;
                 }
                 if (!response.isValidPwd) {
                     showError(passwordInput, passwordError, response.message);
