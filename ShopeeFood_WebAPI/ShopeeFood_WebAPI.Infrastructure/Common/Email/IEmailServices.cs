@@ -8,6 +8,6 @@ namespace ShopeeFood_WebAPI.Infrastructure.Common.Email
 {
     public interface IEmailServices
     {
-        Task SendEmailAsync(string toEmail, string subject, string htmlContent);
+        Task SendEmailAsync(string userEmail, string userName, string subject, string resetLink, EmailSettings emailSettings);
     }
 }

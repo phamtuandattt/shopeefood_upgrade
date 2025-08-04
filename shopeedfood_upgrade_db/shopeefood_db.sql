@@ -164,3 +164,14 @@ CREATE TABLE CustomerAddresses (
 --JOIN Districts d ON d.DistrictID = w.DistrictID
 --JOIN Cities ci ON ci.CityID = d.CityID
 --WHERE a.CustomerID = 123;
+
+CREATE TABLE EmailSettings (
+	EmailSettingId INT PRIMARY KEY IDENTITY,
+	SmtpServer NVARCHAR(100),
+	Port INT, -- 587
+	SenderEmail NVARCHAR(100),
+	SenderName NVARCHAR(100),
+	UserName NVARCHAR(100),
+	Password NVARCHAR(100),
+	EnableSsl BIT DEFAULT 1, -- true
+)

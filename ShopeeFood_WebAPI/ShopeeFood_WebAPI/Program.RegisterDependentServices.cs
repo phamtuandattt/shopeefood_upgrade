@@ -85,8 +85,8 @@ public static class RegisterDependentServices
         builder.Services.AddScoped<ICustomerServices, CustomerServices>();
 
         // Get email setting
-        var eS = builder.Configuration.GetSection("EmailSettings");
-        builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+        //var eS = builder.Configuration.GetSection("EmailSettings");
+        //builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
         builder.Services.AddScoped<IEmailServices, EmailServices>();
 
 

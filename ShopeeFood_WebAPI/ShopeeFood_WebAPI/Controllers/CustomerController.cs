@@ -395,7 +395,6 @@ namespace ShopeeFood_WebAPI.Controllers
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequestDto request)
         {
             //var user = await _context.Customers.FirstOrDefaultAsync(c => c.Email == request.Email);
-
             var user = await _customerServices.GetCustomerByEmail(request.Email);
             if (user == null)
             {
@@ -415,10 +414,10 @@ namespace ShopeeFood_WebAPI.Controllers
             await _customerServices.UpdateCustomer(user.CustomerId, user);
 
             // send email
+            var _emailSettingFromDb = await _customerServices.GetEmailSettings();
+            var _emailSetting = _mapper.Map<EmailSettings>(_emailSettingFromDb);
             var resetLink = $"https://yourwebapp.com/reset-password?token={token}";
-            await _emailServices.SendEmailAsync(user.Email, 
-                "Reset Your Password", 
-                $"<p>Hello,</p><p>Click <a href='{resetLink}'>here</a> to reset your password. This link is valid for 1 hour.</p>");
+            await _emailServices.SendEmailAsync(user.Email, user.FullName, "Reset Your Password", resetLink, _emailSetting);
 
             //return Ok(new { message = "Reset link has been sent to your email." });
             return Ok(new ApiResponse

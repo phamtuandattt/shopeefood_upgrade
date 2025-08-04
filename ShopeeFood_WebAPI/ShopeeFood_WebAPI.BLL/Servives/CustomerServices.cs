@@ -7,6 +7,7 @@ using ShopeeFood_WebAPI.DAL.IRepositories;
 using ShopeeFood_WebAPI.DAL.IRepositories.ICustomerRepository;
 using ShopeeFood_WebAPI.DAL.Models;
 using ShopeeFood_WebAPI.Infrastructure;
+using ShopeeFood_WebAPI.Infrastructure.Common.Email;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,17 @@ namespace ShopeeFood_WebAPI.BLL.Servives
     {
         private readonly IRepository<Customer> _repository;
         private readonly IRepository<CustomerAddress> _customerAddressRepo;
+        private readonly IRepository<EmailSetting> _emailSettingRepo;
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
 
-        public CustomerServices(IRepository<Customer> repository, IRepository<CustomerAddress> customerAddressRepo, ICustomerRepository customerRepository, IMapper mapper)
+        public CustomerServices(IRepository<Customer> repository, IRepository<CustomerAddress> customerAddressRepo, ICustomerRepository customerRepository, IMapper mapper,
+            IRepository<EmailSetting> emailSettings)
         {
             _repository = repository;
             _customerAddressRepo = customerAddressRepo;
             _customerRepository = customerRepository;
+            _emailSettingRepo = emailSettings;
             _mapper = mapper;
         }
 
@@ -145,6 +149,12 @@ namespace ShopeeFood_WebAPI.BLL.Servives
             );
 
             return _mapper.Map<CustomerDto>(responseFromCusRepo);
+        }
+
+        public async Task<EmailSettingDto> GetEmailSettings()
+        {
+            var emailSettings = await _emailSettingRepo.GetByIdAsync(1); // Custom get from email
+            return _mapper.Map<EmailSettingDto>(emailSettings);
         }
 
         public async Task<bool> UpdateCustomer(int cusId, CustomerDto customer)

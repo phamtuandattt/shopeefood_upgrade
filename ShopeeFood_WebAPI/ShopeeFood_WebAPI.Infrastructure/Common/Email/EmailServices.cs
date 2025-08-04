@@ -12,39 +12,55 @@ namespace ShopeeFood_WebAPI.Infrastructure.Common.Email
 {
     public class EmailServices : IEmailServices
     {
-        private readonly EmailSettings _settings;
+        //private readonly EmailSettings _settings;
 
-        public EmailServices(IOptions<EmailSettings> settings)
-        {
-            _settings = settings.Value;
-        }
+        //public EmailServices(IOptions<EmailSettings> settings)
+        //{
+        //    _settings = settings.Value;
+        //}
 
-        public async Task SendEmailAsync(string toEmail, string subject, string htmlContent)
+
+        public async Task SendEmailAsync(string userEmail, string userName, string subject, string resetLink, EmailSettings emailSettings)
         {
             try
             {
-                using var client = new SmtpClient(_settings.SmtpServer)
+                using var client = new SmtpClient(emailSettings.SmtpServer)
                 {
-                    Port = _settings.Port,
-                    Credentials = new NetworkCredential(_settings.Username, _settings.Password),
-                    EnableSsl = _settings.EnableSsl
+                    Port = emailSettings.Port,
+                    Credentials = new NetworkCredential(emailSettings.Username, emailSettings.Password),
+                    EnableSsl = emailSettings.EnableSsl
                 };
+
+                string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "EmailTemplate", "ResetPasswordEmailTemplate.html");
+
+                var placeholders = new Dictionary<string, string>
+                {
+                    { "UserName", userName},
+                    { "ResetLink", resetLink }
+                };
+
+                string body = File.ReadAllText(templatePath);
+
+                foreach (var placeholder in placeholders)
+                {
+                    body = body.Replace("{{" + placeholder.Key + "}}", placeholder.Value);
+                }
 
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(_settings.SenderEmail, _settings.SenderName),
+                    From = new MailAddress(emailSettings.SenderEmail, emailSettings.SenderName),
                     Subject = subject,
-                    Body = htmlContent,
+                    Body = body,
                     IsBodyHtml = true
                 };
-                mailMessage.To.Add(toEmail);
+                mailMessage.To.Add(userEmail);
 
                 await client.SendMailAsync(mailMessage);
-                Logger.Debug($"Email sent to {toEmail}");
+                Logger.Debug($"Email sent to {userEmail}");
             }
             catch (Exception ex)
             {
-                Logger.Error($"Failed to send email to {toEmail}", ex);
+                Logger.Error($"Failed to send email to {userEmail}", ex);
                 throw; // Rethrow to let the controller decide how to handle it
             }
         }

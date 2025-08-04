@@ -1,5 +1,6 @@
 ﻿using ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos;
 using ShopeeFood_WebAPI.DAL.Models;
+using ShopeeFood_WebAPI.Infrastructure.Common.Email;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +27,8 @@ namespace ShopeeFood_WebAPI.BLL.IServices
         Task DeleteAddressAsync(string email, int addressId);
 
         Task<CustomerDto> GetCustomerByResetToken(string resetToken);
+
+        // Get email settings from DB
+        Task<EmailSettingDto> GetEmailSettings();
     }
 }

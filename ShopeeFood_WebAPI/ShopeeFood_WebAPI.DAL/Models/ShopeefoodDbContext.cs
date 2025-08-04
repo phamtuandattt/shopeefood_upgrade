@@ -38,6 +38,8 @@ public partial class ShopeefoodDbContext : DbContext
 
     public virtual DbSet<District> Districts { get; set; }
 
+    public virtual DbSet<EmailSetting> EmailSettings { get; set; }
+
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<MenuDetailShop> MenuDetailShops { get; set; }
@@ -183,6 +185,18 @@ public partial class ShopeefoodDbContext : DbContext
             entity.HasOne(d => d.City).WithMany(p => p.Districts)
                 .HasForeignKey(d => d.CityId)
                 .HasConstraintName("FK__Districts__CityI__398D8EEE");
+        });
+
+        modelBuilder.Entity<EmailSetting>(entity =>
+        {
+            entity.HasKey(e => e.EmailSettingId).HasName("PK__EmailSet__10C16F302D113E28");
+
+            entity.Property(e => e.EnableSsl).HasDefaultValue(true);
+            entity.Property(e => e.Password).HasMaxLength(100);
+            entity.Property(e => e.SenderEmail).HasMaxLength(100);
+            entity.Property(e => e.SenderName).HasMaxLength(100);
+            entity.Property(e => e.SmtpServer).HasMaxLength(100);
+            entity.Property(e => e.UserName).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Employee>(entity =>
