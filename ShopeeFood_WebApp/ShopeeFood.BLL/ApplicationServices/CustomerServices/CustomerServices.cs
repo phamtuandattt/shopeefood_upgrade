@@ -179,6 +179,44 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
             return response;
         }
 
+        public async Task<AppActionResult<StatusReponseDto, ApiErrorResponse>> ResetPassword(HttpContext httpContext, ResetpasswordRequestDto requestDto)
+        {
+            Logger.Info("BENGIN - Reset password");
+            var response = new AppActionResult<StatusReponseDto, ApiErrorResponse>();
+            var clientSession = new ClientSession(_httpContextAccessor);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.Resetpassword;
+            try
+            {
+                if (requestDto != null)
+                {
+                    var postData = SerializeParams(requestDto);
+                    var result = await RestServices.PostAsync<StatusReponseDto, ApiErrorResponse>(postData, $"{ApiDomain}{apiUrl}");
+                    if (result.IsSuccess)
+                    {
+                        Logger.Info($"Reset password success! ");
+                        response.SetResult(result.Data);
+                    }
+                    else
+                    {
+                        response.SetError(result.Error);
+                        Logger.Info($"FAIL to Reset password: . ErrorCode: {result.Error?.ErrorCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"FAIL to Reset password: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - Reset password.");
+            }
+
+            return response;
+        }
+
         public async Task<AppActionResult<CustomerAddressDto, ApiErrorResponse>> UpdateCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto)
         {
             Logger.Info("BENGIN - Update customer address");

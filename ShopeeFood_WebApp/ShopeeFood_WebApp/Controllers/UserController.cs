@@ -93,10 +93,37 @@ namespace ShopeeFood_WebApp.Controllers
 
         [HttpGet]
         [Route("/reset-password")]
-        public ActionResult ResetPasswordModule()
+        public ActionResult ResetPasswordModule(string token)
         {
+            var clientSession = new ClientSession(HttpContext);
+            clientSession.TokenResetpassword = token;
             ViewBag.PageTitle = "Reset Password";
             return View();
+        }
+
+        [HttpPost]
+        [Route("/reset-password")]
+        public async Task<IActionResult> ResetPasswordModule(string token, string password)
+        {
+            var clientSession = new ClientSession(HttpContext);
+            var objReturn = new PopupMessageContentJsonResponse();
+            var requestDto = new ResetpasswordRequestDto() { Token = clientSession.TokenResetpassword, NewPassword = password };
+            var response = await customerServices.ResetPassword(HttpContext, requestDto);
+            if (response is not null && response.Data is not null)
+            {
+                if (response.Data.IsSuccess)
+                {
+                    objReturn.success = response.Data.IsSuccess;
+                    //return Redirect("/my-account");
+                    return Json(objReturn);
+                }
+            }
+            objReturn.success = response.Data.IsSuccess;
+            objReturn.type = PopupManagement.GetPopupType(PopupType.Error);
+            objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Reset, false);
+            objReturn.message = response.Data.Message;
+
+            return Json(objReturn);
         }
 
         [HttpPost]

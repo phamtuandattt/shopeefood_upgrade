@@ -379,41 +379,62 @@ async function handlePasswordReset(event) {
         return;
     }
 
-    // Show loading state
-    setLoadingState(true);
-
-    try {
-        // Simulate API call
-        const result = await simulatePasswordReset();
-
-        if (result.success) {
-            // Show success animation
-            showSuccessAnimation();
-
-            // Show success message
-            showPopupMessage('success', 'Password Reset Successful',
-                'Your password has been successfully updated. You will be redirected to the login page.', {
-                autoClose: true,
-                autoCloseDelay: 3000,
-                onClose: () => {
-                    // Redirect to login page
-                    window.location.href = '/login';
-                }
-            });
-
-            // Clear form
-            resetForm.reset();
-            clearAllValidationStates();
-
-        } else {
-            showPopupMessage('error', 'Reset Failed', result.message);
+    $.ajax({
+        url: '/reset-password',
+        type: "POST",
+        data: { token: "" , password: confirmPasswordInput.value },
+        beforeSend: function () {
+            // Show loading state
+            setLoadingState(true);
+        },
+        complete: function () {
+            setLoadingState(false);
+        },
+        success: function (response) {
+            if (response.success) {
+                window.location.href = '/login';
+            }
+            else {
+                // Clear form
+                resetForm.reset();
+                clearAllValidationStates();
+                showPopupMessage('error', 'Reset Failed', response.message);
+            }
         }
+    });
 
-    } catch (error) {
-        showPopupMessage('error', 'Connection Error', 'Unable to connect to server. Please try again.');
-    } finally {
-        setLoadingState(false);
-    }
+    //try {
+    //    // Simulate API call
+    //    const result = await simulatePasswordReset();
+
+    //    if (result.success) {
+    //        // Show success animation
+    //        showSuccessAnimation();
+
+    //        // Show success message
+    //        showPopupMessage('success', 'Password Reset Successful',
+    //            'Your password has been successfully updated. You will be redirected to the login page.', {
+    //            autoClose: true,
+    //            autoCloseDelay: 3000,
+    //            onClose: () => {
+    //                // Redirect to login page
+    //                window.location.href = '/login';
+    //            }
+    //        });
+
+    //        // Clear form
+    //        resetForm.reset();
+    //        clearAllValidationStates();
+
+    //    } else {
+    //        showPopupMessage('error', 'Reset Failed', result.message);
+    //    }
+
+    //} catch (error) {
+    //    showPopupMessage('error', 'Connection Error', 'Unable to connect to server. Please try again.');
+    //} finally {
+    //    setLoadingState(false);
+    //}
 }
 
 // Simulate password reset API call

@@ -21,5 +21,7 @@ namespace ShopeeFood.BLL.ServicesContract.CustomerServicesContract
         Task<AppActionResult<CustomerAddressDto, ApiErrorResponse>> UpdateCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto);
 
         Task<AppActionResult<StatusReponseDto, ApiErrorResponse>> DeleteCustomerAddress(HttpContext httpContext, CustomerAddressRequestDto requestDto);
+
+        Task<AppActionResult<StatusReponseDto, ApiErrorResponse>> ResetPassword(HttpContext httpContext, ResetpasswordRequestDto requestDto);
     }
 }

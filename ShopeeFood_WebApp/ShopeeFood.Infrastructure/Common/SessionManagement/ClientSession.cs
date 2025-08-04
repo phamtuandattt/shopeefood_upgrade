@@ -47,6 +47,18 @@ namespace ShopeeFood.Infrastructure.Common.SessionManagement
             }
         }
 
+        public string TokenResetpassword
+        {
+            get
+            {
+                return _current.Session.GetString("TokenResetpassword") as string;
+            }
+            set
+            {
+                _current.Session.SetString("TokenResetpassword", value);
+            }
+        }
+
 
         #endregion
 

@@ -64,6 +64,7 @@ namespace ShopeeFood.Infrastructure.Common
     {
         Add,
         Delete,
-        Update
+        Update,
+        Reset
     }
 }
