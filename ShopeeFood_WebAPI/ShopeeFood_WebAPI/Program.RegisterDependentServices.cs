@@ -24,6 +24,18 @@ public static class RegisterDependentServices
 {
     public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
     {
+        // Load appsetting file for each environment
+        var appSettingFile = "appsettings.json";
+        #if DEBUG
+        appSettingFile = "appsettings.Development.json";
+        #endif
+
+        builder.Configuration
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(appSettingFile, false, true)
+            .AddEnvironmentVariables();
+        //--------------------------------------------
+
         var configLog4netPath = builder.Configuration["log4net"] ?? "";
         // Configure log4net
         var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());

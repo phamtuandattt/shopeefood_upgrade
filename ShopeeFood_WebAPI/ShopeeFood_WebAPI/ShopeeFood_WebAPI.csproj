@@ -23,4 +23,10 @@
     <ProjectReference Include="..\ShopeeFood_WebAPI.Infrastructure\ShopeeFood_WebAPI.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="EmailTemplate\ResetPasswordEmailTemplate.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

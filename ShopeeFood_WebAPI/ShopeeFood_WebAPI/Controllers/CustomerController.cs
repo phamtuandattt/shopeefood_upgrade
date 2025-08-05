@@ -11,6 +11,7 @@ using System.Net.WebSockets;
 using Microsoft.EntityFrameworkCore;
 using ShopeeFood_WebAPI.Infrastructure.Common.Email;
 using ShopeeFood_WebAPI.DAL.Models;
+using ShopeeFood_WebAPI.Infrastructure.Common.Models;
 
 
 namespace ShopeeFood_WebAPI.Controllers
@@ -414,9 +415,10 @@ namespace ShopeeFood_WebAPI.Controllers
             await _customerServices.UpdateCustomer(user.CustomerId, user);
 
             // send email
+            var domain = _config.GetSection("WebClientDomain").Get<WebClientDomail>();
             var _emailSettingFromDb = await _customerServices.GetEmailSettings();
             var _emailSetting = _mapper.Map<EmailSettings>(_emailSettingFromDb);
-            var resetLink = $"https://yourwebapp.com/reset-password?token={token}";
+            var resetLink = $"{domain.host}/reset-password?token={token}";
             await _emailServices.SendEmailAsync(user.Email, user.FullName, "Reset Your Password", resetLink, _emailSetting);
 
             //return Ok(new { message = "Reset link has been sent to your email." });
