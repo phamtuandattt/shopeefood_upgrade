@@ -147,6 +147,7 @@ namespace ShopeeFood_WebApp.Controllers
                 if (response.Data.IsSuccess)
                 {
                     objReturn.success = response.Data.IsSuccess;
+                    objReturn.message = response.Data.Message;
                     return Json(objReturn);
                 }
             }

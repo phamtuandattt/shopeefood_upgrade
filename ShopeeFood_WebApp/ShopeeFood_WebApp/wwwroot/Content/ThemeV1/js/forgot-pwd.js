@@ -45,7 +45,7 @@ async function handleForgotPwd(event) {
                 showSuccessPopup('Success', response.message);
                 setTimeout(() => {
                     window.location.href = '/login';
-                }, 10000);
+                }, 3000);
             }
             else {
                 // Clear form

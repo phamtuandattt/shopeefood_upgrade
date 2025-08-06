@@ -21,6 +21,18 @@ namespace ShopeeFood_WebApp
     {
         public static WebApplicationBuilder RegisterServices(this WebApplicationBuilder builder)
         {
+            // Load appsetting file for each environment
+            var appSettingFile = "appsettings.json";
+#if DEBUG
+            appSettingFile = "appsettings.Development.json";
+#endif
+
+            builder.Configuration
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile(appSettingFile, false, true)
+                .AddEnvironmentVariables();
+            //--------------------------------------------
+
             // Configure log4net
             var configLog4netPath = builder.Configuration["log4net"] ?? "";
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
