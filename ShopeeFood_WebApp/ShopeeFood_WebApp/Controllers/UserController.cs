@@ -101,6 +101,14 @@ namespace ShopeeFood_WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Route("/forgot-password")]
+        public ActionResult ForgotPasswordModule()
+        {
+            ViewBag.PageTitle = "Forgot password";
+            return View();
+        }
+
         [HttpPost]
         [Route("/reset-password")]
         public async Task<IActionResult> ResetPasswordModule(string token, string password)
@@ -121,6 +129,28 @@ namespace ShopeeFood_WebApp.Controllers
             objReturn.success = response.Data.IsSuccess;
             objReturn.type = PopupManagement.GetPopupType(PopupType.Error);
             objReturn.title = PopupManagement.GetTitlePopup(PopupAction.Reset, false);
+            objReturn.message = response.Data.Message;
+
+            return Json(objReturn);
+        }
+
+        [HttpPost]
+        [Route("/forgot-password")]
+        public async Task<IActionResult> ForgotPasswordModule(string email)
+        {
+            var clientSession = new ClientSession(HttpContext);
+            var objReturn = new PopupMessageContentJsonResponse();
+            var requestDto = new ForgotPasswordRequestDto() { Email = email};
+            var response = await customerServices.ForgotPassword(HttpContext, requestDto);
+            if (response is not null && response.Data is not null)
+            {
+                if (response.Data.IsSuccess)
+                {
+                    objReturn.success = response.Data.IsSuccess;
+                    return Json(objReturn);
+                }
+            }
+            objReturn.success = response.Data.IsSuccess;
             objReturn.message = response.Data.Message;
 
             return Json(objReturn);

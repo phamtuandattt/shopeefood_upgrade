@@ -104,6 +104,44 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
             return response;
         }
 
+        public async Task<AppActionResult<StatusReponseDto, ApiErrorResponse>> ForgotPassword(HttpContext httpContext, ForgotPasswordRequestDto requestDto)
+        {
+            Logger.Info("BENGIN - Forgot password request");
+            var response = new AppActionResult<StatusReponseDto, ApiErrorResponse>();
+            var clientSession = new ClientSession(_httpContextAccessor);
+            var apiSetting = ApiSettingServices.LoadApiSettings(httpContext);
+            var apiUrl = apiSetting.ForgotPassword;
+            try
+            {
+                if (requestDto != null)
+                {
+                    var postData = SerializeParams(requestDto);
+                    var result = await RestServices.PostAsync<StatusReponseDto, ApiErrorResponse>(postData, $"{ApiDomain}{apiUrl}");
+                    if (result.IsSuccess)
+                    {
+                        Logger.Info($"Forgot password request success! ");
+                        response.SetResult(result.Data);
+                    }
+                    else
+                    {
+                        response.SetError(result.Error);
+                        Logger.Info($"FAIL to Forgot password request: . ErrorCode: {result.Error?.ErrorCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error($"FAIL to Forgot password request: {ex.Message}");
+                response.SetError(new ApiErrorResponse { Message = ex.Message });
+            }
+            finally
+            {
+                Logger.Debug($"END - Forgot password request.");
+            }
+
+            return response;
+        }
+
         public async Task<AppActionResult<CustomerResponseDto, ApiErrorResponse>> GetCustomerProfile(HttpContext httpContext, string email)
         {
             Logger.Info("BENGIN - Get customer profile");

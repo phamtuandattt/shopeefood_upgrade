@@ -23,7 +23,8 @@ namespace ShopeeFood.BLL.ApplicationServices
                 AddCustomerAddress = "/api/customers/add-customer-address",
                 UpdateCustomerAddress = "/api/customers/update-address",
                 DeleteCustomerAddress = "/api/customers/delete-address",
-                Resetpassword = "/api/customers/reset-password"
+                Resetpassword = "/api/customers/reset-password",
+                ForgotPassword = "/api/customers/forgot-password"
             };
             return settings;
         }

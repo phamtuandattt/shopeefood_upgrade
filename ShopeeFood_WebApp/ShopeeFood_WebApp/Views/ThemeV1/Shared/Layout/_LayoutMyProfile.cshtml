@@ -9,7 +9,6 @@
 
     @{
         var cssList = new List<string> {
-            "my-profile.css",
             "order-history.css"
         };
         await Html.RenderPartialAsync("_Css_Js_Render", cssList);
@@ -35,12 +34,11 @@
         </div>
     </div>
     <hr />
-    <div id="popup-container"></div>
 
     <!-- Render JS -->
     @{
         var jsListEnd = new List<string> {
-            "my-account.js",
+            // "my-account.js",
             "order-history.js"
         };
         await Html.RenderPartialAsync("_Css_Js_Render", jsListEnd);

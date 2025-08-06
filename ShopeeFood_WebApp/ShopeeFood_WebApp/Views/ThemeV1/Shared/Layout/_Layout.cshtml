@@ -16,6 +16,7 @@
             "header-menu.css",
             "banner.css",
             "footer.css",
+            "my-profile.css",
          };
          await Html.RenderPartialAsync("_Css_Js_Render", cssList);
      }
@@ -25,6 +26,7 @@
     <div class="loader-redirect-overlay">
         <div class="loader-redirect"></div>
     </div>
+    <div id="popup-container"></div>
 
     <!-- Render Header using ViewComponet -->
     @await Component.InvokeAsync("Header", new { cityId = 1 });
@@ -44,7 +46,8 @@
     @{
         var jsListEnd = new List<string> {
             "header-menu.js",
-            "banner.js"
+            "banner.js",
+    "my-account.js",
     };  
         await Html.RenderPartialAsync("_Css_Js_Render", jsListEnd);
     }
