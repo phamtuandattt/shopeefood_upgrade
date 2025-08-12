@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace ShopeeFood.Infrastructure.Common.Cache
 {
-    public struct CacheKey
+    public static class CacheKey
     {
         public const string CustomerProfileKey = "CustomerProfileKey";
         public const string CustomerAddressesKey = "CustomerAddressesKey";
@@ -61,7 +61,7 @@ namespace ShopeeFood.Infrastructure.Common.Cache
         {
             var redisName = _configuration["InstanceName"];
             var domain = httpContext.Request.Host.Host;
-            return $"{redisName}_{domain}_{dataKey}".ToLower();
+            return $"{redisName.ToLower()}_{domain}_{dataKey}".ToLower();
         }
 
         public string CreateCacheKey(string dataKey)
