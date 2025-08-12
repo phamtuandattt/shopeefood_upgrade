@@ -4,6 +4,7 @@ using ShopeeFood.BLL.DTOS.CustomerDTOs;
 using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
 using ShopeeFood.Infrastructure.Common.ApiServices;
+using ShopeeFood.Infrastructure.Common.Cache;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
 using ShopeeFood.Infrastructure.Logging;
 using System;
@@ -18,8 +19,8 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
 {
     public class CustomerServices : BaseApiServices, ICustomerServices
     {
-        public CustomerServices(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
-            : base(httpContextAccessor, configuration)
+        public CustomerServices(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, ICacheService cacheService)
+            : base(httpContextAccessor, configuration, cacheService)
         {
 
         }
@@ -150,9 +151,12 @@ namespace ShopeeFood.BLL.ApplicationServices.CustomerServices
             var settings = ApiSettingServices.LoadApiSettings(httpContext);
             var apiUrl = settings.GetCustomerProfile;
             var clientSession = new ClientSession(_httpContextAccessor);
+
+            var key = _cacheService.CreateCacheKey(CacheKey.AccessToken);
+            var token = await _cacheService.GetAsync<string>(key);
             try
             {
-                RestServices.SetBearerAuthorization(clientSession.AccessToken);
+                RestServices.SetBearerAuthorization(token);
                 var result = await RestServices.GetAsync<CustomerResponseDto, ApiErrorResponse>(null, $"{ApiDomain}{apiUrl}");
                 if (result.IsSuccess)
                 {

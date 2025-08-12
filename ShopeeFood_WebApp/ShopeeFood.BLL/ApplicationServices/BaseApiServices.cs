@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShopeeFood.Infrastructure.Common.Cache;
 
 namespace ShopeeFood.BLL.ApplicationServices
 {
@@ -18,6 +19,8 @@ namespace ShopeeFood.BLL.ApplicationServices
         protected IHttpContextAccessor _httpContextAccessor { get; set; }
         protected readonly IConfiguration _configuration;
         protected LoadApiSettingService ApiSettingServices { get; set; }
+
+        protected readonly ICacheService _cacheService;
 
         protected string ApiDomain
         {
@@ -31,6 +34,15 @@ namespace ShopeeFood.BLL.ApplicationServices
             _configuration = configuration;
             RestServices = _httpContextAccessor.HttpContext.RequestServices.GetService<RestServices>();
             ApiSettingServices = _httpContextAccessor.HttpContext.RequestServices.GetService<LoadApiSettingService>();
+        }
+
+        public BaseApiServices(IHttpContextAccessor httpContextAccessor, IConfiguration configuration, ICacheService cacheService)
+        {
+            _httpContextAccessor = httpContextAccessor;
+            _configuration = configuration;
+            RestServices = _httpContextAccessor.HttpContext.RequestServices.GetService<RestServices>();
+            ApiSettingServices = _httpContextAccessor.HttpContext.RequestServices.GetService<LoadApiSettingService>();
+            _cacheService = cacheService;
         }
 
         protected virtual JObject SerializeParams<TInput>(TInput reqParams)

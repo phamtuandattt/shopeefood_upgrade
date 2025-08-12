@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
 using ShopeeFood.Infrastructure.Common;
+using ShopeeFood.Infrastructure.Common.Cache;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
 using ShopeeFood_WebApp.Models;
 using ShopeeFood_WebApp.Models.Customers;
@@ -16,8 +17,12 @@ namespace ShopeeFood_WebApp.Controllers
     {
         private readonly ICustomerServices customerServices;
 
-        public UserController(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IMapper mapper, ICustomerServices customerServices) 
-            : base(configuration, httpContextAccessor, mapper)
+        public UserController(IConfiguration configuration, 
+            IHttpContextAccessor httpContextAccessor, 
+            IMapper mapper, 
+            ICustomerServices customerServices,
+            ICacheService cacheService) 
+            : base(configuration, httpContextAccessor, mapper, cacheService)
         {
             this.customerServices = customerServices;
         }
@@ -173,6 +178,9 @@ namespace ShopeeFood_WebApp.Controllers
                     clientSession.IsLogin = loginResutl.Success;
                     clientSession.CurrentUser = loginResutl;
                     objReturn.isRedirect = true;
+
+                    var key = _cacheService.CreateCacheKey(CacheKey.AccessToken);
+                    await _cacheService.SetAsync(key, loginResutl.AccessToken);
                     //return Redirect("/my-account");
                     return Json(objReturn);
                 }

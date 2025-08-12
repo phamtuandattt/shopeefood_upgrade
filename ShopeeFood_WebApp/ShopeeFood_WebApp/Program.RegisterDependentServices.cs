@@ -14,6 +14,7 @@ using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
 using ShopeeFood.BLL.ApplicationServices.CustomerServices;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
 using Microsoft.Extensions.Options;
+using ShopeeFood.Infrastructure.Common.Cache;
 
 namespace ShopeeFood_WebApp
 {
@@ -33,10 +34,12 @@ namespace ShopeeFood_WebApp
                 .AddEnvironmentVariables();
             //--------------------------------------------
 
+            #region log4net configure
             // Configure log4net
             var configLog4netPath = builder.Configuration["log4net"] ?? "";
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo(configLog4netPath));
+            #endregion
 
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -44,6 +47,22 @@ namespace ShopeeFood_WebApp
             builder.Services.AddControllers();
             builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+
+            #region Redis configure
+            // bind config
+            var redisSection = builder.Configuration.GetSection("Redis");
+            var redisConnection = redisSection.GetValue<string>("ConnectionString");
+
+            // add Microsoft distributed cache backed by StackExchange.Redis
+            builder.Services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = redisConnection;
+                options.InstanceName = redisSection.GetValue<string>("InstanceName"); // optional
+            });
+            #endregion
+            builder.Services.AddScoped<ICacheService, RedisCacheService>();
+
+            #region session configure
             builder.Services.AddSession(options =>
             {
                 string sessionTimeoutValue = builder.Configuration["SessionTimeOutInMinute"] ?? "1440";//1 day
@@ -54,6 +73,7 @@ namespace ShopeeFood_WebApp
                     options.IdleTimeout = TimeSpan.FromMinutes(SessionTimeout);
                 }
             });
+            #endregion
             builder.Services.AddScoped<ClientSession>();
 
             builder.Services.AddScoped<RestServices>();
