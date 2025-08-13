@@ -175,3 +175,10 @@ CREATE TABLE EmailSettings (
 	Password NVARCHAR(100),
 	EnableSsl BIT DEFAULT 1, -- true
 )
+
+
+CREATE TABLE PageSettings (
+	PageId INT PRIMARY KEY IDENTITY,
+	PagePath NVARCHAR(100),
+	PageName NVARCHAR(50), 
+)

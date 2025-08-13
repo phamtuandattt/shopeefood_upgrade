@@ -2,6 +2,7 @@
 using ShopeeFood_WebAPI.BLL.Dtos;
 using ShopeeFood_WebAPI.BLL.Dtos.CityDtos;
 using ShopeeFood_WebAPI.BLL.Dtos.CustomerDtos;
+using ShopeeFood_WebAPI.BLL.Dtos.PageDtos;
 using ShopeeFood_WebAPI.BLL.Dtos.ShopDtos;
 using ShopeeFood_WebAPI.DAL.ModelResonposeDtos.CityResponseDtos;
 using ShopeeFood_WebAPI.DAL.ModelResonposeDtos.ShopResponseDtos;
@@ -41,6 +42,9 @@ namespace ShopeeFood_WebAPI.ApplicationServices
 
             CreateMap<EmailSetting, EmailSettingDto>().ReverseMap();
             CreateMap<EmailSettingDto, EmailSettings>().ReverseMap();
+
+            CreateMap<PageSetting, PageSettingDto>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

@@ -46,6 +46,8 @@ public partial class ShopeefoodDbContext : DbContext
 
     public virtual DbSet<MenuShop> MenuShops { get; set; }
 
+    public virtual DbSet<PageSetting> PageSettings { get; set; }
+
     public virtual DbSet<Shop> Shops { get; set; }
 
     public virtual DbSet<Ward> Wards { get; set; }
@@ -242,6 +244,14 @@ public partial class ShopeefoodDbContext : DbContext
 
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
             entity.Property(e => e.ShopId).HasColumnName("ShopID");
+        });
+
+        modelBuilder.Entity<PageSetting>(entity =>
+        {
+            entity.HasKey(e => e.PageId).HasName("PK__PageSett__C565B104F9D4622D");
+
+            entity.Property(e => e.PageName).HasMaxLength(50);
+            entity.Property(e => e.PagePath).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Shop>(entity =>
