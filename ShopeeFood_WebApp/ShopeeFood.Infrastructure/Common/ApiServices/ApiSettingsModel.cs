@@ -19,6 +19,7 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
         public string DeleteCustomerAddress { get; set; }
         public string Resetpassword { get; set; }
         public string ForgotPassword { get; set; }
+        public string PageSetting { get; set; }
 
         public ApiSettingsModel()
         {
@@ -33,6 +34,7 @@ namespace ShopeeFood.Infrastructure.Common.ApiServices
             DeleteCustomerAddress = string.Empty;
             Resetpassword = string.Empty;
             ForgotPassword = string.Empty;
+            PageSetting = string.Empty;
         }
     }
 }

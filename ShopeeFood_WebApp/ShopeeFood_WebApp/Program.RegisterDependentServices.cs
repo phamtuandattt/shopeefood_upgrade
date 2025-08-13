@@ -15,6 +15,8 @@ using ShopeeFood.BLL.ApplicationServices.CustomerServices;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
 using Microsoft.Extensions.Options;
 using ShopeeFood.Infrastructure.Common.Cache;
+using ShopeeFood.BLL.ServicesContract.PageSettingServicesContract;
+using ShopeeFood.BLL.ApplicationServices.PageSettingServices;
 
 namespace ShopeeFood_WebApp
 {
@@ -83,6 +85,7 @@ namespace ShopeeFood_WebApp
             builder.Services.AddTransient<IBusinessServices, BusinessServices>();
             builder.Services.AddTransient<IShopServices, ShopServices>();
             builder.Services.AddTransient<ICustomerServices, CustomerServices>();
+            builder.Services.AddTransient<IPageSettingServices, PageSettingServices>();
 
 
             builder.Services.Configure<RazorViewEngineOptions>(o =>

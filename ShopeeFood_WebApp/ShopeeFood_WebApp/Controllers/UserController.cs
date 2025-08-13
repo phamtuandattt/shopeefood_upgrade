@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ShopeeFood.BLL.RequestDTOs.CustomerRequestDto;
 using ShopeeFood.BLL.ServicesContract.CustomerServicesContract;
+using ShopeeFood.BLL.ServicesContract.PageSettingServicesContract;
 using ShopeeFood.Infrastructure.Common;
 using ShopeeFood.Infrastructure.Common.Cache;
 using ShopeeFood.Infrastructure.Common.SessionManagement;
@@ -21,8 +22,9 @@ namespace ShopeeFood_WebApp.Controllers
             IHttpContextAccessor httpContextAccessor, 
             IMapper mapper, 
             ICustomerServices customerServices,
-            ICacheService cacheService) 
-            : base(configuration, httpContextAccessor, mapper, cacheService)
+            ICacheService cacheService,
+            IPageSettingServices pageSettingServices) 
+            : base(configuration, httpContextAccessor, mapper, cacheService, pageSettingServices)
         {
             this.customerServices = customerServices;
         }
@@ -66,16 +68,18 @@ namespace ShopeeFood_WebApp.Controllers
                 CustomerExternalLogins = Mapper.Map<List<CustomerExternalLoginViewModel>>(profileModel?.CustomerExternalLogins)
             };
 
-            ViewBag.PageTitle = "My Account";
+            var pageSetting = await GetPageSettingDto(HttpContext, "/my-account");
+            ViewBag.PageTitle = pageSetting.PageName;
             ViewBag.ActiveProfile = "my-account";
             
             return View(viewModel);
         }
 
         [Route("/my-favorite")]
-        public ActionResult MyFavoriteModule()
+        public async Task<ActionResult> MyFavoriteModule()
         {
-            ViewBag.PageTitle = "My Favorite";
+            var pageSetting = await GetPageSettingDto(HttpContext, "/my-favorite");
+            ViewBag.PageTitle = pageSetting.PageName;
             ViewBag.ActiveProfile = "my-favorite";
             return View();
         }
@@ -98,11 +102,12 @@ namespace ShopeeFood_WebApp.Controllers
 
         [HttpGet]
         [Route("/reset-password")]
-        public ActionResult ResetPasswordModule(string token)
+        public async Task<ActionResult> ResetPasswordModule(string token)
         {
             var clientSession = new ClientSession(HttpContext);
             clientSession.TokenResetpassword = token;
-            ViewBag.PageTitle = "Reset Password";
+            var pageSetting = await GetPageSettingDto(HttpContext, "/reset-password");
+            ViewBag.PageTitle = pageSetting.PageName;
             return View();
         }
 

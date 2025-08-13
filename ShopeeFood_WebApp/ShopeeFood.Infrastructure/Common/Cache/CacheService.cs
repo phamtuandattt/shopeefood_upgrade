@@ -59,14 +59,14 @@ namespace ShopeeFood.Infrastructure.Common.Cache
 
         public string CreateCacheKey(HttpContext httpContext, string dataKey)
         {
-            var redisName = _configuration["InstanceName"];
+            var redisName = _configuration["Redis:InstanceName"];
             var domain = httpContext.Request.Host.Host;
             return $"{redisName.ToLower()}_{domain}_{dataKey}".ToLower();
         }
 
         public string CreateCacheKey(string dataKey)
         {
-            var redisName = _configuration["InstanceName"];
+            var redisName = _configuration["Redis:InstanceName"];
             return $"{redisName.ToLower()}_{dataKey}".ToLower();
         }
     }
